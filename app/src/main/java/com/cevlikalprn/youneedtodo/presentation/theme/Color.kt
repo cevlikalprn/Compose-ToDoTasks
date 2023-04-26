@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.ui.theme
+package com.cevlikalprn.youneedtodo.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

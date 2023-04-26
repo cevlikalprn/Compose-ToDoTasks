@@ -1,9 +1,9 @@
-package com.cevlikalprn.youneedtodo.ui
+package com.cevlikalprn.youneedtodo.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.cevlikalprn.youneedtodo.ui.theme.YouNeedToDoTheme
+import com.cevlikalprn.youneedtodo.presentation.theme.YouNeedToDoTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

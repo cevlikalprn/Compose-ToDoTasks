@@ -1,10 +1,10 @@
 package com.cevlikalprn.youneedtodo.data.model
 
 import androidx.compose.ui.graphics.Color
-import com.cevlikalprn.youneedtodo.ui.theme.HighPriorityColor
-import com.cevlikalprn.youneedtodo.ui.theme.LowPriorityColor
-import com.cevlikalprn.youneedtodo.ui.theme.MediumPriorityColor
-import com.cevlikalprn.youneedtodo.ui.theme.NonePriorityColor
+import com.cevlikalprn.youneedtodo.presentation.theme.HighPriorityColor
+import com.cevlikalprn.youneedtodo.presentation.theme.LowPriorityColor
+import com.cevlikalprn.youneedtodo.presentation.theme.MediumPriorityColor
+import com.cevlikalprn.youneedtodo.presentation.theme.NonePriorityColor
 
 enum class Priority(val color: Color) {
     HIGH(HighPriorityColor),

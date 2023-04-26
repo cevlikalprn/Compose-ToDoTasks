@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.ui.viewmodel
+package com.cevlikalprn.youneedtodo.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
