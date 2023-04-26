@@ -2,7 +2,7 @@ package com.cevlikalprn.youneedtodo.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.cevlikalprn.youneedtodo.util.Constants.DATABASE_TABLE
+import com.cevlikalprn.youneedtodo.common.Constants.DATABASE_TABLE
 
 @Entity(tableName = DATABASE_TABLE)
 data class ToDoTask(

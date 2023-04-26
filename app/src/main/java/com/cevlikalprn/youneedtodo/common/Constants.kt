@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.util
+package com.cevlikalprn.youneedtodo.common
 
 object Constants {
 

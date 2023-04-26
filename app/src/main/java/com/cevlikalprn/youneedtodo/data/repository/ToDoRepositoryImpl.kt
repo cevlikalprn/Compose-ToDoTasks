@@ -1,8 +1,8 @@
-package com.cevlikalprn.youneedtodo.data.repository.impl
+package com.cevlikalprn.youneedtodo.data.repository
 
-import com.cevlikalprn.youneedtodo.data.TodoDao
+import com.cevlikalprn.youneedtodo.data.local.TodoDao
 import com.cevlikalprn.youneedtodo.data.model.ToDoTask
-import com.cevlikalprn.youneedtodo.data.repository.ToDoRepository
+import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

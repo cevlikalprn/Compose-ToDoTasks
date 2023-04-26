@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo
+package com.cevlikalprn.youneedtodo.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

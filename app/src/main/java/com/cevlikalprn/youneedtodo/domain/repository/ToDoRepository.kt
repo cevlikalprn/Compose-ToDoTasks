@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.data.repository
+package com.cevlikalprn.youneedtodo.domain.repository
 
 import com.cevlikalprn.youneedtodo.data.model.ToDoTask
 import kotlinx.coroutines.flow.Flow

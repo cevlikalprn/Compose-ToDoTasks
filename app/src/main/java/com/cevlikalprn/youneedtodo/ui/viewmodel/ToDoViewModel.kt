@@ -1,7 +1,7 @@
 package com.cevlikalprn.youneedtodo.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.cevlikalprn.youneedtodo.data.repository.ToDoRepository
+import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

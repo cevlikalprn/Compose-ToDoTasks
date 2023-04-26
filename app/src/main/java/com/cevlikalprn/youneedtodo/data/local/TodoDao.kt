@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.data
+package com.cevlikalprn.youneedtodo.data.local
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -7,7 +7,7 @@ import androidx.room.Query
 import androidx.room.Update
 import androidx.room.OnConflictStrategy
 import com.cevlikalprn.youneedtodo.data.model.ToDoTask
-import com.cevlikalprn.youneedtodo.util.Constants.DATABASE_TABLE
+import com.cevlikalprn.youneedtodo.common.Constants.DATABASE_TABLE
 import kotlinx.coroutines.flow.Flow
 
 @Dao
