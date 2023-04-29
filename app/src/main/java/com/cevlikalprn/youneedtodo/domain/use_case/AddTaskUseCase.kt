@@ -1,5 +1,10 @@
 package com.cevlikalprn.youneedtodo.domain.use_case
 
-class AddTaskUseCase {
+import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
+import javax.inject.Inject
+
+class AddTaskUseCase @Inject constructor(
+    private val toDoRepository: ToDoRepository
+) {
 
 }

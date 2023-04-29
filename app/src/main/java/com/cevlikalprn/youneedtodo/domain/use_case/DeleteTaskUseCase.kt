@@ -1,4 +1,9 @@
 package com.cevlikalprn.youneedtodo.domain.use_case
 
-class DeleteTaskUseCase {
+import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
+import javax.inject.Inject
+
+class DeleteTaskUseCase @Inject constructor(
+    private val toDoRepository: ToDoRepository
+) {
 }
