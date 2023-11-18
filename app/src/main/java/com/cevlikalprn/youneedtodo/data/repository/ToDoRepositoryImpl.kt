@@ -12,13 +12,21 @@ class ToDoRepositoryImpl @Inject constructor(
     private val todoDao: TodoDao
 ) : ToDoRepository {
 
-    override val getAllTasks: Flow<List<ToDoTask>> = todoDao.getAllTasks()
+    override fun getAllTasks(): Flow<List<ToDoTask>> {
+        return todoDao.getAllTasks()
+    }
 
-    override val sortByLowPriority: Flow<List<ToDoTask>> = todoDao.sortByLowPriority()
+    override fun getSelectedTask(taskId: Int): Flow<ToDoTask> {
+        return todoDao.getSelectedTask(taskId)
+    }
 
-    override val sortByHighPriority: Flow<List<ToDoTask>> = todoDao.sortByHighPriority()
+    override fun getSortedByLowPriority(): Flow<List<ToDoTask>> {
+        return todoDao.sortByLowPriority()
+    }
 
-    override fun getSelectedTask(taskId: Int): Flow<ToDoTask> = todoDao.getSelectedTask(taskId)
+    override fun getSortedByHighPriority(): Flow<List<ToDoTask>> {
+        return todoDao.sortByHighPriority()
+    }
 
     override suspend fun addTask(todoTask: ToDoTask) {
         todoDao.addTask(todoTask)
@@ -32,8 +40,11 @@ class ToDoRepositoryImpl @Inject constructor(
         todoDao.deleteTask(todoTask)
     }
 
-    override suspend fun deleteAllTasks() = todoDao.deleteAllTasks()
+    override suspend fun deleteAllTasks() {
+        todoDao.deleteAllTasks()
+    }
 
-    override fun searchDatabase(searchQuery: String): Flow<List<ToDoTask>> =
-        todoDao.searchDatabase(searchQuery)
+    override fun searchDatabase(searchQuery: String): Flow<List<ToDoTask>> {
+        return todoDao.searchDatabase(searchQuery)
+    }
 }
