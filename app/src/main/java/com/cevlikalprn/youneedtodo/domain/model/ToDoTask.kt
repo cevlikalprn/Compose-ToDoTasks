@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.data.model
+package com.cevlikalprn.youneedtodo.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

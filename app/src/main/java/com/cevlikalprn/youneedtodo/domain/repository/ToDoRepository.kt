@@ -1,6 +1,6 @@
 package com.cevlikalprn.youneedtodo.domain.repository
 
-import com.cevlikalprn.youneedtodo.data.model.ToDoTask
+import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import kotlinx.coroutines.flow.Flow
 
 interface ToDoRepository {

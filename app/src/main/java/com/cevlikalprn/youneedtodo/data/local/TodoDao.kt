@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import androidx.room.OnConflictStrategy
-import com.cevlikalprn.youneedtodo.data.model.ToDoTask
+import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.common.Constants.DATABASE_TABLE
 import kotlinx.coroutines.flow.Flow
 
