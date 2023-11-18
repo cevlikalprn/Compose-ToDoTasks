@@ -9,6 +9,7 @@ import javax.inject.Inject
 class AddTaskUseCase @Inject constructor(
     private val toDoRepository: ToDoRepository
 ) {
+
     suspend operator fun invoke(toDoTask: ToDoTask) {
         toDoRepository.addTask(toDoTask)
     }
