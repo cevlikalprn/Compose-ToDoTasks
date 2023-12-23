@@ -8,7 +8,7 @@ import com.cevlikalprn.youneedtodo.common.Constants.TASK_ARGUMENT_KEY
 import com.cevlikalprn.youneedtodo.common.Constants.TASK_SCREEN
 import com.cevlikalprn.youneedtodo.common.NavigateToListScreenAction
 
-fun NavGraphBuilder.taskComposable(
+fun NavGraphBuilder.taskScreenComposable(
     navigateToListScreen: NavigateToListScreenAction
 ) {
     composable(
