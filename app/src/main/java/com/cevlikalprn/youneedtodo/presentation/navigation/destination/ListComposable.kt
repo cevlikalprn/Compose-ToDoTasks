@@ -6,9 +6,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.cevlikalprn.youneedtodo.common.Constants.LIST_ARGUMENT_KEY
 import com.cevlikalprn.youneedtodo.common.Constants.LIST_SCREEN
+import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreenAction
 
 fun NavGraphBuilder.listComposable(
-    navigateToTaskScreen: (Int) -> Unit
+    navigateToTaskScreen: NavigateToTaskScreenAction
 ) {
     composable(
         route = LIST_SCREEN,
