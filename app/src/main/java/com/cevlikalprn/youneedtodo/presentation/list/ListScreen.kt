@@ -6,13 +6,13 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
-import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreenAction
+import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
 import com.cevlikalprn.youneedtodo.presentation.uipack.button.AppFloatingActionButton
 import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppDefaultToolbar
 
 @Composable
 fun ListScreen(
-    navigateToTaskScreenAction: NavigateToTaskScreenAction
+    navigateToTaskScreen: NavigateToTaskScreen
 ) {
     Scaffold(
         topBar = {
@@ -22,7 +22,7 @@ fun ListScreen(
             AppFloatingActionButton(
                 iconImageVector = Icons.Filled.Add,
                 onClick = {
-                    navigateToTaskScreenAction(ADD_TASK_ID)
+                    navigateToTaskScreen(ADD_TASK_ID)
                 }
             )
         },
@@ -36,7 +36,7 @@ fun ListScreen(
 @Preview
 fun ListScreenPreview() {
     ListScreen(
-        navigateToTaskScreenAction = {
+        navigateToTaskScreen = {
             // do nothing
         }
     )

@@ -4,5 +4,5 @@ package com.cevlikalprn.youneedtodo.common
 typealias SimpleOnClick = () -> Unit
 
 // Action
-typealias NavigateToTaskScreenAction = (Int) -> Unit
-typealias NavigateToListScreenAction = (Action) -> Unit
+typealias NavigateToTaskScreen = (Int) -> Unit
+typealias NavigateToListScreen = (Action) -> Unit
