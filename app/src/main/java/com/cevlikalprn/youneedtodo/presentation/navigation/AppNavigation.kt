@@ -5,8 +5,8 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.cevlikalprn.youneedtodo.common.Constants.LIST_SCREEN
-import com.cevlikalprn.youneedtodo.presentation.navigation.destination.listScreenComposable
-import com.cevlikalprn.youneedtodo.presentation.navigation.destination.taskScreenComposable
+import com.cevlikalprn.youneedtodo.presentation.navigation.composable.listScreenComposable
+import com.cevlikalprn.youneedtodo.presentation.navigation.composable.taskScreenComposable
 
 @Composable
 fun AppNavigation(
