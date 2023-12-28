@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.domain.use_case
+package com.cevlikalprn.youneedtodo.domain.useCase
 
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
 import dagger.hilt.android.scopes.ViewModelScoped

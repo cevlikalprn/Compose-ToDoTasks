@@ -1,16 +1,14 @@
-package com.cevlikalprn.youneedtodo.domain.use_case
+package com.cevlikalprn.youneedtodo.domain.useCase
 
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
-import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
-@ViewModelScoped
-class AddTaskUseCase @Inject constructor(
+class DeleteTaskUseCase @Inject constructor(
     private val toDoRepository: ToDoRepository
 ) {
 
     suspend operator fun invoke(toDoTask: ToDoTask) {
-        toDoRepository.addTask(toDoTask)
+        toDoRepository.deleteTask(toDoTask)
     }
 }

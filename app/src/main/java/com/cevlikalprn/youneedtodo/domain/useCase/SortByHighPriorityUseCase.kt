@@ -1,15 +1,15 @@
-package com.cevlikalprn.youneedtodo.domain.use_case
+package com.cevlikalprn.youneedtodo.domain.useCase
 
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetAllTasksUseCase @Inject constructor(
+class SortByHighPriorityUseCase @Inject constructor(
     private val toDoRepository: ToDoRepository
 ) {
 
     operator fun invoke(): Flow<List<ToDoTask>> {
-        return toDoRepository.getAllTasks()
+        return toDoRepository.getSortedByHighPriority()
     }
 }

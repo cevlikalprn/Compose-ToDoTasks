@@ -3,7 +3,7 @@ package com.cevlikalprn.youneedtodo.presentation.todo
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
-import com.cevlikalprn.youneedtodo.domain.use_case.GetAllTasksUseCase
+import com.cevlikalprn.youneedtodo.domain.useCase.GetAllTasksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
