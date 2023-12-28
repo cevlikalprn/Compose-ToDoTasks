@@ -1,12 +1,12 @@
-package com.cevlikalprn.youneedtodo.presentation.navigation
+package com.cevlikalprn.youneedtodo.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.cevlikalprn.youneedtodo.common.Constants.LIST_SCREEN
-import com.cevlikalprn.youneedtodo.presentation.navigation.composable.listScreenComposable
-import com.cevlikalprn.youneedtodo.presentation.navigation.composable.taskScreenComposable
+import com.cevlikalprn.youneedtodo.navigation.composable.listScreenComposable
+import com.cevlikalprn.youneedtodo.navigation.composable.taskScreenComposable
 
 @Composable
 fun AppNavigation(

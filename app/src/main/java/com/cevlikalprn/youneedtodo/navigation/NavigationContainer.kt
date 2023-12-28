@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.presentation.navigation
+package com.cevlikalprn.youneedtodo.navigation
 
 import androidx.navigation.NavHostController
 import com.cevlikalprn.youneedtodo.common.Constants.LIST_SCREEN

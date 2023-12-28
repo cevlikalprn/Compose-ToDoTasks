@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.presentation.navigation.composable
+package com.cevlikalprn.youneedtodo.navigation.composable
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
