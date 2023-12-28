@@ -16,7 +16,11 @@ fun ListScreen(
 ) {
     Scaffold(
         topBar = {
-            AppDefaultToolbar(title = "Tasks")
+            AppDefaultToolbar(
+                title = "Tasks",
+                onSearchClick = {},
+                onSortOnClick = {}
+            )
         },
         floatingActionButton = {
             AppFloatingActionButton(

@@ -1,8 +1,17 @@
 package com.cevlikalprn.youneedtodo.common
 
-// Click
+import com.cevlikalprn.youneedtodo.domain.model.Priority
+
+// General
 typealias SimpleOnClick = () -> Unit
 
 // Navigation
-typealias NavigateToTaskScreen = (Int) -> Unit
-typealias NavigateToListScreen = (Action) -> Unit
+typealias NavigateToTaskScreen = (taskId: Int) -> Unit
+typealias NavigateToListScreen = (action: Action) -> Unit
+
+// Button
+typealias FabOnClick = () -> Unit
+
+// Toolbar
+typealias ToolbarSearchOnClick = () -> Unit
+typealias ToolbarSortOnClick = (priority: Priority) -> Unit

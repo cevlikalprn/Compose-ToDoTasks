@@ -6,14 +6,20 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.cevlikalprn.youneedtodo.common.ToolbarSearchOnClick
+import com.cevlikalprn.youneedtodo.common.ToolbarSortOnClick
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarBackgroundColor
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarContentColor
+import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.itemView.ToolbarSearchAction
+import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.itemView.ToolbarSortAction
 
 @Composable
 fun AppDefaultToolbar(
     title: String,
     titleColor: Color = MaterialTheme.colors.appTopBarContentColor,
-    backgroundColor: Color = MaterialTheme.colors.appTopBarBackgroundColor
+    backgroundColor: Color = MaterialTheme.colors.appTopBarBackgroundColor,
+    onSearchClick: ToolbarSearchOnClick,
+    onSortOnClick: ToolbarSortOnClick
 ) {
     TopAppBar(
         title = {
@@ -22,6 +28,10 @@ fun AppDefaultToolbar(
                 color = titleColor
             )
         },
+        actions = {
+            ToolbarSearchAction(onSearchClick = onSearchClick)
+            ToolbarSortAction(onSortClick = onSortOnClick)
+        },
         backgroundColor = backgroundColor
     )
 }
@@ -29,5 +39,13 @@ fun AppDefaultToolbar(
 @Composable
 @Preview
 fun AppDefaultToolbarPreview() {
-    AppDefaultToolbar(title = "Toolbar Title")
+    AppDefaultToolbar(
+        title = "Toolbar Title",
+        onSearchClick = {
+            // no-op
+        },
+        onSortOnClick = {
+            // no-op
+        }
+    )
 }
