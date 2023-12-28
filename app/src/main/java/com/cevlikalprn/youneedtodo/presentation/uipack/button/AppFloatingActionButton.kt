@@ -12,14 +12,15 @@ import com.cevlikalprn.youneedtodo.common.SimpleOnClick
 fun AppFloatingActionButton(
     onClick: SimpleOnClick,
     iconImageVector: ImageVector,
-    iconTint: Color = Color.White,
+    contentDescription: String = EMPTY_STRING,
+    iconTint: Color = Color.White
 ) {
     FloatingActionButton(
         onClick = onClick
     ) {
         Icon(
             imageVector = iconImageVector,
-            contentDescription = EMPTY_STRING,
+            contentDescription = contentDescription,
             tint = iconTint
         )
     }

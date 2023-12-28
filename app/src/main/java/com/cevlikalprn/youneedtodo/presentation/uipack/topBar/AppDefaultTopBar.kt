@@ -4,20 +4,23 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarBackgroundColor
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarContentColor
 
 @Composable
 fun AppDefaultToolbar(
-    title: String
+    title: String,
+    titleColor: Color = MaterialTheme.colors.appTopBarContentColor,
+    backgroundColor: Color = MaterialTheme.colors.appTopBarBackgroundColor
 ) {
     TopAppBar(
         title = {
             Text(
                 text = title,
-                color = MaterialTheme.colors.appTopBarContentColor
+                color = titleColor
             )
         },
-        backgroundColor = MaterialTheme.colors.appTopBarBackgroundColor
+        backgroundColor = backgroundColor
     )
 }
