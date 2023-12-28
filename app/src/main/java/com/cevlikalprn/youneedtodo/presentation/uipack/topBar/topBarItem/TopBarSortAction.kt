@@ -15,14 +15,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.R
 import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
-import com.cevlikalprn.youneedtodo.common.ToolbarSortOnClick
+import com.cevlikalprn.youneedtodo.common.TopBarSortOnClick
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarContentColor
 import com.cevlikalprn.youneedtodo.presentation.uipack.component.PriorityItem
 
 @Composable
-fun ToolbarSortAction(
-    onSortClick: ToolbarSortOnClick,
+fun TopBarSortAction(
+    onSortClick: TopBarSortOnClick,
     iconTint: Color = MaterialTheme.colors.appTopBarContentColor
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -38,17 +38,17 @@ fun ToolbarSortAction(
             expanded = expanded,
             onDismissRequest = { expanded = false }
         ) {
-            ToolbarDropDownMenuItem(
+            TopBarDropDownMenuItem(
                 onClick = { expanded = it },
                 onSortClick = onSortClick,
                 item = Priority.LOW
             )
-            ToolbarDropDownMenuItem(
+            TopBarDropDownMenuItem(
                 onClick = { expanded = it },
                 onSortClick = onSortClick,
                 item = Priority.HIGH
             )
-            ToolbarDropDownMenuItem(
+            TopBarDropDownMenuItem(
                 onClick = { expanded = it },
                 onSortClick = onSortClick,
                 item = Priority.NONE
@@ -58,9 +58,9 @@ fun ToolbarSortAction(
 }
 
 @Composable
-private fun ToolbarDropDownMenuItem(
+private fun TopBarDropDownMenuItem(
     onClick: (expanded: Boolean) -> Unit,
-    onSortClick: ToolbarSortOnClick,
+    onSortClick: TopBarSortOnClick,
     item: Priority
 ) {
     DropdownMenuItem(
@@ -75,8 +75,8 @@ private fun ToolbarDropDownMenuItem(
 
 @Composable
 @Preview
-private fun ToolbarSortActionPreview() {
-    ToolbarSortAction(
+private fun TopBarSortActionPreview() {
+    TopBarSortAction(
         onSortClick = {
             // no-op
         }

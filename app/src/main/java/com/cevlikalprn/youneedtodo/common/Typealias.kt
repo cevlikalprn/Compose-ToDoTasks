@@ -12,7 +12,7 @@ typealias NavigateToListScreen = (action: Action) -> Unit
 // Button
 typealias FabOnClick = () -> Unit
 
-// Toolbar
-typealias ToolbarSearchOnClick = () -> Unit
-typealias ToolbarSortOnClick = (priority: Priority) -> Unit
-typealias ToolbarDeleteOnClick = () -> Unit
+// Top Bar
+typealias TopBarSearchOnClick = () -> Unit
+typealias TopBarSortOnClick = (priority: Priority) -> Unit
+typealias TopBarDeleteOnClick = () -> Unit

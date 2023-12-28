@@ -8,7 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
 import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
 import com.cevlikalprn.youneedtodo.presentation.uipack.button.AppFloatingActionButton
-import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppDefaultToolbar
+import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppDefaultTopBar
 
 @Composable
 fun ListScreen(
@@ -16,7 +16,7 @@ fun ListScreen(
 ) {
     Scaffold(
         topBar = {
-            AppDefaultToolbar(
+            AppDefaultTopBar(
                 title = "Tasks",
                 onSearchClick = {},
                 onSortOnClick = {},

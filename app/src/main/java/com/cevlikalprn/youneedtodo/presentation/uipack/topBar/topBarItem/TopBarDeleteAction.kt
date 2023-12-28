@@ -20,14 +20,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.R
 import com.cevlikalprn.youneedtodo.common.Constants
-import com.cevlikalprn.youneedtodo.common.ToolbarDeleteOnClick
+import com.cevlikalprn.youneedtodo.common.TopBarDeleteOnClick
 import com.cevlikalprn.youneedtodo.presentation.theme.LARGE_PADDING
 import com.cevlikalprn.youneedtodo.presentation.theme.Typography
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarContentColor
 
 @Composable
-fun ToolbarDeleteAction(
-    onDeleteClick: ToolbarDeleteOnClick,
+fun TopBarDeleteAction(
+    onDeleteClick: TopBarDeleteOnClick,
     iconTint: Color = MaterialTheme.colors.appTopBarContentColor
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -61,8 +61,8 @@ fun ToolbarDeleteAction(
 
 @Composable
 @Preview
-private fun ToolbarDeleteActionPreview() {
-    ToolbarDeleteAction(
+private fun TopBarDeleteActionPreview() {
+    TopBarDeleteAction(
         onDeleteClick = {
             // no-op
         }

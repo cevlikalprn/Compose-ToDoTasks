@@ -10,12 +10,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
-import com.cevlikalprn.youneedtodo.common.ToolbarSearchOnClick
+import com.cevlikalprn.youneedtodo.common.TopBarSearchOnClick
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarContentColor
 
 @Composable
-fun ToolbarSearchAction(
-    onSearchClick: ToolbarSearchOnClick,
+fun TopBarSearchAction(
+    onSearchClick: TopBarSearchOnClick,
     icon: ImageVector = Icons.Filled.Search,
     iconTint: Color = MaterialTheme.colors.appTopBarContentColor
 ) {
@@ -30,8 +30,8 @@ fun ToolbarSearchAction(
 
 @Composable
 @Preview
-private fun ToolbarSearchActionPreview() {
-    ToolbarSearchAction(
+private fun TopBarSearchActionPreview() {
+    TopBarSearchAction(
         onSearchClick = {
             // no-op
         }
