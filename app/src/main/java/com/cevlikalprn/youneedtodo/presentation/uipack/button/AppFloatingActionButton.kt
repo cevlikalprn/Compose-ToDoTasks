@@ -35,7 +35,7 @@ fun AppFloatingActionButton(
 
 @Composable
 @Preview
-fun AppFloatingActionButtonPreview() {
+private fun AppFloatingActionButtonPreview() {
     AppFloatingActionButton(
         onClick = {
             // no-op

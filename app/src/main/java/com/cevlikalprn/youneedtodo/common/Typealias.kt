@@ -15,3 +15,4 @@ typealias FabOnClick = () -> Unit
 // Toolbar
 typealias ToolbarSearchOnClick = () -> Unit
 typealias ToolbarSortOnClick = (priority: Priority) -> Unit
+typealias ToolbarDeleteOnClick = () -> Unit

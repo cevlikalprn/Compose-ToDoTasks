@@ -19,7 +19,8 @@ fun ListScreen(
             AppDefaultToolbar(
                 title = "Tasks",
                 onSearchClick = {},
-                onSortOnClick = {}
+                onSortOnClick = {},
+                onDeleteOnClick = {}
             )
         },
         floatingActionButton = {
@@ -38,7 +39,7 @@ fun ListScreen(
 
 @Composable
 @Preview
-fun ListScreenPreview() {
+private fun ListScreenPreview() {
     ListScreen(
         navigateToTaskScreen = {
             // do nothing

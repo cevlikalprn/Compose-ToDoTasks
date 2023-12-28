@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.presentation.uipack.topBar.itemView
+package com.cevlikalprn.youneedtodo.presentation.uipack.topBar.topBarItem
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -30,7 +30,7 @@ fun ToolbarSearchAction(
 
 @Composable
 @Preview
-fun ToolbarSearchActionPreview() {
+private fun ToolbarSearchActionPreview() {
     ToolbarSearchAction(
         onSearchClick = {
             // no-op

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">You Need To Do</string>
+    <string name="delete_all">Delete All</string>
 </resources>
