@@ -5,6 +5,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarBackgroundColor
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarContentColor
 
@@ -23,4 +24,10 @@ fun AppDefaultToolbar(
         },
         backgroundColor = backgroundColor
     )
+}
+
+@Composable
+@Preview
+fun AppDefaultToolbarPreview() {
+    AppDefaultToolbar(title = "Toolbar Title")
 }
