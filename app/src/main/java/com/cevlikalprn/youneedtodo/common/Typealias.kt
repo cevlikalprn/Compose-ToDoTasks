@@ -16,3 +16,8 @@ typealias FabOnClick = () -> Unit
 typealias TopBarSearchOnClick = () -> Unit
 typealias TopBarSortOnClick = (priority: Priority) -> Unit
 typealias TopBarDeleteOnClick = () -> Unit
+
+// Search
+typealias SearchOnTextChange = (text: String) -> Unit
+typealias SearchOnCloseClick = () -> Unit
+typealias SearchOnSearchClick = (text: String) -> Unit
