@@ -9,6 +9,7 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -40,6 +41,7 @@ fun AppSearchField(
     ),
     leadingIconTint: Color = Color.White,
     trailingIconTint: Color = Color.White,
+    cursorColor: Color = Color.White,
     onTextChange: SearchOnTextChange,
     onSearchClick: SearchOnSearchClick,
     onCloseClick: SearchOnCloseClick,
@@ -67,7 +69,7 @@ fun AppSearchField(
         },
         trailingIcon = {
             IconContent(
-                modifier = Modifier.alpha(ContentAlpha.disabled),
+                modifier = Modifier,
                 onClick = { onCloseClick() },
                 imageVector = Icons.Filled.Close,
                 iconTint = trailingIconTint
@@ -80,6 +82,13 @@ fun AppSearchField(
             onSearch = {
                 onSearchClick(text)
             }
+        ),
+        colors = TextFieldDefaults.textFieldColors(
+            cursorColor = cursorColor,
+            focusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            backgroundColor = Color.Transparent
         )
     )
 }
