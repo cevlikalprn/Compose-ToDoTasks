@@ -4,7 +4,9 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.cevlikalprn.youneedtodo.R
 import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
 import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
 import com.cevlikalprn.youneedtodo.presentation.uipack.button.AppFloatingActionButton
@@ -17,7 +19,7 @@ fun ListScreen(
     Scaffold(
         topBar = {
             AppDefaultTopBar(
-                title = "Tasks",
+                title = stringResource(R.string.task_screen_name),
                 onSearchClick = {},
                 onSortOnClick = {},
                 onDeleteOnClick = {}
