@@ -32,12 +32,25 @@ fun AppDefaultTopBar(
             )
         },
         actions = {
-            TopBarSearchAction(onSearchClick = onSearchClick)
-            TopBarSortAction(onSortClick = onSortOnClick)
-            TopBarDeleteAction(onDeleteClick = onDeleteOnClick)
+            AppDefaultTopBarActions(
+                onSearchClick,
+                onSortOnClick,
+                onDeleteOnClick
+            )
         },
         backgroundColor = backgroundColor
     )
+}
+
+@Composable
+private fun AppDefaultTopBarActions(
+    onSearchClick: TopBarSearchOnClick,
+    onSortOnClick: TopBarSortOnClick,
+    onDeleteOnClick: TopBarDeleteOnClick
+) {
+    TopBarSearchAction(onSearchClick = onSearchClick)
+    TopBarSortAction(onSortClick = onSortOnClick)
+    TopBarDeleteAction(onDeleteClick = onDeleteOnClick)
 }
 
 @Composable
