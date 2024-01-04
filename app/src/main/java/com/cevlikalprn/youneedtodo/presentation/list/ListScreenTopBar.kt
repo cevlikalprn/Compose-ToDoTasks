@@ -15,36 +15,46 @@ fun ListScreenTopBar(
     viewModel: ToDoViewModel
 ) {
     val searchAppBarState by viewModel.searchAppBarState
-    val searchTextState by viewModel.searchTextState
 
     when (searchAppBarState) {
         SearchAppBarState.CLOSED -> {
-            AppDefaultTopBar(
-                title = stringResource(R.string.task_screen_name),
-                onSearchClick = {
-                    viewModel.updateSearchAppBarState(
-                        SearchAppBarState.OPENED
-                    )
-                },
-                onSortOnClick = {},
-                onDeleteOnClick = {}
-            )
+            DefaultTopBar(viewModel)
         }
-
         else -> {
-            AppSearchTopBar(
-                searchText = searchTextState,
-                onTextChange = { searchedText ->
-                    viewModel.updateSearchTextState(searchedText)
-                },
-                onSearchClick = {},
-                onCloseClick = {
-                    viewModel.updateSearchAppBarState(
-                        SearchAppBarState.CLOSED
-                    )
-                    viewModel.updateSearchTextState(EMPTY_STRING)
-                }
-            )
+            SearchTopBar(viewModel)
         }
     }
+}
+
+@Composable
+private fun DefaultTopBar(viewModel: ToDoViewModel) {
+    AppDefaultTopBar(
+        title = stringResource(R.string.task_screen_name),
+        onSearchClick = {
+            viewModel.updateSearchAppBarState(
+                SearchAppBarState.OPENED
+            )
+        },
+        onSortOnClick = {},
+        onDeleteOnClick = {}
+    )
+}
+
+@Composable
+private fun SearchTopBar(viewModel: ToDoViewModel) {
+    val searchTextState by viewModel.searchTextState
+
+    AppSearchTopBar(
+        searchText = searchTextState,
+        onTextChange = { searchedText ->
+            viewModel.updateSearchTextState(searchedText)
+        },
+        onSearchClick = {},
+        onCloseClick = {
+            viewModel.updateSearchAppBarState(
+                SearchAppBarState.CLOSED
+            )
+            viewModel.updateSearchTextState(EMPTY_STRING)
+        }
+    )
 }
