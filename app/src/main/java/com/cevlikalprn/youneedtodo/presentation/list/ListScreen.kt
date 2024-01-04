@@ -4,25 +4,22 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.cevlikalprn.youneedtodo.R
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
 import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
+import com.cevlikalprn.youneedtodo.presentation.ToDoViewModel
 import com.cevlikalprn.youneedtodo.presentation.uipack.button.AppFloatingActionButton
-import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppDefaultTopBar
 
 @Composable
 fun ListScreen(
+    viewModel: ToDoViewModel = hiltViewModel(),
     navigateToTaskScreen: NavigateToTaskScreen
 ) {
     Scaffold(
         topBar = {
-            AppDefaultTopBar(
-                title = stringResource(R.string.task_screen_name),
-                onSearchClick = {},
-                onSortOnClick = {},
-                onDeleteOnClick = {}
+            ListScreenTopBar(
+                viewModel = viewModel
             )
         },
         floatingActionButton = {

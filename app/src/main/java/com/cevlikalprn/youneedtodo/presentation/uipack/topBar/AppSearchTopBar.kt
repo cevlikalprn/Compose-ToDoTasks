@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
 import com.cevlikalprn.youneedtodo.common.SearchOnCloseClick
 import com.cevlikalprn.youneedtodo.common.SearchOnSearchClick
 import com.cevlikalprn.youneedtodo.common.SearchOnTextChange
@@ -21,6 +22,7 @@ import com.cevlikalprn.youneedtodo.presentation.uipack.search.AppSearchField
 @Composable
 fun AppSearchTopBar(
     modifier: Modifier = Modifier,
+    searchText: String = EMPTY_STRING,
     topBarContentColor: Color = MaterialTheme.colors.appTopBarContentColor,
     onTextChange: SearchOnTextChange,
     onSearchClick: SearchOnSearchClick,
@@ -34,6 +36,7 @@ fun AppSearchTopBar(
         color = MaterialTheme.colors.appTopBarBackgroundColor
     ) {
         AppSearchField(
+            searchText = searchText,
             onTextChange = onTextChange,
             onSearchClick = onSearchClick,
             onCloseClick = onCloseClick,

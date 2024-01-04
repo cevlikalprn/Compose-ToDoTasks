@@ -32,7 +32,7 @@ import com.cevlikalprn.youneedtodo.common.SimpleOnClick
 @Composable
 fun AppSearchField(
     modifier: Modifier = Modifier,
-    text: String = EMPTY_STRING,
+    searchText: String = EMPTY_STRING,
     placeHolderText: String = stringResource(R.string.search_label),
     placeHolderTextColor: Color = Color.White,
     textStyle: TextStyle = TextStyle(
@@ -48,7 +48,7 @@ fun AppSearchField(
 ) {
     TextField(
         modifier = modifier.fillMaxWidth(),
-        value = text,
+        value = searchText,
         onValueChange = onTextChange,
         placeholder = {
             Text(
@@ -62,7 +62,7 @@ fun AppSearchField(
         leadingIcon = {
             IconContent(
                 modifier = Modifier.alpha(ContentAlpha.disabled),
-                onClick = { onSearchClick(text) },
+                onClick = { onSearchClick(searchText) },
                 imageVector = Icons.Filled.Search,
                 iconTint = leadingIconTint
             )
@@ -70,7 +70,13 @@ fun AppSearchField(
         trailingIcon = {
             IconContent(
                 modifier = Modifier,
-                onClick = { onCloseClick() },
+                onClick = {
+                    if (searchText.isNotEmpty()) {
+                        onTextChange(EMPTY_STRING)
+                    } else {
+                        onCloseClick()
+                    }
+                },
                 imageVector = Icons.Filled.Close,
                 iconTint = trailingIconTint
             )
@@ -80,7 +86,7 @@ fun AppSearchField(
         ),
         keyboardActions = KeyboardActions(
             onSearch = {
-                onSearchClick(text)
+                onSearchClick(searchText)
             }
         ),
         colors = TextFieldDefaults.textFieldColors(
