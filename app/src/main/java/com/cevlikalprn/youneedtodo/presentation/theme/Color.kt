@@ -27,3 +27,9 @@ val Colors.appTopBarBackgroundColor: Color
 
 val Colors.appFabBackgroundColor: Color
     @Composable get() = if (isSystemInDarkTheme()) Purple700 else Teal200
+
+val Colors.taskItemBackgroundColor: Color
+    @Composable get() = if (isSystemInDarkTheme()) DarkGray else Color.White
+
+val Colors.taskItemTextColor: Color
+    @Composable get() = if (isSystemInDarkTheme()) LightGray else DarkGray
