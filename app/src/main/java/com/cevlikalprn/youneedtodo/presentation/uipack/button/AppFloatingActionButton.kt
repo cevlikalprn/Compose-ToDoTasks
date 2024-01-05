@@ -38,7 +38,7 @@ fun AppFloatingActionButton(
 private fun AppFloatingActionButtonPreview() {
     AppFloatingActionButton(
         onClick = {
-            // no-op
+            // do nothing
         },
         iconImageVector = Icons.Filled.ArrowForward
     )

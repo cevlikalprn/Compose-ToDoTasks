@@ -20,12 +20,20 @@ fun TopBarSearchAction(
     iconTint: Color = MaterialTheme.colors.appTopBarContentColor
 ) {
     IconButton(onClick = onSearchClick) {
-        Icon(
-            imageVector = icon,
-            contentDescription = EMPTY_STRING,
+        SearchIcon(
+            icon = icon,
             tint = iconTint
         )
     }
+}
+
+@Composable
+private fun SearchIcon(icon: ImageVector, tint: Color) {
+    Icon(
+        imageVector = icon,
+        contentDescription = EMPTY_STRING,
+        tint = tint
+    )
 }
 
 @Composable
@@ -33,7 +41,7 @@ fun TopBarSearchAction(
 private fun TopBarSearchActionPreview() {
     TopBarSearchAction(
         onSearchClick = {
-            // no-op
+            // do nothing
         }
     )
 }

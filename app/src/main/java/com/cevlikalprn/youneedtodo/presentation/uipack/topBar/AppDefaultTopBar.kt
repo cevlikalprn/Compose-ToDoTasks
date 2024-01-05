@@ -59,13 +59,13 @@ private fun AppDefaultTopBarPreview() {
     AppDefaultTopBar(
         title = "Top bar title",
         onSearchClick = {
-            // no-op
+            // do nothing
         },
         onSortOnClick = {
-            // no-op
+            // do nothing
         },
         onDeleteOnClick = {
-            // no-op
+            // do nothing
         }
     )
 }

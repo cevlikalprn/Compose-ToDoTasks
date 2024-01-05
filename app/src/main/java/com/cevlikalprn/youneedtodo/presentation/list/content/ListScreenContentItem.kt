@@ -134,7 +134,7 @@ fun ListScreenContentItemPreview() {
             priority = Priority.HIGH
         ),
         navigateToTaskScreen = {
-            // no-op
+            // do nothing
         }
     )
 }

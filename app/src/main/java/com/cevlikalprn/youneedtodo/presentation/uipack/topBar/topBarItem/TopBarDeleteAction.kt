@@ -34,29 +34,52 @@ fun TopBarDeleteAction(
     IconButton(
         onClick = { expanded = true }
     ) {
-        Icon(
-            imageVector = Icons.Filled.MoreVert,
-            contentDescription = Constants.EMPTY_STRING,
-            tint = iconTint
-        )
-        DropdownMenu(
+        ThreeDotIcon(tint = iconTint)
+        ExpandableDropDown(
             expanded = expanded,
-            onDismissRequest = { expanded = false }
-        ) {
-            DropdownMenuItem(
-                onClick = {
-                    expanded = false
-                    onDeleteClick()
-                }
-            ) {
-                Text(
-                    modifier = Modifier.padding(start = LARGE_PADDING),
-                    text = stringResource(id = R.string.delete_all),
-                    style = Typography.subtitle2
-                )
+            onDismissRequest = { expanded = false },
+            onDeleteClick = {
+                expanded = false
+                onDeleteClick()
             }
+        )
+    }
+}
+
+@Composable
+private fun ThreeDotIcon(tint: Color) {
+    Icon(
+        imageVector = Icons.Filled.MoreVert,
+        contentDescription = Constants.EMPTY_STRING,
+        tint = tint
+    )
+}
+
+@Composable
+private fun ExpandableDropDown(
+    expanded: Boolean,
+    onDismissRequest: () -> Unit,
+    onDeleteClick: TopBarDeleteOnClick
+) {
+    DropdownMenu(
+        expanded = expanded,
+        onDismissRequest = onDismissRequest
+    ) {
+        DropdownMenuItem(
+            onClick = onDeleteClick
+        ) {
+            DeleteAllText()
         }
     }
+}
+
+@Composable
+private fun DeleteAllText() {
+    Text(
+        modifier = Modifier.padding(start = LARGE_PADDING),
+        text = stringResource(id = R.string.delete_all),
+        style = Typography.subtitle2
+    )
 }
 
 @Composable
@@ -64,7 +87,7 @@ fun TopBarDeleteAction(
 private fun TopBarDeleteActionPreview() {
     TopBarDeleteAction(
         onDeleteClick = {
-            // no-op
+            // do nothing
         }
     )
 }

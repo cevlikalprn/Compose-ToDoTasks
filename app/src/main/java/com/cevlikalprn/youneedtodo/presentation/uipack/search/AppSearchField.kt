@@ -39,8 +39,8 @@ fun AppSearchField(
         color = Color.White,
         fontSize = MaterialTheme.typography.subtitle1.fontSize
     ),
-    leadingIconTint: Color = Color.White,
-    trailingIconTint: Color = Color.White,
+    searchIconTint: Color = Color.White,
+    closeIconTint: Color = Color.White,
     cursorColor: Color = Color.White,
     onTextChange: SearchOnTextChange,
     onSearchClick: SearchOnSearchClick,
@@ -51,8 +51,7 @@ fun AppSearchField(
         value = searchText,
         onValueChange = onTextChange,
         placeholder = {
-            Text(
-                modifier = Modifier.alpha(ContentAlpha.medium),
+            PlaceHolderText(
                 text = placeHolderText,
                 color = placeHolderTextColor
             )
@@ -60,25 +59,18 @@ fun AppSearchField(
         textStyle = textStyle,
         singleLine = true,
         leadingIcon = {
-            IconContent(
-                modifier = Modifier.alpha(ContentAlpha.disabled),
-                onClick = { onSearchClick(searchText) },
-                imageVector = Icons.Filled.Search,
-                iconTint = leadingIconTint
+            SearchIcon(
+                text = searchText,
+                onSearchClick = onSearchClick,
+                tint = searchIconTint
             )
         },
         trailingIcon = {
-            IconContent(
-                modifier = Modifier,
-                onClick = {
-                    if (searchText.isNotEmpty()) {
-                        onTextChange(EMPTY_STRING)
-                    } else {
-                        onCloseClick()
-                    }
-                },
-                imageVector = Icons.Filled.Close,
-                iconTint = trailingIconTint
+            CloseIcon(
+                searchText = searchText,
+                onTextChange = onTextChange,
+                onCloseClick = onCloseClick,
+                tint = closeIconTint
             )
         },
         keyboardOptions = KeyboardOptions(
@@ -89,13 +81,53 @@ fun AppSearchField(
                 onSearchClick(searchText)
             }
         ),
-        colors = TextFieldDefaults.textFieldColors(
-            cursorColor = cursorColor,
-            focusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            backgroundColor = Color.Transparent
-        )
+        colors = searchFieldColors(cursorColor = cursorColor)
+    )
+}
+
+@Composable
+private fun PlaceHolderText(
+    text: String,
+    color: Color
+) {
+    Text(
+        modifier = Modifier.alpha(ContentAlpha.medium),
+        text = text,
+        color = color
+    )
+}
+
+@Composable
+private fun SearchIcon(
+    text: String,
+    onSearchClick: SearchOnSearchClick,
+    tint: Color
+) {
+    IconContent(
+        modifier = Modifier.alpha(ContentAlpha.disabled),
+        onClick = { onSearchClick(text) },
+        imageVector = Icons.Filled.Search,
+        iconTint = tint
+    )
+}
+
+@Composable
+private fun CloseIcon(
+    searchText: String,
+    onTextChange: SearchOnTextChange,
+    onCloseClick: SearchOnCloseClick,
+    tint: Color
+) {
+    IconContent(
+        onClick = {
+            if (searchText.isNotEmpty()) {
+                onTextChange(EMPTY_STRING)
+            } else {
+                onCloseClick()
+            }
+        },
+        imageVector = Icons.Filled.Close,
+        iconTint = tint
     )
 }
 
@@ -119,17 +151,28 @@ private fun IconContent(
 }
 
 @Composable
+private fun searchFieldColors(
+    cursorColor: Color
+) = TextFieldDefaults.textFieldColors(
+    cursorColor = cursorColor,
+    focusedIndicatorColor = Color.Transparent,
+    disabledIndicatorColor = Color.Transparent,
+    unfocusedIndicatorColor = Color.Transparent,
+    backgroundColor = Color.Transparent
+)
+
+@Composable
 @Preview
 private fun AppSearchFieldPreview() {
     AppSearchField(
         onTextChange = {
-            // no-op
+            // do nothing
         },
         onSearchClick = {
-            // no-op
+            // do nothing
         },
         onCloseClick = {
-            // no-op
+            // do nothing
         }
     )
 }

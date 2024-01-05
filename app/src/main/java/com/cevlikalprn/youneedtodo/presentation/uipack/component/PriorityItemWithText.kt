@@ -16,13 +16,18 @@ import com.cevlikalprn.youneedtodo.presentation.theme.Typography
 fun PriorityItemWithText(item: Priority) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         PriorityItemShape(color = item.color)
-        Text(
-            modifier = Modifier.padding(start = LARGE_PADDING),
-            text = item.name,
-            style = Typography.subtitle1,
-            color = MaterialTheme.colors.onSurface
-        )
+        ItemText(name = item.name)
     }
+}
+
+@Composable
+private fun ItemText(name: String) {
+    Text(
+        modifier = Modifier.padding(start = LARGE_PADDING),
+        text = name,
+        style = Typography.subtitle1,
+        color = MaterialTheme.colors.onSurface
+    )
 }
 
 @Composable

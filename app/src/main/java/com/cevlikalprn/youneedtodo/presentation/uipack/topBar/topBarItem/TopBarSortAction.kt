@@ -29,43 +29,59 @@ fun TopBarSortAction(
     IconButton(
         onClick = { expanded = true }
     ) {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_filter),
-            contentDescription = EMPTY_STRING,
-            tint = iconTint
-        )
-        DropdownMenu(
+        FilterIcon(tint = iconTint)
+        ExpandableDropDown(
             expanded = expanded,
-            onDismissRequest = { expanded = false }
-        ) {
-            TopBarDropDownMenuItem(
-                onClick = { expanded = it },
-                onSortClick = onSortClick,
-                item = Priority.LOW
-            )
-            TopBarDropDownMenuItem(
-                onClick = { expanded = it },
-                onSortClick = onSortClick,
-                item = Priority.HIGH
-            )
-            TopBarDropDownMenuItem(
-                onClick = { expanded = it },
-                onSortClick = onSortClick,
-                item = Priority.NONE
-            )
-        }
+            onDismissRequest = { expanded = false },
+            onSortClick = { priority ->
+                expanded = false
+                onSortClick(priority)
+            }
+        )
+    }
+}
+
+@Composable
+private fun FilterIcon(tint: Color) {
+    Icon(
+        painter = painterResource(id = R.drawable.ic_filter),
+        contentDescription = EMPTY_STRING,
+        tint = tint
+    )
+}
+
+@Composable
+private fun ExpandableDropDown(
+    expanded: Boolean,
+    onDismissRequest: () -> Unit,
+    onSortClick: TopBarSortOnClick
+) {
+    DropdownMenu(
+        expanded = expanded,
+        onDismissRequest = onDismissRequest
+    ) {
+        TopBarDropDownMenuItem(
+            onSortClick = onSortClick,
+            item = Priority.LOW
+        )
+        TopBarDropDownMenuItem(
+            onSortClick = onSortClick,
+            item = Priority.HIGH
+        )
+        TopBarDropDownMenuItem(
+            onSortClick = onSortClick,
+            item = Priority.NONE
+        )
     }
 }
 
 @Composable
 private fun TopBarDropDownMenuItem(
-    onClick: (expanded: Boolean) -> Unit,
     onSortClick: TopBarSortOnClick,
     item: Priority
 ) {
     DropdownMenuItem(
         onClick = {
-            onClick(false)
             onSortClick(item)
         }
     ) {
@@ -78,7 +94,7 @@ private fun TopBarDropDownMenuItem(
 private fun TopBarSortActionPreview() {
     TopBarSortAction(
         onSortClick = {
-            // no-op
+            // do nothing
         }
     )
 }

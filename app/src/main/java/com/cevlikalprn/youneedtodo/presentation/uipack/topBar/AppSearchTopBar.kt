@@ -41,8 +41,8 @@ fun AppSearchTopBar(
             onSearchClick = onSearchClick,
             onCloseClick = onCloseClick,
             placeHolderTextColor = topBarContentColor,
-            leadingIconTint = topBarContentColor,
-            trailingIconTint = topBarContentColor,
+            searchIconTint = topBarContentColor,
+            closeIconTint = topBarContentColor,
             textStyle = TextStyle(
                 color = topBarContentColor,
                 fontSize = MaterialTheme.typography.subtitle1.fontSize
@@ -57,13 +57,13 @@ fun AppSearchTopBar(
 private fun AppSearchAppTopBarPreview() {
     AppSearchTopBar(
         onTextChange = {
-            // no-op
+            // do nothing
         },
         onSearchClick = {
-            // no-op
+            // do nothing
         },
         onCloseClick = {
-            // no-op
+            // do nothing
         }
     )
 }
