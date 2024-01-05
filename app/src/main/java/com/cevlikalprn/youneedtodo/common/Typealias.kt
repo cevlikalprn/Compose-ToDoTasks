@@ -1,5 +1,6 @@
 package com.cevlikalprn.youneedtodo.common
 
+import androidx.compose.runtime.Composable
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 
 // General
@@ -21,3 +22,6 @@ typealias TopBarDeleteOnClick = () -> Unit
 typealias SearchOnTextChange = (text: String) -> Unit
 typealias SearchOnCloseClick = () -> Unit
 typealias SearchOnSearchClick = (text: String) -> Unit
+
+// Composable
+typealias SimpleComposableContent = @Composable () -> Unit

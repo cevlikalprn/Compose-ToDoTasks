@@ -9,6 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
 import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
 import com.cevlikalprn.youneedtodo.presentation.ToDoViewModel
+import com.cevlikalprn.youneedtodo.presentation.list.content.ListScreenContent
 import com.cevlikalprn.youneedtodo.presentation.uipack.button.AppFloatingActionButton
 
 @Composable
@@ -31,7 +32,7 @@ fun ListScreen(
             )
         },
         content = { paddingValues ->
-            paddingValues
+            ListScreenContent(paddingValues)
         }
     )
 }

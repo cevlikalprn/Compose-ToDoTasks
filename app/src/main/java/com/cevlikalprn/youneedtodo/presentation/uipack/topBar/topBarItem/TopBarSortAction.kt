@@ -18,7 +18,7 @@ import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
 import com.cevlikalprn.youneedtodo.common.TopBarSortOnClick
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarContentColor
-import com.cevlikalprn.youneedtodo.presentation.uipack.component.PriorityItem
+import com.cevlikalprn.youneedtodo.presentation.uipack.component.PriorityItemWithText
 
 @Composable
 fun TopBarSortAction(
@@ -69,7 +69,7 @@ private fun TopBarDropDownMenuItem(
             onSortClick(item)
         }
     ) {
-        PriorityItem(item = item)
+        PriorityItemWithText(item = item)
     }
 }
 
