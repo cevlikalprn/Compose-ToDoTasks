@@ -6,13 +6,12 @@ import androidx.compose.ui.res.stringResource
 import com.cevlikalprn.youneedtodo.R
 import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
 import com.cevlikalprn.youneedtodo.common.SearchAppBarState
-import com.cevlikalprn.youneedtodo.presentation.ToDoViewModel
 import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppDefaultTopBar
 import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppSearchTopBar
 
 @Composable
 fun ListScreenTopBar(
-    viewModel: ToDoViewModel
+    viewModel: ListViewModel
 ) {
     val searchAppBarState by viewModel.searchAppBarState
 
@@ -27,7 +26,7 @@ fun ListScreenTopBar(
 }
 
 @Composable
-private fun DefaultTopBar(viewModel: ToDoViewModel) {
+private fun DefaultTopBar(viewModel: ListViewModel) {
     AppDefaultTopBar(
         title = stringResource(R.string.task_screen_name),
         onSearchClick = {
@@ -41,7 +40,7 @@ private fun DefaultTopBar(viewModel: ToDoViewModel) {
 }
 
 @Composable
-private fun SearchTopBar(viewModel: ToDoViewModel) {
+private fun SearchTopBar(viewModel: ListViewModel) {
     val searchTextState by viewModel.searchTextState
 
     AppSearchTopBar(
