@@ -18,19 +18,21 @@ fun ListScreenContent(
     uiState: ListUiState,
     navigateToTaskScreen: NavigateToTaskScreen
 ) {
-    HandleScreenState(
-        isDataReady = uiState.toDoTasks.isNotEmpty() && uiState.success,
-        tasksContent = {
-            DisplayTodoTasks(
-                paddingValues,
-                uiState.toDoTasks,
-                navigateToTaskScreen
-            )
-        },
-        emptyContent = {
-            AppEmptyPageContent()
-        }
-    )
+    if (uiState.success) {
+        HandleScreenState(
+            isDataReady = uiState.toDoTasks.isNotEmpty(),
+            tasksContent = {
+                DisplayTodoTasks(
+                    paddingValues,
+                    uiState.toDoTasks,
+                    navigateToTaskScreen
+                )
+            },
+            emptyContent = {
+                AppEmptyPageContent()
+            }
+        )
+    }
 }
 
 @Composable
