@@ -4,6 +4,9 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
@@ -17,6 +20,13 @@ fun ListScreen(
     viewModel: ToDoViewModel = hiltViewModel(),
     navigateToTaskScreen: NavigateToTaskScreen
 ) {
+    LaunchedEffect(
+        key1 = true,
+        block = {
+            viewModel.getAllTasks()
+        }
+    )
+    val tasks by viewModel.allTasks.collectAsState()
     Scaffold(
         topBar = {
             ListScreenTopBar(
@@ -32,7 +42,11 @@ fun ListScreen(
             )
         },
         content = { paddingValues ->
-            ListScreenContent(paddingValues)
+            ListScreenContent(
+                paddingValues = paddingValues,
+                tasks = tasks,
+                navigateToTaskScreen = navigateToTaskScreen
+            )
         }
     )
 }
