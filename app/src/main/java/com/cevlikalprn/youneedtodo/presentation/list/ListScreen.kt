@@ -26,7 +26,7 @@ fun ListScreen(
             viewModel.getAllTasks()
         }
     )
-    val tasks by viewModel.allTasks.collectAsState()
+    val uiState by viewModel.allTasks.collectAsState()
     Scaffold(
         topBar = {
             ListScreenTopBar(
@@ -44,7 +44,7 @@ fun ListScreen(
         content = { paddingValues ->
             ListScreenContent(
                 paddingValues = paddingValues,
-                tasks = tasks,
+                uiState = uiState,
                 navigateToTaskScreen = navigateToTaskScreen
             )
         }

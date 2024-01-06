@@ -9,39 +9,40 @@ import androidx.compose.ui.Modifier
 import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
 import com.cevlikalprn.youneedtodo.common.SimpleComposableContent
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.presentation.list.ListUiState
 import com.cevlikalprn.youneedtodo.presentation.uipack.component.emptPage.AppEmptyPageContent
 
 @Composable
 fun ListScreenContent(
     paddingValues: PaddingValues,
-    tasks: List<ToDoTask>,
+    uiState: ListUiState,
     navigateToTaskScreen: NavigateToTaskScreen
 ) {
     HandleScreenState(
-        tasks = tasks,
-        emptyContent = {
-            AppEmptyPageContent()
-        },
+        isDataReady = uiState.toDoTasks.isNotEmpty() && uiState.success,
         tasksContent = {
             DisplayTodoTasks(
                 paddingValues,
-                tasks,
+                uiState.toDoTasks,
                 navigateToTaskScreen
             )
+        },
+        emptyContent = {
+            AppEmptyPageContent()
         }
     )
 }
 
 @Composable
 private fun HandleScreenState(
-    tasks: List<ToDoTask>,
-    emptyContent: SimpleComposableContent,
-    tasksContent: SimpleComposableContent
+    isDataReady: Boolean,
+    tasksContent: SimpleComposableContent,
+    emptyContent: SimpleComposableContent
 ) {
-    if (tasks.isEmpty()) {
-        emptyContent()
-    } else {
+    if (isDataReady) {
         tasksContent()
+    } else {
+        emptyContent()
     }
 }
 
