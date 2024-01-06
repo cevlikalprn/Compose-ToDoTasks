@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.presentation.uipack.component
+package com.cevlikalprn.youneedtodo.presentation.uipack.component.priorityItem
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.size
@@ -9,7 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.presentation.theme.PRIORITY_ITEM_CIRCLE_SHAPE_SIZE
 
 @Composable
-fun PriorityItemShape(color: Color) {
+fun AppPriorityItemShape(color: Color) {
     Canvas(
         modifier = Modifier.size(PRIORITY_ITEM_CIRCLE_SHAPE_SIZE),
         onDraw = {
@@ -20,8 +20,8 @@ fun PriorityItemShape(color: Color) {
 
 @Composable
 @Preview
-private fun PriorityItemShapePreview() {
-    PriorityItemShape(
+private fun AppPriorityItemShapePreview() {
+    AppPriorityItemShape(
         color = Color.Red
     )
 }

@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.presentation.uipack.component
+package com.cevlikalprn.youneedtodo.presentation.uipack.component.priorityItem
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -13,9 +13,9 @@ import com.cevlikalprn.youneedtodo.presentation.theme.LARGE_PADDING
 import com.cevlikalprn.youneedtodo.presentation.theme.Typography
 
 @Composable
-fun PriorityItemWithText(item: Priority) {
+fun AppPriorityItemWithText(item: Priority) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        PriorityItemShape(color = item.color)
+        AppPriorityItemShape(color = item.color)
         ItemText(name = item.name)
     }
 }
@@ -32,6 +32,6 @@ private fun ItemText(name: String) {
 
 @Composable
 @Preview
-private fun PriorityItemPreview() {
-    PriorityItemWithText(item = Priority.LOW)
+private fun AppPriorityItemPreview() {
+    AppPriorityItemWithText(item = Priority.LOW)
 }

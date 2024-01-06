@@ -26,7 +26,7 @@ import com.cevlikalprn.youneedtodo.presentation.theme.LARGE_PADDING
 import com.cevlikalprn.youneedtodo.presentation.theme.TASK_ITEM_ELEVATION
 import com.cevlikalprn.youneedtodo.presentation.theme.taskItemBackgroundColor
 import com.cevlikalprn.youneedtodo.presentation.theme.taskItemTextColor
-import com.cevlikalprn.youneedtodo.presentation.uipack.component.PriorityItemShape
+import com.cevlikalprn.youneedtodo.presentation.uipack.component.priorityItem.AppPriorityItemShape
 
 @Composable
 fun ListScreenContentItem(
@@ -102,7 +102,7 @@ private fun ItemContentHeadline(
                 .weight(1f),
             contentAlignment = Alignment.TopEnd
         ) {
-            PriorityItemShape(
+            AppPriorityItemShape(
                 color = priorityColor
             )
         }
