@@ -7,7 +7,7 @@ import androidx.navigation.navArgument
 import com.cevlikalprn.youneedtodo.common.Constants.LIST_ARGUMENT_KEY
 import com.cevlikalprn.youneedtodo.common.Constants.LIST_SCREEN
 import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
-import com.cevlikalprn.youneedtodo.presentation.list.ListScreen
+import com.cevlikalprn.youneedtodo.presentation.list.screen.ListScreen
 
 fun NavGraphBuilder.listScreenComposable(
     navigateToTaskScreen: NavigateToTaskScreen

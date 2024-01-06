@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.presentation.list.content
+package com.cevlikalprn.youneedtodo.presentation.list.screen.content
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
