@@ -1,7 +1,14 @@
 <resources>
+
+    <!-- App Name-->
     <string name="app_name">You Need To Do</string>
+
+    <!-- Screen Title-->
+    <string name="list_screen_title">Tasks</string>
+    <string name="task_screen_new_task_title">Add Task</string>
+    <string name="task_screen_created_task_title">Update Task</string>
+
     <string name="delete_all">Delete All</string>
-    <string name="task_screen_name">Tasks</string>
     <string name="search_label">Search</string>
     <string name="empty_page_label">No Tasks Found</string>
 </resources>

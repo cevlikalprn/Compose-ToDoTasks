@@ -23,5 +23,8 @@ typealias SearchOnTextChange = (text: String) -> Unit
 typealias SearchOnCloseClick = () -> Unit
 typealias SearchOnSearchClick = (text: String) -> Unit
 
+// Icon
+typealias BackIconOnClick = () -> Unit
+
 // Composable
 typealias SimpleComposableContent = @Composable () -> Unit

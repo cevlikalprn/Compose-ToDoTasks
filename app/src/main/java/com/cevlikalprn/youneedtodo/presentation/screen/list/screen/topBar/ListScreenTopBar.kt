@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.presentation.list.screen
+package com.cevlikalprn.youneedtodo.presentation.screen.list.screen.topBar
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -6,7 +6,7 @@ import androidx.compose.ui.res.stringResource
 import com.cevlikalprn.youneedtodo.R
 import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
 import com.cevlikalprn.youneedtodo.common.SearchAppBarState
-import com.cevlikalprn.youneedtodo.presentation.list.ListViewModel
+import com.cevlikalprn.youneedtodo.presentation.screen.list.ListViewModel
 import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppDefaultTopBar
 import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppSearchTopBar
 
@@ -20,6 +20,7 @@ fun ListScreenTopBar(
         SearchAppBarState.CLOSED -> {
             DefaultTopBar(viewModel)
         }
+
         else -> {
             SearchTopBar(viewModel)
         }
@@ -29,14 +30,22 @@ fun ListScreenTopBar(
 @Composable
 private fun DefaultTopBar(viewModel: ListViewModel) {
     AppDefaultTopBar(
-        title = stringResource(R.string.task_screen_name),
-        onSearchClick = {
-            viewModel.updateSearchAppBarState(
-                SearchAppBarState.OPENED
+        title = stringResource(R.string.list_screen_title),
+        actions = {
+            ListScreenTopBarActions(
+                onSearchClick = {
+                    viewModel.updateSearchAppBarState(
+                        SearchAppBarState.OPENED
+                    )
+                },
+                onSortOnClick = {
+                    // TODO will implement
+                },
+                onDeleteOnClick = {
+                    // TODO will implement
+                }
             )
-        },
-        onSortOnClick = {},
-        onDeleteOnClick = {}
+        }
     )
 }
 

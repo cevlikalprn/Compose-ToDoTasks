@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.presentation.list
+package com.cevlikalprn.youneedtodo.presentation.screen.list
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
