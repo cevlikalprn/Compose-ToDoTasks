@@ -7,6 +7,7 @@ import androidx.navigation.navArgument
 import com.cevlikalprn.youneedtodo.common.Constants.TASK_ARGUMENT_KEY
 import com.cevlikalprn.youneedtodo.common.Constants.TASK_SCREEN
 import com.cevlikalprn.youneedtodo.common.NavigateToListScreen
+import com.cevlikalprn.youneedtodo.presentation.screen.task.TaskScreen
 
 fun NavGraphBuilder.taskScreenComposable(
     navigateToListScreen: NavigateToListScreen
@@ -18,5 +19,11 @@ fun NavGraphBuilder.taskScreenComposable(
         })
     ) { navBackStackEntry ->
         val taskId = navBackStackEntry.arguments?.getInt(TASK_ARGUMENT_KEY)
+        taskId?.let { id ->
+            TaskScreen(
+                taskId = id,
+                navigateToListScreen = navigateToListScreen
+            )
+        }
     }
 }

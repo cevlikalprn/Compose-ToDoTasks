@@ -25,6 +25,7 @@ fun AppDefaultTopBar(
                 color = titleColor
             )
         },
+        navigationIcon = navigationIcon,
         actions = actions,
         backgroundColor = backgroundColor
     )
