@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.presentation.screen.list.screen
+package com.cevlikalprn.youneedtodo.presentation.screen.list
 
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
@@ -11,9 +11,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
 import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
-import com.cevlikalprn.youneedtodo.presentation.screen.list.ListViewModel
-import com.cevlikalprn.youneedtodo.presentation.screen.list.screen.content.ListScreenContent
-import com.cevlikalprn.youneedtodo.presentation.screen.list.screen.topBar.ListScreenTopBar
 import com.cevlikalprn.youneedtodo.presentation.uipack.button.AppFloatingActionButton
 
 @Composable

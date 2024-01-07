@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.presentation.screen.list.screen.content
+package com.cevlikalprn.youneedtodo.presentation.screen.list
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
 import com.cevlikalprn.youneedtodo.common.SimpleComposableContent
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
-import com.cevlikalprn.youneedtodo.presentation.screen.list.ListUiState
 import com.cevlikalprn.youneedtodo.presentation.uipack.component.emptPage.AppEmptyPageContent
 
 @Composable

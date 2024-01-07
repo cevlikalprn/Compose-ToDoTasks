@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.presentation.screen.list.screen.content
+package com.cevlikalprn.youneedtodo.presentation.screen.list
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
