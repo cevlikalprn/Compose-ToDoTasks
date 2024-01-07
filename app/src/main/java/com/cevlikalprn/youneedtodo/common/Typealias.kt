@@ -1,10 +1,12 @@
 package com.cevlikalprn.youneedtodo.common
 
 import androidx.compose.runtime.Composable
+import com.cevlikalprn.youneedtodo.common.model.Action
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 
 // General
 typealias SimpleOnClick = () -> Unit
+typealias SimpleComposableContent = @Composable () -> Unit
 
 // Navigation
 typealias NavigateToTaskScreen = (taskId: Int) -> Unit
@@ -25,6 +27,3 @@ typealias SearchOnSearchClick = (text: String) -> Unit
 
 // Icon
 typealias BackIconOnClick = () -> Unit
-
-// Composable
-typealias SimpleComposableContent = @Composable () -> Unit

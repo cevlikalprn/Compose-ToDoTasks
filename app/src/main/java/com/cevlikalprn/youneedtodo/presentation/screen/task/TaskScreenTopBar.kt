@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.R
-import com.cevlikalprn.youneedtodo.common.Action
+import com.cevlikalprn.youneedtodo.common.model.Action
 import com.cevlikalprn.youneedtodo.common.NavigateToListScreen
 import com.cevlikalprn.youneedtodo.presentation.uipack.iconButton.AppAddIconButton
 import com.cevlikalprn.youneedtodo.presentation.uipack.iconButton.AppBackIconButton

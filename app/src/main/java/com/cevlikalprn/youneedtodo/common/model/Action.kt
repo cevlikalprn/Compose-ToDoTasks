@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.common
+package com.cevlikalprn.youneedtodo.common.model
 
 enum class Action {
     ADD,

@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.extension
+package com.cevlikalprn.youneedtodo.common.extension
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
