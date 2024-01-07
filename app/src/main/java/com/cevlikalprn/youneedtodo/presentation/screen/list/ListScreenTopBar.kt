@@ -5,7 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import com.cevlikalprn.youneedtodo.R
 import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
-import com.cevlikalprn.youneedtodo.common.model.SearchAppBarState
+import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState
 import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppDefaultTopBar
 import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppSearchTopBar
 import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.topBarItem.TopBarDeleteAction
