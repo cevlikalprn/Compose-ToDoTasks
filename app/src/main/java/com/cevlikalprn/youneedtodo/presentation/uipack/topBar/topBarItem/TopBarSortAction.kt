@@ -7,19 +7,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.cevlikalprn.youneedtodo.R
 import com.cevlikalprn.youneedtodo.common.TopBarSortOnClick
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.presentation.uipack.component.priorityItem.AppPriorityItemWithText
-import com.cevlikalprn.youneedtodo.presentation.uipack.iconButton.AppFilterIconButton
+import com.cevlikalprn.youneedtodo.presentation.uipack.iconButton.AppTopBarIconButton
 
 @Composable
 fun TopBarSortAction(
     onSortClick: TopBarSortOnClick
 ) {
     var expanded by remember { mutableStateOf(false) }
-    AppFilterIconButton(
-        onFilterIconClick = { expanded = true },
+    AppTopBarIconButton(
+        onClick = { expanded = true },
+        icon = painterResource(id = R.drawable.ic_filter),
         onIconAction = {
             ExpandableDropDown(
                 expanded = expanded,

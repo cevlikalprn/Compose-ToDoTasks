@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,15 +18,16 @@ import com.cevlikalprn.youneedtodo.R
 import com.cevlikalprn.youneedtodo.common.TopBarDeleteOnClick
 import com.cevlikalprn.youneedtodo.presentation.theme.LARGE_PADDING
 import com.cevlikalprn.youneedtodo.presentation.theme.Typography
-import com.cevlikalprn.youneedtodo.presentation.uipack.iconButton.AppThreeDotIconButton
+import com.cevlikalprn.youneedtodo.presentation.uipack.iconButton.AppTopBarIconButton
 
 @Composable
 fun TopBarDeleteAction(
     onDeleteClick: TopBarDeleteOnClick
 ) {
     var expanded by remember { mutableStateOf(false) }
-    AppThreeDotIconButton(
-        onThreeDotIconClick = { expanded = true },
+    AppTopBarIconButton(
+        onClick = { expanded = true },
+        icon = Icons.Filled.MoreVert,
         onIconAction = {
             ExpandableDropDown(
                 expanded = expanded,

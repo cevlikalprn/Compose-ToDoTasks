@@ -1,8 +1,8 @@
 package com.cevlikalprn.youneedtodo.common
 
 import androidx.compose.runtime.Composable
-import com.cevlikalprn.youneedtodo.presentation.model.Action
 import com.cevlikalprn.youneedtodo.domain.model.Priority
+import com.cevlikalprn.youneedtodo.presentation.model.Action
 
 // General
 typealias SimpleOnClick = () -> Unit
@@ -24,6 +24,3 @@ typealias TopBarDeleteOnClick = () -> Unit
 typealias SearchOnTextChange = (text: String) -> Unit
 typealias SearchOnCloseClick = () -> Unit
 typealias SearchOnSearchClick = (text: String) -> Unit
-
-// Icon
-typealias BackIconOnClick = () -> Unit
