@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
 import com.cevlikalprn.youneedtodo.common.SimpleComposableContent
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
+import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.presentation.uipack.component.emptPage.AppEmptyPageContent
 
 @Composable
@@ -19,11 +19,11 @@ fun ListScreenContent(
 ) {
     if (uiState.success) {
         HandleScreenState(
-            isDataReady = uiState.toDoTaskEntities.isNotEmpty(),
+            isDataReady = uiState.toDoTasks.isNotEmpty(),
             tasksContent = {
                 DisplayTodoTasks(
                     paddingValues,
-                    uiState.toDoTaskEntities,
+                    uiState.toDoTasks,
                     navigateToTaskScreen
                 )
             },
@@ -50,7 +50,7 @@ private fun HandleScreenState(
 @Composable
 private fun DisplayTodoTasks(
     paddingValues: PaddingValues,
-    tasks: List<ToDoTaskEntity>,
+    tasks: List<ToDoTask>,
     navigateToTaskScreen: NavigateToTaskScreen
 ) {
     LazyColumn(
@@ -63,7 +63,7 @@ private fun DisplayTodoTasks(
                 },
                 itemContent = { toDoTask ->
                     ListScreenContentItem(
-                        toDoTaskEntity = toDoTask,
+                        toDoTask = toDoTask,
                         navigateToTaskScreen = navigateToTaskScreen
                     )
                 }
