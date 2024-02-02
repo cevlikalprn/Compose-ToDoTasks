@@ -13,7 +13,7 @@ interface ToDoRepository {
     /*
      * Get selected ToDoTask by taskId
      */
-    fun getSelectedTask(taskId: Int): Flow<ToDoTask>
+    fun getSelectedTask(taskId: Int): ToDoTask?
 
     /*
      * Get all ToDoTask sorted by low priority

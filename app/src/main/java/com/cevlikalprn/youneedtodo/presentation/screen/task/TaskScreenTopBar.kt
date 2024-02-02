@@ -11,18 +11,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.R
 import com.cevlikalprn.youneedtodo.common.NavigateToListScreen
 import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.presentation.model.Action
 import com.cevlikalprn.youneedtodo.presentation.uipack.iconButton.AppTopBarIconButton
 import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppDefaultTopBar
 
 @Composable
 fun TaskScreenTopBar(
+    uiState: TaskUiState,
     navigateToListScreen: NavigateToListScreen
 ) {
-    TopBarForNewTask(
-        navigateToListScreen = navigateToListScreen
-    )
+    if (!uiState.success) {
+        TopBarForNewTask(
+            navigateToListScreen = navigateToListScreen
+        )
+    } else {
+        TopBarForCreatedTask(uiState, navigateToListScreen)
+    }
 }
 
 @Composable
@@ -48,7 +52,7 @@ private fun TopBarForNewTask(
 
 @Composable
 private fun TopBarForCreatedTask(
-    selectedTask: ToDoTask,
+    selectedTask: TaskUiState,
     navigateToListScreen: NavigateToListScreen
 ) {
     AppDefaultTopBar(
@@ -86,7 +90,7 @@ private fun TopBarForNewTaskPreview() {
 @Preview
 private fun TopBarForCreatedTaskPreview() {
     TopBarForCreatedTask(
-        selectedTask = ToDoTask(
+        selectedTask = TaskUiState(
             id = 0,
             title = "Created Task",
             description = "",

@@ -26,7 +26,7 @@ fun AppSearchTopBar(
     topBarContentColor: Color = MaterialTheme.colors.appTopBarContentColor,
     onTextChange: SearchOnTextChange,
     onSearchClick: SearchOnSearchClick,
-    onCloseClick: SearchOnCloseClick,
+    onCloseClick: SearchOnCloseClick
 ) {
     Surface(
         modifier = modifier

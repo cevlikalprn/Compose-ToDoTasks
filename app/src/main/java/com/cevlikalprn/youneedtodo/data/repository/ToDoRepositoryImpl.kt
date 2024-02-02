@@ -16,7 +16,7 @@ class ToDoRepositoryImpl @Inject constructor(
         return todoDao.getAllTasks()
     }
 
-    override fun getSelectedTask(taskId: Int): Flow<ToDoTask> {
+    override fun getSelectedTask(taskId: Int): ToDoTask? {
         return todoDao.getSelectedTask(taskId)
     }
 
