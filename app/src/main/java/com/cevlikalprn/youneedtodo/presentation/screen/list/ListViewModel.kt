@@ -22,7 +22,7 @@ class ListViewModel @Inject constructor(
         mutableStateOf(SearchAppBarState.CLOSED)
     val searchTextState: MutableState<String> = mutableStateOf(Constants.EMPTY_STRING)
 
-    private val _allTasks: MutableStateFlow<ListUiState> = MutableStateFlow(ListUiState())
+    private val _allTasks: MutableStateFlow<ListUiState> = MutableStateFlow(ListUiState.Default)
     val allTasks: StateFlow<ListUiState> = _allTasks
 
     fun getAllTasks() = launchInIo(

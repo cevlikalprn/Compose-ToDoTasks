@@ -91,6 +91,7 @@ private fun TopBarForNewTaskPreview() {
 private fun TopBarForCreatedTaskPreview() {
     TopBarForCreatedTask(
         selectedTask = TaskUiState(
+            success = true,
             id = 0,
             title = "Created Task",
             description = "",

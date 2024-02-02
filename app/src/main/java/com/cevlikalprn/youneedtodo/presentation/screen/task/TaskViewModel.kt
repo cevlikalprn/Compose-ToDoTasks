@@ -14,7 +14,7 @@ class TaskViewModel @Inject constructor(
     private val getSelectedTaskUseCase: GetSelectedTaskUseCase
 ) : ViewModel() {
 
-    private val _selectedTask: MutableStateFlow<TaskUiState> = MutableStateFlow(TaskUiState())
+    private val _selectedTask: MutableStateFlow<TaskUiState> = MutableStateFlow(TaskUiState.Default)
     val selectedTask: StateFlow<TaskUiState> = _selectedTask
 
     fun getSelectedTask(taskId: Int) = launchInIo(
