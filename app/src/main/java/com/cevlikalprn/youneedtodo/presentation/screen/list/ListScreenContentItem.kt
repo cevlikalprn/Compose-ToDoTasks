@@ -21,7 +21,7 @@ import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
 import com.cevlikalprn.youneedtodo.common.SimpleComposableContent
 import com.cevlikalprn.youneedtodo.common.SimpleOnClick
 import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.presentation.theme.LARGE_PADDING
 import com.cevlikalprn.youneedtodo.presentation.theme.TASK_ITEM_ELEVATION
 import com.cevlikalprn.youneedtodo.presentation.theme.taskItemBackgroundColor
@@ -30,18 +30,18 @@ import com.cevlikalprn.youneedtodo.presentation.uipack.component.priorityItem.Ap
 
 @Composable
 fun ListScreenContentItem(
-    toDoTask: ToDoTask,
+    toDoTaskEntity: ToDoTaskEntity,
     navigateToTaskScreen: NavigateToTaskScreen
 ) {
     ItemSurface(
         onClick = {
-            navigateToTaskScreen(toDoTask.id)
+            navigateToTaskScreen(toDoTaskEntity.id)
         },
         content = {
             ItemContent(
-                title = toDoTask.title,
-                description = toDoTask.description,
-                priorityColor = toDoTask.priority.color
+                title = toDoTaskEntity.title,
+                description = toDoTaskEntity.description,
+                priorityColor = toDoTaskEntity.priority.color
             )
         }
     )
@@ -127,7 +127,7 @@ private fun ItemContentDescription(
 @Preview
 fun ListScreenContentItemPreview() {
     ListScreenContentItem(
-        toDoTask = ToDoTask(
+        toDoTaskEntity = ToDoTaskEntity(
             id = 0,
             title = "Title",
             description = "Description",

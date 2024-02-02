@@ -1,16 +1,16 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.list
 
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 
 data class ListUiState(
     var success: Boolean,
-    var toDoTasks: List<ToDoTask>
+    var toDoTaskEntities: List<ToDoTaskEntity>
 ) {
 
     companion object {
         val Default = ListUiState(
             success = false,
-            toDoTasks = emptyList()
+            toDoTaskEntities = emptyList()
         )
     }
 }

@@ -31,7 +31,7 @@ class ListViewModel @Inject constructor(
                 _allTasks.update { state ->
                     state.copy(
                         success = true,
-                        toDoTasks = toDoTasks
+                        toDoTaskEntities = toDoTasks
                     )
                 }
             }

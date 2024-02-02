@@ -1,52 +1,52 @@
 package com.cevlikalprn.youneedtodo.domain.repository
 
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import kotlinx.coroutines.flow.Flow
 
 interface ToDoRepository {
 
     /*
-     * Get all ToDoTask
+     * Get all ToDoTaskEntity
      */
-    fun getAllTasks(): Flow<List<ToDoTask>>
+    fun getAllTasks(): Flow<List<ToDoTaskEntity>>
 
     /*
-     * Get selected ToDoTask by taskId
+     * Get selected ToDoTaskEntity by taskId
      */
-    fun getSelectedTask(taskId: Int): ToDoTask?
+    fun getSelectedTask(taskId: Int): ToDoTaskEntity?
 
     /*
-     * Get all ToDoTask sorted by low priority
+     * Get all ToDoTaskEntity sorted by low priority
      */
-    fun getSortedByLowPriority(): Flow<List<ToDoTask>>
+    fun getSortedByLowPriority(): Flow<List<ToDoTaskEntity>>
 
     /*
-     * Get all ToDoTask sorted by high priority
+     * Get all ToDoTaskEntity sorted by high priority
      */
-    fun getSortedByHighPriority(): Flow<List<ToDoTask>>
+    fun getSortedByHighPriority(): Flow<List<ToDoTaskEntity>>
 
     /*
-     * Add a ToDoTask
+     * Add a ToDoTaskEntity
      */
-    suspend fun addTask(todoTask: ToDoTask)
+    suspend fun addTask(todoTaskEntity: ToDoTaskEntity)
 
     /*
-     * Update a ToDoTask
+     * Update a ToDoTaskEntity
      */
-    suspend fun updateTask(todoTask: ToDoTask)
+    suspend fun updateTask(todoTaskEntity: ToDoTaskEntity)
 
     /*
-     * Delete a ToDoTask
+     * Delete a ToDoTaskEntity
      */
-    suspend fun deleteTask(todoTask: ToDoTask)
+    suspend fun deleteTask(todoTaskEntity: ToDoTaskEntity)
 
     /*
-    * Delete all ToDoTask
+    * Delete all ToDoTaskEntity
     */
     suspend fun deleteAllTasks()
 
     /*
-     * Get all searched ToDoTask
+     * Get all searched ToDoTaskEntity
      */
-    fun searchDatabase(searchQuery: String): Flow<List<ToDoTask>>
+    fun searchDatabase(searchQuery: String): Flow<List<ToDoTaskEntity>>
 }

@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import androidx.room.OnConflictStrategy
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.common.Constants.DATABASE_TABLE
 import kotlinx.coroutines.flow.Flow
 
@@ -14,29 +14,29 @@ import kotlinx.coroutines.flow.Flow
 interface TodoDao {
 
     @Query("SELECT * FROM $DATABASE_TABLE ORDER BY id ASC")
-    fun getAllTasks(): Flow<List<ToDoTask>>
+    fun getAllTasks(): Flow<List<ToDoTaskEntity>>
 
     @Query("SELECT * FROM $DATABASE_TABLE WHERE id = :taskId")
-    fun getSelectedTask(taskId: Int): ToDoTask?
+    fun getSelectedTask(taskId: Int): ToDoTaskEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addTask(task: ToDoTask)
+    suspend fun addTask(task: ToDoTaskEntity)
 
     @Update
-    suspend fun updateTask(task: ToDoTask)
+    suspend fun updateTask(task: ToDoTaskEntity)
 
     @Delete
-    suspend fun deleteTask(task: ToDoTask)
+    suspend fun deleteTask(task: ToDoTaskEntity)
 
     @Query("DELETE FROM $DATABASE_TABLE")
     suspend fun deleteAllTasks()
 
     @Query("SELECT * FROM $DATABASE_TABLE WHERE title LIKE :searchQuery OR description LIKE :searchQuery")
-    fun searchDatabase(searchQuery: String): Flow<List<ToDoTask>>
+    fun searchDatabase(searchQuery: String): Flow<List<ToDoTaskEntity>>
 
     @Query("SELECT * FROM $DATABASE_TABLE ORDER BY CASE WHEN priority LIKE 'L%' THEN 1 WHEN priority LIKE 'M%' THEN 2 WHEN priority LIKE 'H%' THEN 3 END")
-    fun sortByLowPriority(): Flow<List<ToDoTask>>
+    fun sortByLowPriority(): Flow<List<ToDoTaskEntity>>
 
     @Query("SELECT * FROM $DATABASE_TABLE ORDER BY CASE WHEN priority LIKE 'H%' THEN 1 WHEN priority LIKE 'M%' THEN 2 WHEN priority LIKE 'L%' THEN 3 END")
-    fun sortByHighPriority(): Flow<List<ToDoTask>>
+    fun sortByHighPriority(): Flow<List<ToDoTaskEntity>>
 }
