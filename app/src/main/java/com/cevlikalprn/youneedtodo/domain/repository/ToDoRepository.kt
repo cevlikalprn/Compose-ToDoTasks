@@ -9,7 +9,7 @@ interface ToDoRepository : AppRepository {
     /*
      * Get all ToDoTaskEntity
      */
-    fun getAllTasks(): Flow<List<ToDoTaskEntity>>
+    suspend fun getAllTasks(): AppResult<List<ToDoTaskEntity>?>
 
     /*
      * Get selected ToDoTaskEntity by taskId

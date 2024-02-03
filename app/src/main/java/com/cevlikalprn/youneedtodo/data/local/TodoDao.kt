@@ -14,10 +14,10 @@ import kotlinx.coroutines.flow.Flow
 interface TodoDao {
 
     @Query("SELECT * FROM $DATABASE_TABLE ORDER BY id ASC")
-    fun getAllTasks(): Flow<List<ToDoTaskEntity>>
+    suspend fun getAllTasks(): List<ToDoTaskEntity>?
 
     @Query("SELECT * FROM $DATABASE_TABLE WHERE id = :taskId")
-    fun getSelectedTask(taskId: Int): ToDoTaskEntity?
+    suspend fun getSelectedTask(taskId: Int): ToDoTaskEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addTask(task: ToDoTaskEntity)

@@ -14,8 +14,10 @@ class ToDoRepositoryImpl @Inject constructor(
     private val todoDao: TodoDao
 ) : ToDoRepository {
 
-    override fun getAllTasks(): Flow<List<ToDoTaskEntity>> {
-        return todoDao.getAllTasks()
+    override suspend fun getAllTasks(): AppResult<List<ToDoTaskEntity>?> {
+        return repoCall {
+            todoDao.getAllTasks()
+        }
     }
 
     override suspend fun getSelectedTask(taskId: Int): AppResult<ToDoTaskEntity?> {
