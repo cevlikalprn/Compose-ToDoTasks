@@ -2,6 +2,7 @@ package com.cevlikalprn.youneedtodo.presentation.screen.task
 
 import androidx.lifecycle.ViewModel
 import com.cevlikalprn.youneedtodo.common.extension.launchInIo
+import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.domain.useCase.GetSelectedTaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,24 +20,19 @@ class TaskViewModel @Inject constructor(
 
     fun getSelectedTask(taskId: Int) = launchInIo(
         launchBlock = {
-            getSelectedTaskUseCase(taskId)?.let { toDoTask ->
-                _selectedTask.update { uiState ->
-                    uiState.copy(
-                        success = true,
-                        id = toDoTask.id,
-                        title = toDoTask.title,
-                        description = toDoTask.description
-                    )
-                }
-            } ?: run {
-                _selectedTask.update { uiState ->
-                    uiState.copy(success = false)
-                }
+            val toDoTask = getSelectedTaskUseCase(taskId)
+            _selectedTask.update { uiState ->
+                uiState.copy(
+                    toDoTask = toDoTask
+                )
             }
         },
         errorBlock = {
             _selectedTask.update { uiState ->
-                uiState.copy(success = false)
+                uiState.copy(
+                    toDoTask = ToDoTask.Default,
+                    errorMessage = it.message.orEmpty()
+                )
             }
         }
     )

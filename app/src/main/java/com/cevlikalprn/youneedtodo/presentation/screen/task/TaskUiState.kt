@@ -1,22 +1,17 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.task
 
-import com.cevlikalprn.youneedtodo.domain.model.Priority
+import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
+import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 
 data class TaskUiState(
-    val success: Boolean,
-    val id: Int,
-    val title: String,
-    val description: String,
-    val priority: Priority
+    val toDoTask: ToDoTask,
+    val errorMessage: String
 ) {
 
     companion object {
         val Default = TaskUiState(
-            success = false,
-            id = 0,
-            title = "",
-            description = "",
-            priority = Priority.NONE
+            toDoTask = ToDoTask.Default,
+            errorMessage = EMPTY_STRING
         )
     }
 }
