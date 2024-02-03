@@ -1,8 +1,9 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.task
 
 import androidx.lifecycle.ViewModel
-import com.cevlikalprn.youneedtodo.common.AppResult
 import com.cevlikalprn.youneedtodo.common.extension.launchInIo
+import com.cevlikalprn.youneedtodo.common.extension.onError
+import com.cevlikalprn.youneedtodo.common.extension.onSuccess
 import com.cevlikalprn.youneedtodo.domain.useCase.GetSelectedTaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,20 +20,18 @@ class TaskViewModel @Inject constructor(
     val selectedTask: StateFlow<TaskUiState> = _selectedTask
 
     fun getSelectedTask(taskId: Int) = launchInIo {
-        when (val toDoTask = getSelectedTaskUseCase(taskId)) {
-            is AppResult.Success -> {
+        getSelectedTaskUseCase(taskId)
+            .onSuccess { toDoTask ->
                 _selectedTask.update { uiState ->
-                    uiState.copy(toDoTask = toDoTask.data)
+                    uiState.copy(toDoTask = toDoTask)
                 }
             }
-
-            is AppResult.Error -> {
+            .onError { error ->
                 _selectedTask.update { uiState ->
                     uiState.copy(
-                        errorMessage = toDoTask.error.message.orEmpty()
+                        errorMessage = error.message.orEmpty()
                     )
                 }
             }
-        }
     }
 }
