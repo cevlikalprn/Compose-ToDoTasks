@@ -1,8 +1,8 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.task
 
 import androidx.lifecycle.ViewModel
+import com.cevlikalprn.youneedtodo.common.AppResult
 import com.cevlikalprn.youneedtodo.common.extension.launchInIo
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.domain.useCase.GetSelectedTaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,22 +18,21 @@ class TaskViewModel @Inject constructor(
     private val _selectedTask: MutableStateFlow<TaskUiState> = MutableStateFlow(TaskUiState.Default)
     val selectedTask: StateFlow<TaskUiState> = _selectedTask
 
-    fun getSelectedTask(taskId: Int) = launchInIo(
-        launchBlock = {
-            val toDoTask = getSelectedTaskUseCase(taskId)
-            _selectedTask.update { uiState ->
-                uiState.copy(
-                    toDoTask = toDoTask
-                )
+    fun getSelectedTask(taskId: Int) = launchInIo {
+        when (val toDoTask = getSelectedTaskUseCase(taskId)) {
+            is AppResult.Success -> {
+                _selectedTask.update { uiState ->
+                    uiState.copy(toDoTask = toDoTask.data)
+                }
             }
-        },
-        errorBlock = {
-            _selectedTask.update { uiState ->
-                uiState.copy(
-                    toDoTask = ToDoTask.Default,
-                    errorMessage = it.message.orEmpty()
-                )
+
+            is AppResult.Error -> {
+                _selectedTask.update { uiState ->
+                    uiState.copy(
+                        errorMessage = toDoTask.error.message.orEmpty()
+                    )
+                }
             }
         }
-    )
+    }
 }

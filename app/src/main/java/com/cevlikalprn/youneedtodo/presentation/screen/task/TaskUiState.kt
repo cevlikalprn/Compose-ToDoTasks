@@ -10,7 +10,7 @@ data class TaskUiState(
 
     companion object {
         val Default = TaskUiState(
-            toDoTask = ToDoTask.Default,
+            toDoTask = ToDoTask.NewToDoTask,
             errorMessage = EMPTY_STRING
         )
     }

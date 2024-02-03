@@ -1,5 +1,7 @@
 package com.cevlikalprn.youneedtodo.data.repository
 
+import com.cevlikalprn.youneedtodo.common.AppResult
+import com.cevlikalprn.youneedtodo.common.extension.repoCall
 import com.cevlikalprn.youneedtodo.data.local.TodoDao
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
@@ -16,8 +18,10 @@ class ToDoRepositoryImpl @Inject constructor(
         return todoDao.getAllTasks()
     }
 
-    override fun getSelectedTask(taskId: Int): ToDoTaskEntity? {
-        return todoDao.getSelectedTask(taskId)
+    override suspend fun getSelectedTask(taskId: Int): AppResult<ToDoTaskEntity?> {
+        return repoCall {
+            todoDao.getSelectedTask(taskId)
+        }
     }
 
     override fun getSortedByLowPriority(): Flow<List<ToDoTaskEntity>> {

@@ -8,16 +8,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 fun ViewModel.launchInIo(
-    launchBlock: suspend CoroutineScope.() -> Unit,
-    errorBlock: (error: Exception) -> Unit
+    launchBlock: suspend CoroutineScope.() -> Unit
 ) {
-    try {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                launchBlock()
-            }
+    viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            launchBlock()
         }
-    } catch (e: Exception) {
-        errorBlock(e)
     }
 }

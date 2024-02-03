@@ -1,9 +1,10 @@
 package com.cevlikalprn.youneedtodo.domain.repository
 
+import com.cevlikalprn.youneedtodo.common.AppResult
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import kotlinx.coroutines.flow.Flow
 
-interface ToDoRepository {
+interface ToDoRepository : AppRepository {
 
     /*
      * Get all ToDoTaskEntity
@@ -13,7 +14,7 @@ interface ToDoRepository {
     /*
      * Get selected ToDoTaskEntity by taskId
      */
-    fun getSelectedTask(taskId: Int): ToDoTaskEntity?
+    suspend fun getSelectedTask(taskId: Int): AppResult<ToDoTaskEntity?>
 
     /*
      * Get all ToDoTaskEntity sorted by low priority

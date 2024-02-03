@@ -10,7 +10,7 @@ data class ToDoTask(
 ) {
 
     companion object {
-        val Default = ToDoTask(
+        val NewToDoTask = ToDoTask(
             id = ADD_TASK_ID,
             title = "",
             description = "",
