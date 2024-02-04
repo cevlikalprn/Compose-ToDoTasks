@@ -8,6 +8,7 @@ import com.cevlikalprn.youneedtodo.common.extension.onSuccess
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.domain.useCase.GetSelectedTaskUseCase
+import com.cevlikalprn.youneedtodo.presentation.model.Action
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -70,6 +71,15 @@ class TaskViewModel @Inject constructor(
             uiState.copy(
                 toDoTask = toDoTask
             )
+        }
+    }
+
+    fun isReadyForAction(action: Action): Boolean {
+        val toDoTask = selectedTask.value.toDoTask
+        return if (action == Action.UPDATE || action == Action.ADD) {
+            !(toDoTask?.title.isNullOrEmpty() || toDoTask?.description.isNullOrEmpty())
+        } else {
+            true
         }
     }
 }
