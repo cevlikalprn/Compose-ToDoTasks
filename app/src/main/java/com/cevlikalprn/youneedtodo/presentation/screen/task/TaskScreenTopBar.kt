@@ -22,12 +22,12 @@ fun TaskScreenTopBar(
     uiState: TaskUiState,
     navigateToListScreen: NavigateToListScreen
 ) {
-    if (uiState.toDoTask.id == ADD_TASK_ID) {
+    if (uiState.toDoTask != null && uiState.toDoTask.id != ADD_TASK_ID) {
+        TopBarForCreatedTask(uiState.toDoTask, navigateToListScreen)
+    } else {
         TopBarForNewTask(
             navigateToListScreen = navigateToListScreen
         )
-    } else {
-        TopBarForCreatedTask(uiState.toDoTask, navigateToListScreen)
     }
 }
 

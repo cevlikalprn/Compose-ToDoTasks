@@ -4,7 +4,7 @@ import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 
 data class TaskUiState(
-    val toDoTask: ToDoTask,
+    val toDoTask: ToDoTask?,
     val errorMessage: String
 ) {
 

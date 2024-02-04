@@ -4,7 +4,7 @@ import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 
 data class ListUiState(
     var success: Boolean,
-    var toDoTasks: List<ToDoTask>
+    var toDoTasks: List<ToDoTask>?
 ) {
 
     companion object {
