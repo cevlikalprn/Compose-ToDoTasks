@@ -7,7 +7,10 @@ import com.cevlikalprn.youneedtodo.common.extension.onError
 import com.cevlikalprn.youneedtodo.common.extension.onSuccess
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.domain.useCase.AddTaskUseCase
+import com.cevlikalprn.youneedtodo.domain.useCase.DeleteTaskUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.GetSelectedTaskUseCase
+import com.cevlikalprn.youneedtodo.domain.useCase.UpdateTaskUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.Action
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +20,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TaskViewModel @Inject constructor(
-    private val getSelectedTaskUseCase: GetSelectedTaskUseCase
+    private val getSelectedTaskUseCase: GetSelectedTaskUseCase,
+    private val addTaskUseCase: AddTaskUseCase,
+    private val updateTaskUseCase: UpdateTaskUseCase,
+    private val deleteTaskUseCase: DeleteTaskUseCase
 ) : ViewModel() {
 
     private val _selectedTask: MutableStateFlow<TaskUiState> = MutableStateFlow(TaskUiState.Default)
@@ -37,6 +43,18 @@ class TaskViewModel @Inject constructor(
                     )
                 }
             }
+    }
+
+    private fun addTask(toDoTask: ToDoTask?) = launchInIo {
+        addTaskUseCase(toDoTask = toDoTask)
+    }
+
+    private fun updateTask(toDoTask: ToDoTask?) = launchInIo {
+        updateTaskUseCase(toDoTask)
+    }
+
+    private fun deleteTask(toDoTask: ToDoTask?) = launchInIo {
+        deleteTaskUseCase(toDoTask)
     }
 
     fun updateTaskTitle(title: String) {
@@ -80,6 +98,27 @@ class TaskViewModel @Inject constructor(
             !(toDoTask?.title.isNullOrEmpty() || toDoTask?.description.isNullOrEmpty())
         } else {
             true
+        }
+    }
+
+    fun applyAction(action: Action) {
+        val toDoTask = selectedTask.value.toDoTask
+        when (action) {
+            Action.ADD -> {
+                addTask(toDoTask)
+            }
+
+            Action.UPDATE -> {
+                updateTask(toDoTask)
+            }
+
+            Action.DELETE -> {
+                deleteTask(toDoTask)
+            }
+
+            else -> {
+                // do nothing
+            }
         }
     }
 }
