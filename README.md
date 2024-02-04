@@ -2,6 +2,7 @@
 A To-Do App demo written with Jetpack Compose
 
 <h2> Tech Stack </h2>
+
 * 100% Kotlin
 * Jetpack Compose
 * Material Design
