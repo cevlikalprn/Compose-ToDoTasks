@@ -14,7 +14,7 @@ data class ToDoTask(
             id = ADD_TASK_ID,
             title = "",
             description = "",
-            priority = Priority.NONE
+            priority = Priority.LOW
         )
     }
 }

@@ -17,6 +17,7 @@ import com.cevlikalprn.youneedtodo.R
 import com.cevlikalprn.youneedtodo.common.PrioritySelectedClick
 import com.cevlikalprn.youneedtodo.common.TextFieldValueChange
 import com.cevlikalprn.youneedtodo.domain.model.Priority
+import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.presentation.theme.LARGE_PADDING
 import com.cevlikalprn.youneedtodo.presentation.theme.MEDIUM_PADDING
 import com.cevlikalprn.youneedtodo.presentation.uipack.component.priorityDropDown.AppPriorityDropDown
@@ -25,9 +26,7 @@ import com.cevlikalprn.youneedtodo.presentation.uipack.textField.AppToDoTaskFiel
 @Composable
 fun TaskScreenContent(
     paddingValues: PaddingValues,
-    title: String,
-    description: String,
-    priority: Priority,
+    toDoTask: ToDoTask?,
     onTitleChange: TextFieldValueChange,
     onPrioritySelected: PrioritySelectedClick,
     onDescriptionChange: TextFieldValueChange
@@ -42,7 +41,7 @@ fun TaskScreenContent(
         AppToDoTaskField(
             modifier = Modifier.fillMaxWidth(),
             onValueChange = onTitleChange,
-            value = title,
+            value = toDoTask?.title.orEmpty(),
             labelValue = stringResource(id = R.string.title),
             textStyle = MaterialTheme.typography.body1,
             singleLine = true
@@ -52,13 +51,13 @@ fun TaskScreenContent(
             color = MaterialTheme.colors.background
         )
         AppPriorityDropDown(
-            priority = priority,
+            priority = toDoTask?.priority ?: Priority.LOW,
             onPrioritySelected = onPrioritySelected
         )
         AppToDoTaskField(
             modifier = Modifier.fillMaxSize(),
             onValueChange = onDescriptionChange,
-            value = description,
+            value = toDoTask?.description.orEmpty(),
             labelValue = stringResource(id = R.string.description),
             textStyle = MaterialTheme.typography.body1
         )
@@ -70,9 +69,7 @@ fun TaskScreenContent(
 private fun TaskContentPreview() {
     TaskScreenContent(
         paddingValues = PaddingValues(),
-        title = "",
-        description = "",
-        priority = Priority.LOW,
+        toDoTask = ToDoTask.NewToDoTask,
         onTitleChange = {},
         onPrioritySelected = {},
         onDescriptionChange = {}

@@ -1,6 +1,5 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.task
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -8,7 +7,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cevlikalprn.youneedtodo.common.NavigateToListScreen
-import com.cevlikalprn.youneedtodo.domain.model.Priority
 
 @Composable
 fun TaskScreen(
@@ -33,12 +31,16 @@ fun TaskScreen(
         content = { paddingValues ->
             TaskScreenContent(
                 paddingValues = paddingValues,
-                title = "",
-                description = "",
-                priority = Priority.LOW,
-                onTitleChange = {},
-                onPrioritySelected = {},
-                onDescriptionChange = {}
+                toDoTask = uiState.toDoTask,
+                onTitleChange = {
+                    viewModel.updateTaskTitle(it)
+                },
+                onPrioritySelected = {
+                    viewModel.updateTaskPriority(it)
+                },
+                onDescriptionChange = {
+                    viewModel.updateTaskDescription(it)
+                }
             )
         }
     )
