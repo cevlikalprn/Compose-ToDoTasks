@@ -10,7 +10,7 @@ typealias SimpleComposableContent = @Composable () -> Unit
 
 // Navigation
 typealias NavigateToTaskScreen = (taskId: Int) -> Unit
-typealias NavigateToListScreen = (action: Action) -> Unit
+typealias NavigateToListScreen = () -> Unit
 
 // Button
 typealias FabOnClick = () -> Unit
@@ -30,3 +30,6 @@ typealias PrioritySelectedClick = (priority: Priority) -> Unit
 
 // TextField
 typealias TextFieldValueChange = (value: String) -> Unit
+
+// Listener
+typealias ActionListener = (action: Action) -> Unit

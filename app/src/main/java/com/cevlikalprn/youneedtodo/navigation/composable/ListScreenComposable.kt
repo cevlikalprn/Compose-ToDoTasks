@@ -1,27 +1,18 @@
 package com.cevlikalprn.youneedtodo.navigation.composable
 
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import com.cevlikalprn.youneedtodo.common.Constants.LIST_ARGUMENT_KEY
 import com.cevlikalprn.youneedtodo.common.Constants.LIST_SCREEN
 import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
-import com.cevlikalprn.youneedtodo.presentation.model.Action.Companion.getActionFromString
 import com.cevlikalprn.youneedtodo.presentation.screen.list.ListScreen
 
 fun NavGraphBuilder.listScreenComposable(
     navigateToTaskScreen: NavigateToTaskScreen
 ) {
     composable(
-        route = LIST_SCREEN,
-        arguments = listOf(navArgument(LIST_ARGUMENT_KEY) {
-            type = NavType.StringType
-        })
-    ) { navBackStackEntry ->
-        val action = navBackStackEntry.arguments?.getString(LIST_ARGUMENT_KEY).getActionFromString()
+        route = LIST_SCREEN
+    ) {
         ListScreen(
-            action = action,
             navigateToTaskScreen = navigateToTaskScreen
         )
     }

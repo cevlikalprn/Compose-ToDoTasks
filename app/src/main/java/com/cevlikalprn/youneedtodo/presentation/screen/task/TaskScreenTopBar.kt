@@ -9,8 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.R
+import com.cevlikalprn.youneedtodo.common.ActionListener
 import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
-import com.cevlikalprn.youneedtodo.common.NavigateToListScreen
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.presentation.model.Action
@@ -20,32 +20,32 @@ import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppDefaultTopBar
 @Composable
 fun TaskScreenTopBar(
     uiState: TaskUiState,
-    navigateToListScreen: NavigateToListScreen
+    onActionClicked: ActionListener
 ) {
     if (uiState.toDoTask != null && uiState.toDoTask.id != ADD_TASK_ID) {
-        TopBarForCreatedTask(uiState.toDoTask, navigateToListScreen)
+        TopBarForCreatedTask(uiState.toDoTask, onActionClicked)
     } else {
         TopBarForNewTask(
-            navigateToListScreen = navigateToListScreen
+            onActionClicked = onActionClicked
         )
     }
 }
 
 @Composable
 private fun TopBarForNewTask(
-    navigateToListScreen: NavigateToListScreen
+    onActionClicked: ActionListener
 ) {
     AppDefaultTopBar(
         title = stringResource(R.string.task_screen_new_task_title),
         navigationIcon = {
             AppTopBarIconButton(
-                onClick = { navigateToListScreen(Action.NO_ACTION) },
+                onClick = { onActionClicked(Action.NO_ACTION) },
                 icon = Icons.Filled.ArrowBack
             )
         },
         actions = {
             AppTopBarIconButton(
-                onClick = { navigateToListScreen(Action.ADD) },
+                onClick = { onActionClicked(Action.ADD) },
                 icon = Icons.Filled.Check
             )
         }
@@ -55,24 +55,24 @@ private fun TopBarForNewTask(
 @Composable
 private fun TopBarForCreatedTask(
     selectedTask: ToDoTask,
-    navigateToListScreen: NavigateToListScreen
+    onActionClicked: ActionListener
 ) {
     AppDefaultTopBar(
         title = selectedTask.title,
         navigationIcon = {
             AppTopBarIconButton(
-                onClick = { navigateToListScreen(Action.NO_ACTION) },
+                onClick = { onActionClicked(Action.NO_ACTION) },
                 icon = Icons.Filled.Close
             )
         },
         actions = {
             AppTopBarIconButton(
-                onClick = { navigateToListScreen(Action.DELETE) },
+                onClick = { onActionClicked(Action.DELETE) },
                 icon = Icons.Filled.Delete
             )
             AppTopBarIconButton(
                 onClick = {
-                    navigateToListScreen(Action.UPDATE)
+                    onActionClicked(Action.UPDATE)
                 },
                 icon = Icons.Filled.Check
             )
@@ -84,7 +84,7 @@ private fun TopBarForCreatedTask(
 @Preview
 private fun TopBarForNewTaskPreview() {
     TopBarForNewTask(
-        navigateToListScreen = {
+        onActionClicked = {
             // do nothing
         }
     )
@@ -100,7 +100,7 @@ private fun TopBarForCreatedTaskPreview() {
             description = "",
             priority = Priority.HIGH
         ),
-        navigateToListScreen = {
+        onActionClicked = {
             // do nothing
         }
     )

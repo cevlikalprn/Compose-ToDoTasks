@@ -29,14 +29,14 @@ fun TaskScreen(
         topBar = {
             TaskScreenTopBar(
                 uiState = uiState,
-                navigateToListScreen = {
+                onActionClicked = {
                     if (!viewModel.isReadyForAction(it)) {
                         context.longToastMessage(
                             context.getString(R.string.fields_empty)
                         )
                     } else {
                         viewModel.applyAction(it)
-                        navigateToListScreen(it)
+                        navigateToListScreen()
                     }
                 }
             )

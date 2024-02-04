@@ -17,7 +17,6 @@ import com.cevlikalprn.youneedtodo.presentation.uipack.button.AppFloatingActionB
 @Composable
 fun ListScreen(
     viewModel: ListViewModel = hiltViewModel(),
-    action: Action,
     navigateToTaskScreen: NavigateToTaskScreen
 ) {
     LaunchedEffect(
@@ -55,7 +54,6 @@ fun ListScreen(
 @Preview
 private fun ListScreenPreview() {
     ListScreen(
-        action = Action.NO_ACTION,
         navigateToTaskScreen = {
             // do nothing
         }

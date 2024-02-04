@@ -7,8 +7,8 @@ import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
 
 class NavigationContainer(navController: NavHostController) {
 
-    val navigateToListScreen: NavigateToListScreen = { action ->
-        navController.navigate(route = "list/${action.name}") {
+    val navigateToListScreen: NavigateToListScreen = {
+        navController.navigate(route = LIST_SCREEN) {
             popUpTo(LIST_SCREEN) { inclusive = true }
         }
     }
