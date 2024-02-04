@@ -6,11 +6,13 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.R
 import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
 import com.cevlikalprn.youneedtodo.common.NavigateToListScreen
+import com.cevlikalprn.youneedtodo.common.extension.longToastMessage
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.presentation.model.Action
@@ -57,6 +59,7 @@ private fun TopBarForCreatedTask(
     selectedTask: ToDoTask,
     navigateToListScreen: NavigateToListScreen
 ) {
+    val context = LocalContext.current
     AppDefaultTopBar(
         title = selectedTask.title,
         navigationIcon = {
@@ -71,7 +74,17 @@ private fun TopBarForCreatedTask(
                 icon = Icons.Filled.Delete
             )
             AppTopBarIconButton(
-                onClick = { navigateToListScreen(Action.UPDATE) },
+                onClick = {
+                    if (selectedTask.title.isEmpty() || selectedTask.description.isEmpty()) {
+                        context.longToastMessage(
+                            context.getString(
+                                R.string.fields_empty
+                            )
+                        )
+                    } else {
+                        navigateToListScreen(Action.UPDATE)
+                    }
+                },
                 icon = Icons.Filled.Check
             )
         }

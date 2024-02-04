@@ -1,6 +1,7 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.task
 
 import androidx.lifecycle.ViewModel
+import com.cevlikalprn.youneedtodo.common.Constants.MAX_TASK_TITLE_LENGTH
 import com.cevlikalprn.youneedtodo.common.extension.launchInIo
 import com.cevlikalprn.youneedtodo.common.extension.onError
 import com.cevlikalprn.youneedtodo.common.extension.onSuccess
@@ -38,6 +39,9 @@ class TaskViewModel @Inject constructor(
     }
 
     fun updateTaskTitle(title: String) {
+        if (title.length > MAX_TASK_TITLE_LENGTH) {
+            return
+        }
         updateToDoTask(
             selectedTask.value.toDoTask?.copy(
                 title = title

@@ -17,4 +17,7 @@ object Constants {
     // General
     const val EMPTY_STRING = ""
 
+    // Task
+    const val MAX_TASK_TITLE_LENGTH = 25
+
 }
