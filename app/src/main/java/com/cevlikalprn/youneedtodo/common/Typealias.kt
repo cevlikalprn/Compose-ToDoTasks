@@ -24,3 +24,6 @@ typealias TopBarDeleteOnClick = () -> Unit
 typealias SearchOnTextChange = (text: String) -> Unit
 typealias SearchOnCloseClick = () -> Unit
 typealias SearchOnSearchClick = (text: String) -> Unit
+
+// Priority Component
+typealias PrioritySelectedClick = (priority: Priority) -> Unit

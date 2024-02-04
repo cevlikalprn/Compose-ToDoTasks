@@ -9,9 +9,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.presentation.theme.PRIORITY_ITEM_CIRCLE_SHAPE_SIZE
 
 @Composable
-fun AppPriorityItemShape(color: Color) {
+fun AppPriorityItemShape(
+    modifier: Modifier = Modifier,
+    color: Color
+) {
     Canvas(
-        modifier = Modifier.size(PRIORITY_ITEM_CIRCLE_SHAPE_SIZE),
+        modifier = modifier.size(PRIORITY_ITEM_CIRCLE_SHAPE_SIZE),
         onDraw = {
             drawCircle(color = color)
         }
