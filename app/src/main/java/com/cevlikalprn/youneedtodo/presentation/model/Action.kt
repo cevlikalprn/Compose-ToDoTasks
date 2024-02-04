@@ -10,14 +10,14 @@ enum class Action {
 
     companion object {
         fun String?.getActionFromString(): Action {
-            try {
-                return if (this.isNullOrEmpty()) {
+            return try {
+                if (this.isNullOrEmpty()) {
                     NO_ACTION
                 } else {
                     Action.valueOf(this)
                 }
             } catch (e: Exception) {
-                return NO_ACTION
+                NO_ACTION
             }
         }
     }
