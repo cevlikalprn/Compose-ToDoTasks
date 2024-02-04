@@ -11,4 +11,6 @@
     <string name="delete_all">Delete All</string>
     <string name="search_label">Search</string>
     <string name="empty_page_label">No Tasks Found</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
 </resources>

@@ -27,3 +27,6 @@ typealias SearchOnSearchClick = (text: String) -> Unit
 
 // Priority Component
 typealias PrioritySelectedClick = (priority: Priority) -> Unit
+
+// TextField
+typealias TextFieldValueChange = (value: String) -> Unit
