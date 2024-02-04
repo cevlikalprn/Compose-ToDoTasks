@@ -35,6 +35,7 @@ fun TaskScreen(
                             context.getString(R.string.fields_empty)
                         )
                     } else {
+                        viewModel.applyAction(it)
                         navigateToListScreen(it)
                     }
                 }
