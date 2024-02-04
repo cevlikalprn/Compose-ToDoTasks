@@ -1,4 +1,5 @@
-A library that you can use for bottom navigation bar. Written with Jetpack Compose.
+<h2> Compose-ToDoTasks </h2>
+A To-Do App demo written with Jetpack Compose
 
 <h2> Tech Stack </h2>
 * 100% Kotlin
