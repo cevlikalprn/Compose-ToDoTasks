@@ -7,6 +7,7 @@ import androidx.navigation.navArgument
 import com.cevlikalprn.youneedtodo.common.Constants.LIST_ARGUMENT_KEY
 import com.cevlikalprn.youneedtodo.common.Constants.LIST_SCREEN
 import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
+import com.cevlikalprn.youneedtodo.presentation.model.Action.Companion.getActionFromString
 import com.cevlikalprn.youneedtodo.presentation.screen.list.ListScreen
 
 fun NavGraphBuilder.listScreenComposable(
@@ -17,8 +18,10 @@ fun NavGraphBuilder.listScreenComposable(
         arguments = listOf(navArgument(LIST_ARGUMENT_KEY) {
             type = NavType.StringType
         })
-    ) {
+    ) { navBackStackEntry ->
+        val action = navBackStackEntry.arguments?.getString(LIST_ARGUMENT_KEY).getActionFromString()
         ListScreen(
+            action = action,
             navigateToTaskScreen = navigateToTaskScreen
         )
     }
