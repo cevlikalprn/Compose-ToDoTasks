@@ -7,12 +7,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-fun ViewModel.launchInIo(
-    launchBlock: suspend CoroutineScope.() -> Unit
+fun ViewModel.ioScope(
+    launch: suspend CoroutineScope.() -> Unit,
+    error: suspend CoroutineScope.(e: Exception) -> Unit = {}
 ) {
     viewModelScope.launch {
         withContext(Dispatchers.IO) {
-            launchBlock()
+            try {
+                launch()
+            } catch (e: Exception) {
+                error(e)
+            }
         }
     }
 }

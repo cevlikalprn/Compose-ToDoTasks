@@ -4,9 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.cevlikalprn.youneedtodo.common.Constants
-import com.cevlikalprn.youneedtodo.common.extension.launchInIo
-import com.cevlikalprn.youneedtodo.common.extension.onError
-import com.cevlikalprn.youneedtodo.common.extension.onSuccess
+import com.cevlikalprn.youneedtodo.common.extension.ioScope
 import com.cevlikalprn.youneedtodo.domain.useCase.GetAllTasksUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,24 +25,24 @@ class ListViewModel @Inject constructor(
     private val _allTasks: MutableStateFlow<ListUiState> = MutableStateFlow(ListUiState.Default)
     val allTasks: StateFlow<ListUiState> = _allTasks
 
-    fun getAllTasks() = launchInIo {
-        getAllTasksUseCase()
-            .onSuccess { tasks ->
-                _allTasks.update { state ->
-                    state.copy(
-                        success = true,
-                        toDoTasks = tasks
-                    )
-                }
+    fun getAllTasks() = ioScope(
+        launch = {
+            val tasks = getAllTasksUseCase()
+            _allTasks.update { state ->
+                state.copy(
+                    success = true,
+                    toDoTasks = tasks
+                )
             }
-            .onError {
-                _allTasks.update { state ->
-                    state.copy(
-                        success = false
-                    )
-                }
+        },
+        error = {
+            _allTasks.update { state ->
+                state.copy(
+                    success = false
+                )
             }
-    }
+        }
+    )
 
     fun updateSearchAppBarState(state: SearchAppBarState) {
         searchAppBarState.value = state

@@ -2,9 +2,7 @@ package com.cevlikalprn.youneedtodo.presentation.screen.task
 
 import androidx.lifecycle.ViewModel
 import com.cevlikalprn.youneedtodo.common.Constants.MAX_TASK_TITLE_LENGTH
-import com.cevlikalprn.youneedtodo.common.extension.launchInIo
-import com.cevlikalprn.youneedtodo.common.extension.onError
-import com.cevlikalprn.youneedtodo.common.extension.onSuccess
+import com.cevlikalprn.youneedtodo.common.extension.ioScope
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.domain.useCase.AddTaskUseCase
@@ -29,33 +27,39 @@ class TaskViewModel @Inject constructor(
     private val _selectedTask: MutableStateFlow<TaskUiState> = MutableStateFlow(TaskUiState.Default)
     val selectedTask: StateFlow<TaskUiState> = _selectedTask
 
-    fun getSelectedTask(taskId: Int) = launchInIo {
-        getSelectedTaskUseCase(taskId)
-            .onSuccess { toDoTask ->
-                _selectedTask.update { uiState ->
-                    uiState.copy(toDoTask = toDoTask)
-                }
+    fun getSelectedTask(taskId: Int) = ioScope(
+        launch = {
+            val toDoTask = getSelectedTaskUseCase(taskId)
+            _selectedTask.update { uiState ->
+                uiState.copy(toDoTask = toDoTask)
             }
-            .onError { error ->
-                _selectedTask.update { uiState ->
-                    uiState.copy(
-                        errorMessage = error.message.orEmpty()
-                    )
-                }
+        },
+        error = { error ->
+            _selectedTask.update { uiState ->
+                uiState.copy(
+                    errorMessage = error.message.orEmpty()
+                )
             }
-    }
+        }
+    )
 
-    private fun addTask(toDoTask: ToDoTask?) = launchInIo {
-        addTaskUseCase(toDoTask = toDoTask)
-    }
+    private fun addTask(toDoTask: ToDoTask?) = ioScope(
+        launch = {
+            addTaskUseCase(toDoTask = toDoTask)
+        }
+    )
 
-    private fun updateTask(toDoTask: ToDoTask?) = launchInIo {
-        updateTaskUseCase(toDoTask)
-    }
+    private fun updateTask(toDoTask: ToDoTask?) = ioScope(
+        launch = {
+            updateTaskUseCase(toDoTask)
+        }
+    )
 
-    private fun deleteTask(toDoTask: ToDoTask?) = launchInIo {
-        deleteTaskUseCase(toDoTask)
-    }
+    private fun deleteTask(toDoTask: ToDoTask?) = ioScope(
+        launch = {
+            deleteTaskUseCase(toDoTask)
+        }
+    )
 
     fun updateTaskTitle(title: String) {
         if (title.length > MAX_TASK_TITLE_LENGTH) {
