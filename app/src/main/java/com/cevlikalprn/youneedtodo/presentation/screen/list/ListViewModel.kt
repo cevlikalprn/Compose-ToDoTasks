@@ -8,6 +8,7 @@ import com.cevlikalprn.youneedtodo.common.extension.ioScope
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
 import com.cevlikalprn.youneedtodo.domain.useCase.GetAllTasksUseCase
+import com.cevlikalprn.youneedtodo.domain.useCase.SearchDatabaseUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ListViewModel @Inject constructor(
     private val toDoRepository: ToDoRepository,
-    private val getAllTasksUseCase: GetAllTasksUseCase
+    private val getAllTasksUseCase: GetAllTasksUseCase,
+    private val searchDatabaseUseCase: SearchDatabaseUseCase
 ) : ViewModel() {
 
     var searchAppBarState: MutableState<SearchAppBarState> =
@@ -53,6 +55,25 @@ class ListViewModel @Inject constructor(
         launch = {
             toDoRepository.deleteAllTasks()
             getAllTasks()
+        }
+    )
+
+    fun searchDatabase() = ioScope(
+        launch = {
+            val tasks = searchDatabaseUseCase(searchTextState.value)
+            _allTasks.update { state ->
+                state.copy(
+                    areTasksFetched = true,
+                    toDoTasks = tasks
+                )
+            }
+        },
+        error = {
+            _allTasks.update { state ->
+                state.copy(
+                    areTasksFetched = false
+                )
+            }
         }
     )
 

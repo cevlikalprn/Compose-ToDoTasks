@@ -4,7 +4,6 @@ import com.cevlikalprn.youneedtodo.data.local.TodoDao
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
 import dagger.hilt.android.scopes.ViewModelScoped
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @ViewModelScoped
@@ -44,7 +43,7 @@ class ToDoRepositoryImpl @Inject constructor(
         todoDao.deleteAllTasks()
     }
 
-    override fun searchDatabase(searchQuery: String): Flow<List<ToDoTaskEntity>> {
+    override suspend fun searchDatabase(searchQuery: String): List<ToDoTaskEntity> {
         return todoDao.searchDatabase(searchQuery)
     }
 }

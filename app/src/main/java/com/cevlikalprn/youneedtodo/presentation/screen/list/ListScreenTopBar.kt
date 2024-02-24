@@ -73,12 +73,17 @@ private fun SearchTopBar(viewModel: ListViewModel) {
         onTextChange = { searchedText ->
             viewModel.updateSearchTextState(searchedText)
         },
-        onSearchClick = {},
+        onSearchClick = {
+            viewModel.searchDatabase()
+        },
         onCloseClick = {
-            viewModel.updateSearchAppBarState(
-                SearchAppBarState.CLOSED
-            )
-            viewModel.updateSearchTextState(EMPTY_STRING)
+            with(viewModel) {
+                updateSearchAppBarState(
+                    SearchAppBarState.CLOSED
+                )
+                updateSearchTextState(EMPTY_STRING)
+                getAllTasks()
+            }
         }
     )
 }

@@ -1,7 +1,6 @@
 package com.cevlikalprn.youneedtodo.domain.repository
 
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
-import kotlinx.coroutines.flow.Flow
 
 interface ToDoRepository : AppRepository {
 
@@ -48,5 +47,5 @@ interface ToDoRepository : AppRepository {
     /*
      * Get all searched ToDoTaskEntity
      */
-    fun searchDatabase(searchQuery: String): Flow<List<ToDoTaskEntity>>
+    suspend fun searchDatabase(searchQuery: String): List<ToDoTaskEntity>
 }
