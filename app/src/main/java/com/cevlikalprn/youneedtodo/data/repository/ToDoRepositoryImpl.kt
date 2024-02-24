@@ -20,11 +20,11 @@ class ToDoRepositoryImpl @Inject constructor(
         return todoDao.getSelectedTask(taskId)
     }
 
-    override fun getSortedByLowPriority(): Flow<List<ToDoTaskEntity>> {
+    override suspend fun getSortedByLowPriority(): List<ToDoTaskEntity> {
         return todoDao.sortByLowPriority()
     }
 
-    override fun getSortedByHighPriority(): Flow<List<ToDoTaskEntity>> {
+    override suspend fun getSortedByHighPriority(): List<ToDoTaskEntity> {
         return todoDao.sortByHighPriority()
     }
 

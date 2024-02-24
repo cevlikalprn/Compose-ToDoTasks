@@ -29,7 +29,7 @@ fun ListScreen(
         topBar = {
             ListScreenTopBar(
                 viewModel = viewModel,
-                isDeleteAllActionVisible = !uiState.toDoTasks.isNullOrEmpty()
+                isTaskListEmpty = uiState.toDoTasks.isNullOrEmpty()
             )
         },
         floatingActionButton = {

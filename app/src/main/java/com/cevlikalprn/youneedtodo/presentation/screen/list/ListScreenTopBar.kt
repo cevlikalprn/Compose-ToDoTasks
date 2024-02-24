@@ -15,7 +15,7 @@ import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.topBarItem.TopBarS
 @Composable
 fun ListScreenTopBar(
     viewModel: ListViewModel,
-    isDeleteAllActionVisible: Boolean
+    isTaskListEmpty: Boolean
 ) {
     val searchAppBarState by viewModel.searchAppBarState
 
@@ -23,7 +23,7 @@ fun ListScreenTopBar(
         SearchAppBarState.CLOSED -> {
             DefaultTopBar(
                 viewModel,
-                isDeleteAllActionVisible
+                isTaskListEmpty
             )
         }
 
@@ -36,20 +36,24 @@ fun ListScreenTopBar(
 @Composable
 private fun DefaultTopBar(
     viewModel: ListViewModel,
-    isDeleteAllActionVisible: Boolean
+    isTaskListEmpty: Boolean
 ) {
     AppDefaultTopBar(
         title = stringResource(R.string.list_screen_title),
         actions = {
-            TopBarSearchAction(
-                onSearchClick = {
-                    viewModel.updateSearchAppBarState(
-                        SearchAppBarState.OPENED
-                    )
-                }
-            )
-            TopBarSortAction(onSortClick = {})
-            if (isDeleteAllActionVisible) {
+            if (!isTaskListEmpty) {
+                TopBarSearchAction(
+                    onSearchClick = {
+                        viewModel.updateSearchAppBarState(
+                            SearchAppBarState.OPENED
+                        )
+                    }
+                )
+                TopBarSortAction(
+                    onSortClick = { priority ->
+                        viewModel.getAllTasks(priority)
+                    }
+                )
                 TopBarDeleteAction(
                     onDeleteClick = {
                         viewModel.deleteAllTasks()

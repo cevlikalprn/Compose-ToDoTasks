@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.cevlikalprn.youneedtodo.common.Constants
 import com.cevlikalprn.youneedtodo.common.extension.ioScope
+import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
 import com.cevlikalprn.youneedtodo.domain.useCase.GetAllTasksUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState
@@ -27,9 +28,11 @@ class ListViewModel @Inject constructor(
     private val _allTasks: MutableStateFlow<ListUiState> = MutableStateFlow(ListUiState.Default)
     val allTasks: StateFlow<ListUiState> = _allTasks
 
-    fun getAllTasks() = ioScope(
+    fun getAllTasks(
+        priority: Priority = Priority.NONE
+    ) = ioScope(
         launch = {
-            val tasks = getAllTasksUseCase()
+            val tasks = getAllTasksUseCase(priority)
             _allTasks.update { state ->
                 state.copy(
                     areTasksFetched = true,

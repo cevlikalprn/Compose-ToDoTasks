@@ -18,12 +18,12 @@ interface ToDoRepository : AppRepository {
     /*
      * Get all ToDoTaskEntity sorted by low priority
      */
-    fun getSortedByLowPriority(): Flow<List<ToDoTaskEntity>>
+    suspend fun getSortedByLowPriority(): List<ToDoTaskEntity>
 
     /*
      * Get all ToDoTaskEntity sorted by high priority
      */
-    fun getSortedByHighPriority(): Flow<List<ToDoTaskEntity>>
+    suspend fun getSortedByHighPriority(): List<ToDoTaskEntity>
 
     /*
      * Add a ToDoTaskEntity
