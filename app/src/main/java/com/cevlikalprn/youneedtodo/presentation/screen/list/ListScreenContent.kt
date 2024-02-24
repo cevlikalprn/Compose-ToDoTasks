@@ -16,7 +16,7 @@ fun ListScreenContent(
     uiState: ListUiState,
     navigateToTaskScreen: NavigateToTaskScreen
 ) {
-    if (uiState.success) {
+    if (uiState.areTasksFetched) {
         if (!uiState.toDoTasks.isNullOrEmpty()) {
             DisplayTodoTasks(
                 paddingValues,

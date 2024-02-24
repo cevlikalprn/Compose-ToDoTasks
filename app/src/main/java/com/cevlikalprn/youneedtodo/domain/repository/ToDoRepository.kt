@@ -43,7 +43,7 @@ interface ToDoRepository : AppRepository {
     /*
     * Delete all ToDoTaskEntity
     */
-    suspend fun deleteAllTasks()
+    suspend fun deleteAllTasks(): Int
 
     /*
      * Get all searched ToDoTaskEntity

@@ -3,13 +3,13 @@ package com.cevlikalprn.youneedtodo.presentation.screen.list
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 
 data class ListUiState(
-    var success: Boolean,
+    var areTasksFetched: Boolean,
     var toDoTasks: List<ToDoTask>?
 ) {
 
     companion object {
         val Default = ListUiState(
-            success = false,
+            areTasksFetched = false,
             toDoTasks = emptyList()
         )
     }

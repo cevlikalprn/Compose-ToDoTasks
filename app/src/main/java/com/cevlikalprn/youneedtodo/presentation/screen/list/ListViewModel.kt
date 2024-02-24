@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.cevlikalprn.youneedtodo.common.Constants
 import com.cevlikalprn.youneedtodo.common.extension.ioScope
+import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
 import com.cevlikalprn.youneedtodo.domain.useCase.GetAllTasksUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,6 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
+    private val toDoRepository: ToDoRepository,
     private val getAllTasksUseCase: GetAllTasksUseCase
 ) : ViewModel() {
 
@@ -30,7 +32,7 @@ class ListViewModel @Inject constructor(
             val tasks = getAllTasksUseCase()
             _allTasks.update { state ->
                 state.copy(
-                    success = true,
+                    areTasksFetched = true,
                     toDoTasks = tasks
                 )
             }
@@ -38,8 +40,21 @@ class ListViewModel @Inject constructor(
         error = {
             _allTasks.update { state ->
                 state.copy(
-                    success = false
+                    areTasksFetched = false
                 )
+            }
+        }
+    )
+
+    fun deleteAllTasks() = ioScope(
+        launch = {
+            val deletedTasksCount = toDoRepository.deleteAllTasks()
+            if (deletedTasksCount == allTasks.value.toDoTasks?.size) {
+                _allTasks.update { state ->
+                    state.copy(
+                        toDoTasks = emptyList()
+                    )
+                }
             }
         }
     )
