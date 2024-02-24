@@ -3,11 +3,11 @@ package com.cevlikalprn.youneedtodo.data.local
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import androidx.room.OnConflictStrategy
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.common.Constants.DATABASE_TABLE
+import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -29,7 +29,7 @@ interface TodoDao {
     suspend fun deleteTask(task: ToDoTaskEntity)
 
     @Query("DELETE FROM $DATABASE_TABLE")
-    suspend fun deleteAllTasks(): Int
+    suspend fun deleteAllTasks()
 
     @Query("SELECT * FROM $DATABASE_TABLE WHERE title LIKE :searchQuery OR description LIKE :searchQuery")
     fun searchDatabase(searchQuery: String): Flow<List<ToDoTaskEntity>>

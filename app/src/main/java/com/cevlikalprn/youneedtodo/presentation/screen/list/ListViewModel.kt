@@ -48,14 +48,8 @@ class ListViewModel @Inject constructor(
 
     fun deleteAllTasks() = ioScope(
         launch = {
-            val deletedTasksCount = toDoRepository.deleteAllTasks()
-            if (deletedTasksCount == allTasks.value.toDoTasks?.size) {
-                _allTasks.update { state ->
-                    state.copy(
-                        toDoTasks = emptyList()
-                    )
-                }
-            }
+            toDoRepository.deleteAllTasks()
+            getAllTasks()
         }
     )
 

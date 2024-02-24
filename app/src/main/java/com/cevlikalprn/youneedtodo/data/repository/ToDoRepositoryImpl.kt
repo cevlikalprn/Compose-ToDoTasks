@@ -40,8 +40,8 @@ class ToDoRepositoryImpl @Inject constructor(
         todoDao.deleteTask(todoTaskEntity)
     }
 
-    override suspend fun deleteAllTasks(): Int {
-        return todoDao.deleteAllTasks()
+    override suspend fun deleteAllTasks() {
+        todoDao.deleteAllTasks()
     }
 
     override fun searchDatabase(searchQuery: String): Flow<List<ToDoTaskEntity>> {
