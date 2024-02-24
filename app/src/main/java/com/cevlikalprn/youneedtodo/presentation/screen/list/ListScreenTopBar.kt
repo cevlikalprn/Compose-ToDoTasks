@@ -27,7 +27,7 @@ fun ListScreenTopBar(
             )
         }
 
-        else -> {
+        SearchAppBarState.OPENED -> {
             SearchTopBar(viewModel)
         }
     }

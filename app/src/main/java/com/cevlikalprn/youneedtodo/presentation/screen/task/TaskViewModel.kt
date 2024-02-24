@@ -120,7 +120,7 @@ class TaskViewModel @Inject constructor(
                 deleteTask(toDoTask)
             }
 
-            else -> {
+            Action.NO_ACTION -> {
                 // do nothing
             }
         }

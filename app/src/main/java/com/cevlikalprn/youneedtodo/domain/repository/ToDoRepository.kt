@@ -2,7 +2,7 @@ package com.cevlikalprn.youneedtodo.domain.repository
 
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 
-interface ToDoRepository : AppRepository {
+interface ToDoRepository {
 
     /*
      * Get all ToDoTaskEntity
