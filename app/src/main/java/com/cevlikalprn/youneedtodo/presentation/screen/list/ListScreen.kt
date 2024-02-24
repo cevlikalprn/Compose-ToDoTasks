@@ -11,7 +11,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
 import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
-import com.cevlikalprn.youneedtodo.presentation.model.Action
 import com.cevlikalprn.youneedtodo.presentation.uipack.button.AppFloatingActionButton
 
 @Composable
@@ -29,7 +28,8 @@ fun ListScreen(
     Scaffold(
         topBar = {
             ListScreenTopBar(
-                viewModel = viewModel
+                viewModel = viewModel,
+                isDeleteAllActionVisible = !uiState.toDoTasks.isNullOrEmpty()
             )
         },
         floatingActionButton = {

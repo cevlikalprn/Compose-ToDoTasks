@@ -14,13 +14,17 @@ import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.topBarItem.TopBarS
 
 @Composable
 fun ListScreenTopBar(
-    viewModel: ListViewModel
+    viewModel: ListViewModel,
+    isDeleteAllActionVisible: Boolean
 ) {
     val searchAppBarState by viewModel.searchAppBarState
 
     when (searchAppBarState) {
         SearchAppBarState.CLOSED -> {
-            DefaultTopBar(viewModel)
+            DefaultTopBar(
+                viewModel,
+                isDeleteAllActionVisible
+            )
         }
 
         else -> {
@@ -30,7 +34,10 @@ fun ListScreenTopBar(
 }
 
 @Composable
-private fun DefaultTopBar(viewModel: ListViewModel) {
+private fun DefaultTopBar(
+    viewModel: ListViewModel,
+    isDeleteAllActionVisible: Boolean
+) {
     AppDefaultTopBar(
         title = stringResource(R.string.list_screen_title),
         actions = {
@@ -42,11 +49,13 @@ private fun DefaultTopBar(viewModel: ListViewModel) {
                 }
             )
             TopBarSortAction(onSortClick = {})
-            TopBarDeleteAction(
-                onDeleteClick = {
-                    viewModel.deleteAllTasks()
-                }
-            )
+            if (isDeleteAllActionVisible) {
+                TopBarDeleteAction(
+                    onDeleteClick = {
+                        viewModel.deleteAllTasks()
+                    }
+                )
+            }
         }
     )
 }
