@@ -3,10 +3,8 @@ package com.cevlikalprn.youneedtodo.data.repository
 import com.cevlikalprn.youneedtodo.data.local.TodoDao
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
-import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
-@ViewModelScoped
 class ToDoRepositoryImpl @Inject constructor(
     private val todoDao: TodoDao
 ) : ToDoRepository {
