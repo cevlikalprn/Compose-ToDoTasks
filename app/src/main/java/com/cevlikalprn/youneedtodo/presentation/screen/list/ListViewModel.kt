@@ -34,12 +34,13 @@ class ListViewModel @Inject constructor(
         priority: Priority = Priority.NONE
     ) = ioScope(
         launch = {
-            val tasks = getAllTasksUseCase(priority)
-            _allTasks.update { state ->
-                state.copy(
-                    areTasksFetched = true,
-                    toDoTasks = tasks
-                )
+            getAllTasksUseCase(priority).collect { toDoTaskList ->
+                _allTasks.update { state ->
+                    state.copy(
+                        areTasksFetched = true,
+                        toDoTasks = toDoTaskList
+                    )
+                }
             }
         },
         error = {
@@ -60,12 +61,13 @@ class ListViewModel @Inject constructor(
 
     fun searchDatabase() = ioScope(
         launch = {
-            val tasks = searchDatabaseUseCase(searchTextState.value)
-            _allTasks.update { state ->
-                state.copy(
-                    areTasksFetched = true,
-                    toDoTasks = tasks
-                )
+            searchDatabaseUseCase(searchTextState.value).collect { toDoTaskList ->
+                _allTasks.update { state ->
+                    state.copy(
+                        areTasksFetched = true,
+                        toDoTasks = toDoTaskList
+                    )
+                }
             }
         },
         error = {

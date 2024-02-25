@@ -1,13 +1,14 @@
 package com.cevlikalprn.youneedtodo.domain.repository
 
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
+import kotlinx.coroutines.flow.Flow
 
 interface ToDoRepository {
 
     /*
      * Get all ToDoTaskEntity
      */
-    suspend fun getAllTasks(): List<ToDoTaskEntity>?
+    fun getAllTasks(): Flow<List<ToDoTaskEntity>?>
 
     /*
      * Get selected ToDoTaskEntity by taskId
@@ -17,12 +18,12 @@ interface ToDoRepository {
     /*
      * Get all ToDoTaskEntity sorted by low priority
      */
-    suspend fun getSortedByLowPriority(): List<ToDoTaskEntity>
+    fun getSortedByLowPriority(): Flow<List<ToDoTaskEntity>>
 
     /*
      * Get all ToDoTaskEntity sorted by high priority
      */
-    suspend fun getSortedByHighPriority(): List<ToDoTaskEntity>
+    fun getSortedByHighPriority(): Flow<List<ToDoTaskEntity>>
 
     /*
      * Add a ToDoTaskEntity
@@ -47,5 +48,5 @@ interface ToDoRepository {
     /*
      * Get all searched ToDoTaskEntity
      */
-    suspend fun searchDatabase(searchQuery: String): List<ToDoTaskEntity>
+    fun searchDatabase(searchQuery: String): Flow<List<ToDoTaskEntity>>
 }

@@ -3,13 +3,14 @@ package com.cevlikalprn.youneedtodo.data.repository
 import com.cevlikalprn.youneedtodo.data.local.TodoDao
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ToDoRepositoryImpl @Inject constructor(
     private val todoDao: TodoDao
 ) : ToDoRepository {
 
-    override suspend fun getAllTasks(): List<ToDoTaskEntity>? {
+    override fun getAllTasks(): Flow<List<ToDoTaskEntity>?> {
         return todoDao.getAllTasks()
     }
 
@@ -17,11 +18,11 @@ class ToDoRepositoryImpl @Inject constructor(
         return todoDao.getSelectedTask(taskId)
     }
 
-    override suspend fun getSortedByLowPriority(): List<ToDoTaskEntity> {
+    override fun getSortedByLowPriority(): Flow<List<ToDoTaskEntity>> {
         return todoDao.sortByLowPriority()
     }
 
-    override suspend fun getSortedByHighPriority(): List<ToDoTaskEntity> {
+    override fun getSortedByHighPriority(): Flow<List<ToDoTaskEntity>> {
         return todoDao.sortByHighPriority()
     }
 
@@ -41,7 +42,7 @@ class ToDoRepositoryImpl @Inject constructor(
         todoDao.deleteAllTasks()
     }
 
-    override suspend fun searchDatabase(searchQuery: String): List<ToDoTaskEntity> {
+    override fun searchDatabase(searchQuery: String): Flow<List<ToDoTaskEntity>> {
         return todoDao.searchDatabase(searchQuery)
     }
 }

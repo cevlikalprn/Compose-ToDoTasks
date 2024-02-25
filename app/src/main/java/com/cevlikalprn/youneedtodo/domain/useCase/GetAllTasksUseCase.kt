@@ -4,6 +4,8 @@ import com.cevlikalprn.youneedtodo.data.mapper.TaskListMapper
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetAllTasksUseCase @Inject constructor(
@@ -11,7 +13,7 @@ class GetAllTasksUseCase @Inject constructor(
     private val taskListMapper: TaskListMapper
 ) {
 
-    suspend operator fun invoke(priority: Priority): List<ToDoTask> {
+    operator fun invoke(priority: Priority): Flow<List<ToDoTask>> {
         val tasks = when (priority) {
             Priority.LOW -> {
                 toDoRepository.getSortedByLowPriority()
@@ -25,6 +27,9 @@ class GetAllTasksUseCase @Inject constructor(
                 toDoRepository.getAllTasks()
             }
         }
-        return taskListMapper(tasks.orEmpty())
+
+        return tasks.map { toDoTaskEntityList ->
+            taskListMapper(toDoTaskEntityList.orEmpty())
+        }
     }
 }

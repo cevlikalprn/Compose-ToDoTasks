@@ -8,12 +8,13 @@ import androidx.room.Query
 import androidx.room.Update
 import com.cevlikalprn.youneedtodo.common.Constants.DATABASE_TABLE
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TodoDao {
 
     @Query("SELECT * FROM $DATABASE_TABLE ORDER BY id DESC")
-    suspend fun getAllTasks(): List<ToDoTaskEntity>?
+    fun getAllTasks(): Flow<List<ToDoTaskEntity>?>
 
     @Query("SELECT * FROM $DATABASE_TABLE WHERE id = :taskId")
     suspend fun getSelectedTask(taskId: Int): ToDoTaskEntity?
@@ -31,11 +32,11 @@ interface TodoDao {
     suspend fun deleteAllTasks()
 
     @Query("SELECT * FROM $DATABASE_TABLE WHERE title LIKE '%' || :searchQuery || '%' OR description LIKE '%' || :searchQuery || '%'")
-    suspend fun searchDatabase(searchQuery: String): List<ToDoTaskEntity>
+    fun searchDatabase(searchQuery: String): Flow<List<ToDoTaskEntity>>
 
     @Query("SELECT * FROM $DATABASE_TABLE ORDER BY CASE WHEN priority LIKE 'L%' THEN 1 WHEN priority LIKE 'M%' THEN 2 WHEN priority LIKE 'H%' THEN 3 END")
-    suspend fun sortByLowPriority(): List<ToDoTaskEntity>
+    fun sortByLowPriority(): Flow<List<ToDoTaskEntity>>
 
     @Query("SELECT * FROM $DATABASE_TABLE ORDER BY CASE WHEN priority LIKE 'H%' THEN 1 WHEN priority LIKE 'M%' THEN 2 WHEN priority LIKE 'L%' THEN 3 END")
-    suspend fun sortByHighPriority(): List<ToDoTaskEntity>
+    fun sortByHighPriority(): Flow<List<ToDoTaskEntity>>
 }
