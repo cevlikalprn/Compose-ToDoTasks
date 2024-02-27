@@ -29,9 +29,10 @@ class TaskViewModel @Inject constructor(
 
     fun getSelectedTask(taskId: Int) = ioScope(
         launch = {
-            val toDoTask = getSelectedTaskUseCase(taskId)
-            _selectedTask.update { uiState ->
-                uiState.copy(toDoTask = toDoTask)
+            getSelectedTaskUseCase(taskId).collect { toDoTask ->
+                _selectedTask.update { uiState ->
+                    uiState.copy(toDoTask = toDoTask)
+                }
             }
         },
         error = { error ->
