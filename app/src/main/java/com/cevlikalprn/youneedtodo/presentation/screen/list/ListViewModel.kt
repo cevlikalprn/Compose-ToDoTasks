@@ -55,7 +55,6 @@ class ListViewModel @Inject constructor(
     fun deleteAllTasks() = ioScope(
         launch = {
             toDoRepository.deleteAllTasks()
-            getAllTasks()
         }
     )
 
