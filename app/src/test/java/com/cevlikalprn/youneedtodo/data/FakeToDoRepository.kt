@@ -1,6 +1,5 @@
 package com.cevlikalprn.youneedtodo.data
 
-import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +10,7 @@ class FakeToDoRepository : ToDoRepository {
     private val toDoList = mutableListOf<ToDoTaskEntity>()
 
     override fun getAllTasks(): Flow<List<ToDoTaskEntity>?> {
-        return flow { emit(toDoList) }
+        return flow { emit(toDoList.sortedByDescending { it.id }) }
     }
 
     override fun getSelectedTask(taskId: Int): Flow<ToDoTaskEntity?> {
@@ -20,15 +19,13 @@ class FakeToDoRepository : ToDoRepository {
 
     override fun getSortedByLowPriority(): Flow<List<ToDoTaskEntity>> {
         return flow {
-            val filteredList = toDoList.filter { it.priority != Priority.NONE }
-            emit(filteredList.sortedBy { it.priority.ordinal }.asReversed())
+            emit(toDoList.sortedByDescending { it.priority.ordinal })
         }
     }
 
     override fun getSortedByHighPriority(): Flow<List<ToDoTaskEntity>> {
         return flow {
-            val filteredList = toDoList.filter { it.priority != Priority.NONE }
-            emit(filteredList.sortedBy { it.priority.ordinal })
+            emit(toDoList.sortedBy { it.priority.ordinal })
         }
     }
 
