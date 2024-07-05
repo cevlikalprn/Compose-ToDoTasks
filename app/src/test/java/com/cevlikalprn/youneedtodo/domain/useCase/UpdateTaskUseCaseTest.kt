@@ -5,7 +5,7 @@ import com.cevlikalprn.youneedtodo.data.mapper.TaskEntityMapper
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -52,10 +52,9 @@ class UpdateTaskUseCaseTest {
             )
         )
 
-        toDoRepository.getSelectedTask(taskId).collectLatest {
-            assert(it?.title == updatedTaskTitle)
-            assert(it?.description == updatedTaskDescription)
-            assert(it?.priority == updatedPriority)
-        }
+        val selectedTask = toDoRepository.getSelectedTask(taskId).first()
+        assert(selectedTask?.title == updatedTaskTitle)
+        assert(selectedTask?.description == updatedTaskDescription)
+        assert(selectedTask?.priority == updatedPriority)
     }
 }

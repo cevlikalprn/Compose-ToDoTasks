@@ -4,7 +4,7 @@ import com.cevlikalprn.youneedtodo.data.FakeToDoRepository
 import com.cevlikalprn.youneedtodo.data.mapper.TaskListMapper
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -46,14 +46,13 @@ class SearchDatabaseUseCaseTest {
     fun `Search item by query`() = runBlocking {
         val searchQuery = "alp"
         val listSizeMatchedWithQuery = queryList.filter { it.contains(searchQuery, true) }.size
-        searchDatabaseUseCase(searchQuery).collectLatest { tasks ->
-            assert(tasks.size == listSizeMatchedWithQuery)
-            tasks.forEach {
-                assert(
-                    (it.title.contains(searchQuery, true)) ||
-                            (it.description.contains(searchQuery, true))
-                )
-            }
+        val tasks = searchDatabaseUseCase(searchQuery).first()
+        assert(tasks.size == listSizeMatchedWithQuery)
+        tasks.forEach {
+            assert(
+                (it.title.contains(searchQuery, true)) ||
+                        (it.description.contains(searchQuery, true))
+            )
         }
     }
 }

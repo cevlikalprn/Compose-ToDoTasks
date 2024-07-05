@@ -6,7 +6,7 @@ import com.cevlikalprn.youneedtodo.data.mapper.TaskMapper
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -41,15 +41,13 @@ class GetSelectedTaskUseCaseTest {
     @Test
     fun `Get selected task`() = runBlocking {
         val targetTaskId = 1
-        getSelectedTaskUseCase(taskId = targetTaskId).collectLatest {
-            assert(it.id == targetTaskId)
-        }
+        val selectedTask = getSelectedTaskUseCase(taskId = targetTaskId).first()
+        assert(selectedTask.id == targetTaskId)
     }
 
     @Test
     fun `Get New To Do Task`() = runBlocking {
-        getSelectedTaskUseCase(taskId = Constants.ADD_TASK_ID).collectLatest {
-            assert(it == ToDoTask.NewToDoTask)
-        }
+        val selectedTask = getSelectedTaskUseCase(taskId = Constants.ADD_TASK_ID).first()
+        assert(selectedTask == ToDoTask.NewToDoTask)
     }
 }

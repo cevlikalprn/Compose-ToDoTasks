@@ -5,7 +5,7 @@ import com.cevlikalprn.youneedtodo.data.mapper.TaskListMapper
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -48,24 +48,22 @@ class GetAllTasksUseCaseTest {
     @Test
     fun `Get sorted tasks by low priority`() = runBlocking {
         val sortedTasksByLowPriority = getAllTaskUseCase(Priority.LOW)
-        sortedTasksByLowPriority.collectLatest { tasks ->
-            for (i in 0..tasks.size - 2) {
-                val priorityOfCurrentItem = tasks[i].priority
-                val priorityOfNextTask = tasks[i + 1].priority
-                assert(priorityOfCurrentItem.ordinal >= priorityOfNextTask.ordinal)
-            }
+        val tasks = sortedTasksByLowPriority.first()
+        for (i in 0..tasks.size - 2) {
+            val priorityOfCurrentItem = tasks[i].priority
+            val priorityOfNextTask = tasks[i + 1].priority
+            assert(priorityOfCurrentItem.ordinal >= priorityOfNextTask.ordinal)
         }
     }
 
     @Test
     fun `Get sorted task by high priority`() = runBlocking {
         val sortedTasksByHighPriority = getAllTaskUseCase(Priority.HIGH)
-        sortedTasksByHighPriority.collectLatest { tasks ->
-            for (i in 0..tasks.size - 2) {
-                val priorityOfCurrentItem = tasks[i].priority
-                val priorityOfNextTask = tasks[i + 1].priority
-                assert(priorityOfCurrentItem.ordinal <= priorityOfNextTask.ordinal)
-            }
+        val tasks = sortedTasksByHighPriority.first()
+        for (i in 0..tasks.size - 2) {
+            val priorityOfCurrentItem = tasks[i].priority
+            val priorityOfNextTask = tasks[i + 1].priority
+            assert(priorityOfCurrentItem.ordinal <= priorityOfNextTask.ordinal)
         }
     }
 
@@ -73,12 +71,11 @@ class GetAllTasksUseCaseTest {
     @Test
     fun `Get all tasks, descending by id`() = runBlocking {
         val allTasks = getAllTaskUseCase(Priority.NONE)
-        allTasks.collectLatest { tasks ->
-            for (i in 0..tasks.size - 2) {
-                val currentTaskId = tasks[i].id
-                val nextTaskId = tasks[i + 1].id
-                assert(currentTaskId > nextTaskId)
-            }
+        val tasks = allTasks.first()
+        for (i in 0..tasks.size - 2) {
+            val currentTaskId = tasks[i].id
+            val nextTaskId = tasks[i + 1].id
+            assert(currentTaskId > nextTaskId)
         }
     }
 }

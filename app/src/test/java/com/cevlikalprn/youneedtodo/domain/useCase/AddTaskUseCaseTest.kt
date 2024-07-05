@@ -4,7 +4,7 @@ import com.cevlikalprn.youneedtodo.data.FakeToDoRepository
 import com.cevlikalprn.youneedtodo.data.mapper.TaskEntityMapper
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -38,10 +38,9 @@ class AddTaskUseCaseTest {
         )
         addTaskUseCase(taskToAdd)
 
-        toDoRepository.getAllTasks().collectLatest {
-            val addedTask = it?.firstOrNull()
-            assert(taskToAdd.title == addedTask?.title)
-            assert(taskToAdd.description == addedTask?.description)
-        }
+        val addedTask = toDoRepository.getAllTasks().first()?.firstOrNull()
+
+        assert(taskToAdd.title == addedTask?.title)
+        assert(taskToAdd.description == addedTask?.description)
     }
 }
