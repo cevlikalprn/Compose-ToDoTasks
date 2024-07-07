@@ -13,6 +13,7 @@ import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
@@ -30,17 +31,29 @@ class ListViewModel @Inject constructor(
     private val _allTasks: MutableStateFlow<ListUiState> = MutableStateFlow(ListUiState.Default)
     val allTasks: StateFlow<ListUiState> = _allTasks
 
+    init {
+        getAllTasks()
+    }
+    
+    fun updateErrorMessage(message: String?) {
+        _allTasks.update { it.copy(errorMessage = message) }
+    }
+
     fun getAllTasks(
         priority: Priority = Priority.NONE
     ) = ioScope {
-        getAllTasksUseCase(priority).collect { toDoTaskList ->
-            _allTasks.update { state ->
-                state.copy(
-                    areTasksFetched = true,
-                    toDoTasks = toDoTaskList
-                )
+        getAllTasksUseCase(priority)
+            .catch {
+                updateErrorMessage(it.message)
             }
-        }
+            .collect { toDoTaskList ->
+                _allTasks.update { state ->
+                    state.copy(
+                        areTasksFetched = true,
+                        toDoTasks = toDoTaskList
+                    )
+                }
+            }
     }
 
     fun deleteAllTasks() = ioScope {
@@ -48,14 +61,18 @@ class ListViewModel @Inject constructor(
     }
 
     fun searchDatabase() = ioScope {
-        searchDatabaseUseCase(searchTextState.value).collect { toDoTaskList ->
-            _allTasks.update { state ->
-                state.copy(
-                    areTasksFetched = true,
-                    toDoTasks = toDoTaskList
-                )
+        searchDatabaseUseCase(searchTextState.value)
+            .catch {
+                updateErrorMessage(it.message)
             }
-        }
+            .collect { toDoTaskList ->
+                _allTasks.update { state ->
+                    state.copy(
+                        areTasksFetched = true,
+                        toDoTasks = toDoTaskList
+                    )
+                }
+            }
     }
 
     fun updateSearchAppBarState(state: SearchAppBarState) {
