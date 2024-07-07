@@ -32,51 +32,31 @@ class ListViewModel @Inject constructor(
 
     fun getAllTasks(
         priority: Priority = Priority.NONE
-    ) = ioScope(
-        launch = {
-            getAllTasksUseCase(priority).collect { toDoTaskList ->
-                _allTasks.update { state ->
-                    state.copy(
-                        areTasksFetched = true,
-                        toDoTasks = toDoTaskList
-                    )
-                }
-            }
-        },
-        error = {
+    ) = ioScope {
+        getAllTasksUseCase(priority).collect { toDoTaskList ->
             _allTasks.update { state ->
                 state.copy(
-                    areTasksFetched = false
+                    areTasksFetched = true,
+                    toDoTasks = toDoTaskList
                 )
             }
         }
-    )
+    }
 
-    fun deleteAllTasks() = ioScope(
-        launch = {
-            toDoRepository.deleteAllTasks()
-        }
-    )
+    fun deleteAllTasks() = ioScope {
+        toDoRepository.deleteAllTasks()
+    }
 
-    fun searchDatabase() = ioScope(
-        launch = {
-            searchDatabaseUseCase(searchTextState.value).collect { toDoTaskList ->
-                _allTasks.update { state ->
-                    state.copy(
-                        areTasksFetched = true,
-                        toDoTasks = toDoTaskList
-                    )
-                }
-            }
-        },
-        error = {
+    fun searchDatabase() = ioScope {
+        searchDatabaseUseCase(searchTextState.value).collect { toDoTaskList ->
             _allTasks.update { state ->
                 state.copy(
-                    areTasksFetched = false
+                    areTasksFetched = true,
+                    toDoTasks = toDoTaskList
                 )
             }
         }
-    )
+    }
 
     fun updateSearchAppBarState(state: SearchAppBarState) {
         searchAppBarState.value = state

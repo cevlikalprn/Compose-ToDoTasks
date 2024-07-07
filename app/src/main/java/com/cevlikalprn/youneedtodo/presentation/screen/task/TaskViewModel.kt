@@ -27,40 +27,26 @@ class TaskViewModel @Inject constructor(
     private val _selectedTask: MutableStateFlow<TaskUiState> = MutableStateFlow(TaskUiState.Default)
     val selectedTask: StateFlow<TaskUiState> = _selectedTask
 
-    fun getSelectedTask(taskId: Int) = ioScope(
-        launch = {
-            getSelectedTaskUseCase(taskId).collect { toDoTask ->
-                _selectedTask.update { uiState ->
-                    uiState.copy(toDoTask = toDoTask)
-                }
-            }
-        },
-        error = { error ->
+    fun getSelectedTask(taskId: Int) = ioScope {
+        getSelectedTaskUseCase(taskId).collect { toDoTask ->
             _selectedTask.update { uiState ->
-                uiState.copy(
-                    errorMessage = error.message.orEmpty()
-                )
+                uiState.copy(toDoTask = toDoTask)
             }
         }
-    )
+    }
 
-    private fun addTask(toDoTask: ToDoTask?) = ioScope(
-        launch = {
-            addTaskUseCase(toDoTask = toDoTask)
-        }
-    )
+    private fun addTask(toDoTask: ToDoTask?) = ioScope {
+        addTaskUseCase(toDoTask = toDoTask)
+    }
 
-    private fun updateTask(toDoTask: ToDoTask?) = ioScope(
-        launch = {
-            updateTaskUseCase(toDoTask)
-        }
-    )
 
-    private fun deleteTask(toDoTask: ToDoTask?) = ioScope(
-        launch = {
-            deleteTaskUseCase(toDoTask)
-        }
-    )
+    private fun updateTask(toDoTask: ToDoTask?) = ioScope {
+        updateTaskUseCase(toDoTask)
+    }
+
+    private fun deleteTask(toDoTask: ToDoTask?) = ioScope {
+        deleteTaskUseCase(toDoTask)
+    }
 
     fun updateTaskTitle(title: String) {
         if (title.length > MAX_TASK_TITLE_LENGTH) {
