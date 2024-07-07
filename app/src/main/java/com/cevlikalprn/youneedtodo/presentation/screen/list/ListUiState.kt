@@ -3,8 +3,8 @@ package com.cevlikalprn.youneedtodo.presentation.screen.list
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 
 data class ListUiState(
-    var areTasksFetched: Boolean,
-    var toDoTasks: List<ToDoTask>?
+    val areTasksFetched: Boolean,
+    val toDoTasks: List<ToDoTask>?,
 ) {
 
     companion object {
