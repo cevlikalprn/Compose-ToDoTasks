@@ -25,6 +25,12 @@ fun TaskScreen(
         }
     )
     val uiState by viewModel.selectedTask.collectAsState()
+    LaunchedEffect(key1 = uiState.errorMessage) {
+        uiState.errorMessage?.let {
+            context.longToastMessage(it)
+            viewModel.updateErrorMessage(null)
+        }
+    }
     Scaffold(
         topBar = {
             TaskScreenTopBar(

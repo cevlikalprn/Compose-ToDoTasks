@@ -13,6 +13,7 @@ import com.cevlikalprn.youneedtodo.presentation.model.Action
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
@@ -27,12 +28,20 @@ class TaskViewModel @Inject constructor(
     private val _selectedTask: MutableStateFlow<TaskUiState> = MutableStateFlow(TaskUiState.Default)
     val selectedTask: StateFlow<TaskUiState> = _selectedTask
 
+    fun updateErrorMessage(message: String?) {
+        _selectedTask.update { it.copy(errorMessage = message) }
+    }
+
     fun getSelectedTask(taskId: Int) = ioScope {
-        getSelectedTaskUseCase(taskId).collect { toDoTask ->
-            _selectedTask.update { uiState ->
-                uiState.copy(toDoTask = toDoTask)
+        getSelectedTaskUseCase(taskId)
+            .catch {
+                updateErrorMessage(it.message)
             }
-        }
+            .collect { toDoTask ->
+                _selectedTask.update { uiState ->
+                    uiState.copy(toDoTask = toDoTask)
+                }
+            }
     }
 
     private fun addTask(toDoTask: ToDoTask?) = ioScope {
