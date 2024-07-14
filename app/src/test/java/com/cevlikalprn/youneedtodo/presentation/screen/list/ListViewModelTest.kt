@@ -50,6 +50,15 @@ class ListViewModelTest {
         assert(areTasksFetched)
     }
 
+    @Test
+    fun getAllTasks_whenErrorReceived_thenUpdateErrorMessage() {
+        val throwable = Throwable("Something went wrong")
+        toDoRepository.setThrowable(throwable)
+        viewModel.getAllTasks()
+        val errorMessage = viewModel.allTasks.value.errorMessage
+        assert(errorMessage == throwable.message)
+    }
+
 
     @Test
     fun `updateSearchAppBarState updates the searchAppBarState successfully`() {
