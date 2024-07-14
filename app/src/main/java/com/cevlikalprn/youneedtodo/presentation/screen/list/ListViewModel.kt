@@ -3,8 +3,9 @@ package com.cevlikalprn.youneedtodo.presentation.screen.list
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.cevlikalprn.youneedtodo.common.AppDispatchers
 import com.cevlikalprn.youneedtodo.common.Constants
-import com.cevlikalprn.youneedtodo.common.extension.ioScope
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
 import com.cevlikalprn.youneedtodo.domain.useCase.GetAllTasksUseCase
@@ -15,13 +16,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
     private val toDoRepository: ToDoRepository,
     private val getAllTasksUseCase: GetAllTasksUseCase,
-    private val searchDatabaseUseCase: SearchDatabaseUseCase
+    private val searchDatabaseUseCase: SearchDatabaseUseCase,
+    private val appDispatchers: AppDispatchers
 ) : ViewModel() {
 
     var searchAppBarState: MutableState<SearchAppBarState> =
@@ -34,45 +37,49 @@ class ListViewModel @Inject constructor(
     init {
         getAllTasks()
     }
-    
+
     fun updateErrorMessage(message: String?) {
         _allTasks.update { it.copy(errorMessage = message) }
     }
 
-    fun getAllTasks(
-        priority: Priority = Priority.NONE
-    ) = ioScope {
-        getAllTasksUseCase(priority)
-            .catch {
-                updateErrorMessage(it.message)
-            }
-            .collect { toDoTaskList ->
-                _allTasks.update { state ->
-                    state.copy(
-                        areTasksFetched = true,
-                        toDoTasks = toDoTaskList
-                    )
+    fun getAllTasks(priority: Priority = Priority.NONE) {
+        viewModelScope.launch(appDispatchers.IO) {
+            getAllTasksUseCase(priority)
+                .catch {
+                    updateErrorMessage(it.message)
                 }
-            }
+                .collect { toDoTaskList ->
+                    _allTasks.update { state ->
+                        state.copy(
+                            areTasksFetched = true,
+                            toDoTasks = toDoTaskList
+                        )
+                    }
+                }
+        }
     }
 
-    fun deleteAllTasks() = ioScope {
-        toDoRepository.deleteAllTasks()
+    fun deleteAllTasks() {
+        viewModelScope.launch(appDispatchers.IO) {
+            toDoRepository.deleteAllTasks()
+        }
     }
 
-    fun searchDatabase() = ioScope {
-        searchDatabaseUseCase(searchTextState.value)
-            .catch {
-                updateErrorMessage(it.message)
-            }
-            .collect { toDoTaskList ->
-                _allTasks.update { state ->
-                    state.copy(
-                        areTasksFetched = true,
-                        toDoTasks = toDoTaskList
-                    )
+    fun searchDatabase() {
+        viewModelScope.launch(appDispatchers.IO) {
+            searchDatabaseUseCase(searchTextState.value)
+                .catch {
+                    updateErrorMessage(it.message)
                 }
-            }
+                .collect { toDoTaskList ->
+                    _allTasks.update { state ->
+                        state.copy(
+                            areTasksFetched = true,
+                            toDoTasks = toDoTaskList
+                        )
+                    }
+                }
+        }
     }
 
     fun updateSearchAppBarState(state: SearchAppBarState) {
