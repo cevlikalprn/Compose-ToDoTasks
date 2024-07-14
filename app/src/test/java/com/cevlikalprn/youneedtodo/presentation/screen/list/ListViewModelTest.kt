@@ -1,10 +1,15 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.list
 
+import com.cevlikalprn.youneedtodo.common.AppDispatchers
 import com.cevlikalprn.youneedtodo.data.FakeToDoRepository
 import com.cevlikalprn.youneedtodo.data.mapper.TaskListMapper
+import com.cevlikalprn.youneedtodo.domain.model.Priority
+import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.useCase.GetAllTasksUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.SearchDatabaseUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.Before
 import org.junit.Test
 
@@ -12,17 +17,39 @@ class ListViewModelTest {
 
     private lateinit var viewModel: ListViewModel
 
-    private lateinit var fakeToDoRepository: FakeToDoRepository
+    private lateinit var toDoRepository: FakeToDoRepository
 
     @Before
     fun setUp() {
-        fakeToDoRepository = FakeToDoRepository()
+        toDoRepository = FakeToDoRepository()
         viewModel = ListViewModel(
             FakeToDoRepository(),
-            GetAllTasksUseCase(fakeToDoRepository, TaskListMapper()),
-            SearchDatabaseUseCase(fakeToDoRepository, TaskListMapper())
+            GetAllTasksUseCase(toDoRepository, TaskListMapper()),
+            SearchDatabaseUseCase(toDoRepository, TaskListMapper()),
+            AppDispatchers(IO = TestCoroutineDispatcher())
         )
     }
+
+    @Test
+    fun getAllTasks_whenNewTaskAdded_thenTaskListIsNotEmpty() = runBlocking {
+        toDoRepository.addTask(
+            ToDoTaskEntity(
+                1,
+                "",
+                "",
+                Priority.NONE
+            )
+        )
+        val tasks = viewModel.allTasks.value.toDoTasks
+        assert(tasks?.isNotEmpty() == true)
+    }
+
+    @Test
+    fun getAllTasks_whenViewModelInitialized_thenTasksAreFetched() {
+        val areTasksFetched = viewModel.allTasks.value.areTasksFetched
+        assert(areTasksFetched)
+    }
+
 
     @Test
     fun `updateSearchAppBarState updates the searchAppBarState successfully`() {
