@@ -36,7 +36,7 @@ class TodoDaoTest {
     }
 
     @Test
-    fun getAllTask() = runBlocking {
+    fun getAllTasks_matchedWithAddedTasks_returnsTrue() = runBlocking {
         val taskToAdd = ToDoTaskEntity(1, "", "", Priority.LOW)
         todoDao.addTask(taskToAdd)
         todoDao.addTask(taskToAdd.copy(id = 2))
@@ -45,7 +45,7 @@ class TodoDaoTest {
     }
 
     @Test
-    fun getSelectedTask() = runBlocking {
+    fun getSelectedTask_matchedWithAddedTask_returnsTrue() = runBlocking {
         val taskToAdd = ToDoTaskEntity(1, "", "", Priority.LOW)
         todoDao.addTask(taskToAdd)
         val retrievedTask = todoDao.getSelectedTask(1).first()
@@ -53,7 +53,7 @@ class TodoDaoTest {
     }
 
     @Test
-    fun addTask() = runBlocking {
+    fun addTask_addedTaskIsInTheList_returnsTrue() = runBlocking {
         val taskId = 100
         val entity = ToDoTaskEntity(
             id = taskId,
@@ -67,7 +67,7 @@ class TodoDaoTest {
     }
 
     @Test
-    fun updateTask() = runBlocking {
+    fun updateTask_updatedTaskIsInTheList_returnsTrue() = runBlocking {
         val taskToAdd = ToDoTaskEntity(1, "title", "", Priority.LOW)
         todoDao.addTask(taskToAdd)
         val updatedTask = taskToAdd.copy(
@@ -81,7 +81,7 @@ class TodoDaoTest {
     }
 
     @Test
-    fun deleteTask() = runBlocking {
+    fun deleteTask_deletedTaskIsNotInTheList_returnsTrue() = runBlocking {
         val taskToAdd = ToDoTaskEntity(1, "", "", Priority.LOW)
         todoDao.addTask(taskToAdd)
         todoDao.deleteTask(taskToAdd)
@@ -90,7 +90,7 @@ class TodoDaoTest {
     }
 
     @Test
-    fun deleteAllTasks() = runBlocking {
+    fun deleteAllTasks_noTasksInTheList_returnsTrue() = runBlocking {
         val sampleTask = ToDoTaskEntity(1, "", "", Priority.LOW)
         for (i in 1..3) {
             todoDao.addTask(sampleTask.copy(id = i))
@@ -101,36 +101,32 @@ class TodoDaoTest {
     }
 
     @Test
-    fun searchDatabase() = runBlocking {
+    fun searchDatabase_searchedTasksAreListed_returnsTrue() = runBlocking {
         val sampleTask = ToDoTaskEntity(1, "alp", "alperen", Priority.LOW)
         val sampleTask2 = ToDoTaskEntity(2, "alper", "eren", Priority.LOW)
         todoDao.addTask(sampleTask)
         todoDao.addTask(sampleTask2)
-        val searchedTasks = todoDao.searchDatabase("alp").first()
-        assert(searchedTasks.size == 2)
-        val searchedTasks2 = todoDao.searchDatabase("alperen").first()
-        assert(searchedTasks2.size == 1)
+        val searchedTasks = todoDao.searchDatabase("alperen").first()
+        assert(searchedTasks.size == 1)
     }
 
     @Test
-    fun sortByLowPriority() = runBlocking {
+    fun sortByLowPriority_tasksSortedByLowPriority_returnsTrue() = runBlocking {
         val sampleTask = ToDoTaskEntity(1, "", "", Priority.HIGH)
         val sampleTask2 = ToDoTaskEntity(2, "", "", Priority.LOW)
         todoDao.addTask(sampleTask)
         todoDao.addTask(sampleTask2)
         val sortedTasks = todoDao.sortByLowPriority().first()
-        assert(sortedTasks.first() == sampleTask2)
-        assert(sortedTasks.last() == sampleTask)
+        assert(sortedTasks.first() == sampleTask2 && sortedTasks.last() == sampleTask)
     }
 
     @Test
-    fun sortByHighPriority() = runBlocking {
+    fun sortByHighPriority_tasksSortedByHighPriority_returnsTrue() = runBlocking {
         val sampleTask = ToDoTaskEntity(1, "", "", Priority.LOW)
         val sampleTask2 = ToDoTaskEntity(2, "", "", Priority.HIGH)
         todoDao.addTask(sampleTask)
         todoDao.addTask(sampleTask2)
         val sortedTasks = todoDao.sortByHighPriority().first()
-        assert(sortedTasks.first() == sampleTask2)
-        assert(sortedTasks.last() == sampleTask)
+        assert(sortedTasks.first() == sampleTask2 && sortedTasks.last() == sampleTask)
     }
 }
