@@ -26,7 +26,7 @@ class DeleteTaskUseCaseTest {
     }
 
     @Test
-    fun `Delete a Task`() = runBlocking {
+    fun `deleteTask_addedTaskIsDeleted_returnsTrue`() = runBlocking {
         val addedTask = ToDoTaskEntity(
             id = 0,
             title = "new title",

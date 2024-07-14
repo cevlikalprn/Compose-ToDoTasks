@@ -17,8 +17,8 @@ import org.junit.runner.RunWith
 @SmallTest
 class TodoDaoTest {
 
-
     private lateinit var todoDatabase: TodoDatabase
+
     private lateinit var todoDao: TodoDao
 
     @Before
@@ -36,7 +36,7 @@ class TodoDaoTest {
     }
 
     @Test
-    fun getAllTasks_matchedWithAddedTasks_returnsTrue() = runBlocking {
+    fun getAllTasks_matchesWithAddedTasks_returnsTrue() = runBlocking {
         val taskToAdd = ToDoTaskEntity(1, "", "", Priority.LOW)
         todoDao.addTask(taskToAdd)
         todoDao.addTask(taskToAdd.copy(id = 2))
@@ -45,7 +45,7 @@ class TodoDaoTest {
     }
 
     @Test
-    fun getSelectedTask_matchedWithAddedTask_returnsTrue() = runBlocking {
+    fun getSelectedTask_matchesWithAddedTask_returnsTrue() = runBlocking {
         val taskToAdd = ToDoTaskEntity(1, "", "", Priority.LOW)
         todoDao.addTask(taskToAdd)
         val retrievedTask = todoDao.getSelectedTask(1).first()

@@ -23,30 +23,27 @@ class GetSelectedTaskUseCaseTest {
             toDoRepository,
             TaskMapper()
         )
-
-        runBlocking {
-            for (i in 0..3) {
-                toDoRepository.addTask(
-                    ToDoTaskEntity(
-                        id = i,
-                        title = "Title $i",
-                        description = "Description $i",
-                        priority = Priority.values().find { it.ordinal == i } ?: Priority.NONE
-                    )
-                )
-            }
-        }
     }
 
     @Test
-    fun `Get selected task`() = runBlocking {
+    fun getSelectedTask_selectedTaskIsListed_returnsTrue() = runBlocking {
+        for (i in 0..3) {
+            toDoRepository.addTask(
+                ToDoTaskEntity(
+                    id = i,
+                    title = "Title $i",
+                    description = "Description $i",
+                    priority = Priority.values().find { it.ordinal == i } ?: Priority.NONE
+                )
+            )
+        }
         val targetTaskId = 1
         val selectedTask = getSelectedTaskUseCase(taskId = targetTaskId).first()
         assert(selectedTask.id == targetTaskId)
     }
 
     @Test
-    fun `Get New To Do Task`() = runBlocking {
+    fun getSelectedTask_newToDoTaskIsRetrieved_returnsTrue() = runBlocking {
         val selectedTask = getSelectedTaskUseCase(taskId = Constants.ADD_TASK_ID).first()
         assert(selectedTask == ToDoTask.NewToDoTask)
     }

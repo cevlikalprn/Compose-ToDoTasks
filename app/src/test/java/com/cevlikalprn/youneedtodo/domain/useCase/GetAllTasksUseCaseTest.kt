@@ -46,7 +46,7 @@ class GetAllTasksUseCaseTest {
     }
 
     @Test
-    fun `Get sorted tasks by low priority`() = runBlocking {
+    fun getAllTasks_tasksAreSortedByLowPriority_returnsTrue() = runBlocking {
         val sortedTasksByLowPriority = getAllTaskUseCase(Priority.LOW)
         val tasks = sortedTasksByLowPriority.first()
         for (i in 0..tasks.size - 2) {
@@ -57,7 +57,7 @@ class GetAllTasksUseCaseTest {
     }
 
     @Test
-    fun `Get sorted task by high priority`() = runBlocking {
+    fun getAllTasks_tasksAreSortedByHighPriority_returnsTrue() = runBlocking {
         val sortedTasksByHighPriority = getAllTaskUseCase(Priority.HIGH)
         val tasks = sortedTasksByHighPriority.first()
         for (i in 0..tasks.size - 2) {
@@ -69,7 +69,7 @@ class GetAllTasksUseCaseTest {
 
 
     @Test
-    fun `Get all tasks, descending by id`() = runBlocking {
+    fun getAllTasks_tasksAreInDescendingOrderById_returnsTrue() = runBlocking {
         val allTasks = getAllTaskUseCase(Priority.NONE)
         val tasks = allTasks.first()
         for (i in 0..tasks.size - 2) {

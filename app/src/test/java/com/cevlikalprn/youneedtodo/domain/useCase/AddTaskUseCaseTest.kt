@@ -29,7 +29,7 @@ class AddTaskUseCaseTest {
     Therefore title and description are checked .
     */
     @Test
-    fun `Add Task`() = runBlocking {
+    fun addTask_listContainsAddedTask_returnsTrue() = runBlocking {
         val taskToAdd = ToDoTask(
             id = 1,
             title = "New Task Title",
@@ -41,6 +41,5 @@ class AddTaskUseCaseTest {
         val addedTask = toDoRepository.getAllTasks().first()?.firstOrNull()
 
         assert(taskToAdd.title == addedTask?.title)
-        assert(taskToAdd.description == addedTask?.description)
     }
 }

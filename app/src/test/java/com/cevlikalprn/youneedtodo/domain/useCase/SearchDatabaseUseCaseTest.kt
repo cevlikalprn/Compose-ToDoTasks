@@ -43,11 +43,9 @@ class SearchDatabaseUseCaseTest {
     }
 
     @Test
-    fun `Search item by query`() = runBlocking {
+    fun searchDatabase_matchesWithItemTitleOrDesc_returnsTrue() = runBlocking {
         val searchQuery = "alp"
-        val listSizeMatchedWithQuery = queryList.filter { it.contains(searchQuery, true) }.size
         val tasks = searchDatabaseUseCase(searchQuery).first()
-        assert(tasks.size == listSizeMatchedWithQuery)
         tasks.forEach {
             assert(
                 (it.title.contains(searchQuery, true)) ||

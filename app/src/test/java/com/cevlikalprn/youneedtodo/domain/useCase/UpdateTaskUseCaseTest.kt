@@ -38,7 +38,7 @@ class UpdateTaskUseCaseTest {
     }
 
     @Test
-    fun `Update a task`() = runBlocking {
+    fun updateTask_updatedTaskIsInTheList_returnsTrue() = runBlocking {
         val updatedTaskTitle = "Updated Task Title"
         val updatedTaskDescription = "Updated Task Description"
         val updatedPriority = Priority.LOW
@@ -53,8 +53,10 @@ class UpdateTaskUseCaseTest {
         )
 
         val selectedTask = toDoRepository.getSelectedTask(taskId).first()
-        assert(selectedTask?.title == updatedTaskTitle)
-        assert(selectedTask?.description == updatedTaskDescription)
-        assert(selectedTask?.priority == updatedPriority)
+        assert(
+            selectedTask?.title == updatedTaskTitle &&
+                    selectedTask.description == updatedTaskDescription &&
+                    selectedTask.priority == updatedPriority
+        )
     }
 }
