@@ -10,6 +10,7 @@ import com.cevlikalprn.youneedtodo.domain.useCase.SearchDatabaseUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
@@ -57,6 +58,54 @@ class ListViewModelTest {
         viewModel.getAllTasks()
         val errorMessage = viewModel.allTasks.value.errorMessage
         assert(errorMessage == throwable.message)
+    }
+
+    @Test
+    fun getAllTasks_whenPrioritySetToHigh_thenToDoListSortedByHighPriority() = runBlocking {
+        val tasksToAdd = mutableListOf<ToDoTaskEntity>()
+        for (i in 0..2) {
+            tasksToAdd.add(
+                ToDoTaskEntity(
+                    i,
+                    "",
+                    "",
+                    Priority.values()[i]
+                )
+            )
+        }
+        tasksToAdd.shuffle()
+        tasksToAdd.forEach {
+            toDoRepository.addTask(it)
+        }
+        viewModel.getAllTasks(priority = Priority.HIGH)
+        val todoTasks = viewModel.allTasks.value.toDoTasks!!
+        for (i in 0..todoTasks.size - 2) {
+            assertEquals(true, todoTasks[i].priority.ordinal < todoTasks[i + 1].priority.ordinal)
+        }
+    }
+
+    @Test
+    fun getAllTasks_whenPrioritySetToLow_thenToDoListSortedByLowPriority() = runBlocking {
+        val tasksToAdd = mutableListOf<ToDoTaskEntity>()
+        for (i in 0..2) {
+            tasksToAdd.add(
+                ToDoTaskEntity(
+                    i,
+                    "",
+                    "",
+                    Priority.values()[i]
+                )
+            )
+        }
+        tasksToAdd.shuffle()
+        tasksToAdd.forEach {
+            toDoRepository.addTask(it)
+        }
+        viewModel.getAllTasks(priority = Priority.LOW)
+        val todoTasks = viewModel.allTasks.value.toDoTasks!!
+        for (i in 0..todoTasks.size - 2) {
+            assertEquals(true, todoTasks[i].priority.ordinal > todoTasks[i + 1].priority.ordinal)
+        }
     }
 
 
