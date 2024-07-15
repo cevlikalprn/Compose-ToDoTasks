@@ -51,7 +51,7 @@ class ListViewModelTest {
     }
 
     @Test
-    fun getAllTasks_whenErrorReceived_thenUpdateErrorMessage() {
+    fun getAllTasks_whenErrorReceived_thenErrorMessageUpdated() {
         val throwable = Throwable("Something went wrong")
         toDoRepository.setThrowable(throwable)
         viewModel.getAllTasks()
@@ -61,7 +61,7 @@ class ListViewModelTest {
 
 
     @Test
-    fun `updateSearchAppBarState updates the searchAppBarState successfully`() {
+    fun updateSearchAppBarState_whenStateChanged_thenStateUpdated() {
         val initialValue = SearchAppBarState.CLOSED
         val targetValue = SearchAppBarState.OPENED
         viewModel.searchAppBarState.value = initialValue
@@ -70,7 +70,7 @@ class ListViewModelTest {
     }
 
     @Test
-    fun `updateSearchTextState updates the searchTextState successfully`() {
+    fun updateSearchTextState_whenTextChanged_thenStateUpdated() {
         val initialValue = "initial"
         val targetValue = "target"
         viewModel.searchTextState.value = initialValue
