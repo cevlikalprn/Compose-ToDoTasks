@@ -108,6 +108,12 @@ class ListViewModelTest {
         }
     }
 
+    @Test
+    fun updateErrorMessage_whenErrorReceived_thenUpdateErrorMessage() {
+        val errorMessage = "Invalid Error"
+        viewModel.updateErrorMessage(errorMessage)
+        assertEquals(errorMessage, viewModel.allTasks.value.errorMessage)
+    }
 
     @Test
     fun updateSearchAppBarState_whenStateChanged_thenStateUpdated() {
