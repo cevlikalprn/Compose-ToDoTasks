@@ -109,6 +109,27 @@ class ListViewModelTest {
     }
 
     @Test
+    fun searchDatabase_whenQueryingWithText_thenToDoListSearchedByQuery() = runBlocking {
+        val sampleTask = ToDoTaskEntity(1, "alp", "alperen", Priority.LOW)
+        val sampleTask2 = ToDoTaskEntity(2, "alper", "eren", Priority.LOW)
+        toDoRepository.addTask(sampleTask)
+        toDoRepository.addTask(sampleTask2)
+        viewModel.updateSearchTextState("alperen")
+        viewModel.searchDatabase()
+        val tasks = viewModel.allTasks.value.toDoTasks
+        assert(tasks?.size == 1 && tasks.first().title == sampleTask.title)
+    }
+
+    @Test
+    fun searchDatabase_whenErrorReceived_thenErrorMessageUpdated() {
+        val throwable = Throwable("Something went wrong")
+        toDoRepository.setThrowable(throwable)
+        viewModel.searchDatabase()
+        val errorMessage = viewModel.allTasks.value.errorMessage
+        assert(errorMessage == throwable.message)
+    }
+
+    @Test
     fun updateErrorMessage_whenErrorReceived_thenUpdateErrorMessage() {
         val errorMessage = "Invalid Error"
         viewModel.updateErrorMessage(errorMessage)
