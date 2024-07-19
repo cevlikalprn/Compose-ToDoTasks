@@ -8,8 +8,8 @@ import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.useCase.GetAllTasksUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.SearchDatabaseUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -32,7 +32,7 @@ class ListViewModelTest {
     }
 
     @Test
-    fun getAllTasks_whenNewTaskAdded_thenTaskListIsNotEmpty() = runBlocking {
+    fun getAllTasks_whenNewTaskAdded_thenTaskListIsNotEmpty() = runTest {
         toDoRepository.addTask(
             ToDoTaskEntity(
                 1,
@@ -61,7 +61,7 @@ class ListViewModelTest {
     }
 
     @Test
-    fun getAllTasks_whenPrioritySetToHigh_thenToDoListSortedByHighPriority() = runBlocking {
+    fun getAllTasks_whenPrioritySetToHigh_thenToDoListSortedByHighPriority() = runTest {
         val tasksToAdd = mutableListOf<ToDoTaskEntity>()
         for (i in 0..2) {
             tasksToAdd.add(
@@ -85,7 +85,7 @@ class ListViewModelTest {
     }
 
     @Test
-    fun getAllTasks_whenPrioritySetToLow_thenToDoListSortedByLowPriority() = runBlocking {
+    fun getAllTasks_whenPrioritySetToLow_thenToDoListSortedByLowPriority() = runTest {
         val tasksToAdd = mutableListOf<ToDoTaskEntity>()
         for (i in 0..2) {
             tasksToAdd.add(
@@ -109,7 +109,7 @@ class ListViewModelTest {
     }
 
     @Test
-    fun searchDatabase_whenQueryingWithText_thenToDoListSearchedByQuery() = runBlocking {
+    fun searchDatabase_whenQueryingWithText_thenToDoListSearchedByQuery() = runTest {
         val sampleTask = ToDoTaskEntity(1, "alp", "alperen", Priority.LOW)
         val sampleTask2 = ToDoTaskEntity(2, "alper", "eren", Priority.LOW)
         toDoRepository.addTask(sampleTask)
