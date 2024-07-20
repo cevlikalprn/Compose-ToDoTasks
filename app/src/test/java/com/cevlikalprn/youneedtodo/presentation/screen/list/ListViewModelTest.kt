@@ -8,7 +8,8 @@ import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.useCase.GetAllTasksUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.SearchDatabaseUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -20,14 +21,15 @@ class ListViewModelTest {
 
     private lateinit var toDoRepository: FakeToDoRepository
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setUp() {
         toDoRepository = FakeToDoRepository()
         viewModel = ListViewModel(
-            FakeToDoRepository(),
+            toDoRepository,
             GetAllTasksUseCase(toDoRepository, TaskListMapper()),
             SearchDatabaseUseCase(toDoRepository, TaskListMapper()),
-            AppDispatchers(IO = TestCoroutineDispatcher())
+            AppDispatchers(IO = UnconfinedTestDispatcher())
         )
     }
 
@@ -127,6 +129,17 @@ class ListViewModelTest {
         viewModel.searchDatabase()
         val errorMessage = viewModel.allTasks.value.errorMessage
         assert(errorMessage == throwable.message)
+    }
+
+    @Test
+    fun deleteAllTasks_whenTasksAreDeleted_thenToDoListIsEmpty() = runTest {
+        val sampleTask = ToDoTaskEntity(1, "", "", Priority.NONE)
+        val sampleTask2 = ToDoTaskEntity(2, "", "", Priority.NONE)
+        toDoRepository.addTask(sampleTask)
+        toDoRepository.addTask(sampleTask2)
+        viewModel.deleteAllTasks()
+        val tasks = viewModel.allTasks.value.toDoTasks
+        assert(tasks.isNullOrEmpty())
     }
 
     @Test
