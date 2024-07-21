@@ -1,8 +1,9 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.task
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.cevlikalprn.youneedtodo.common.AppDispatchers
 import com.cevlikalprn.youneedtodo.common.Constants.MAX_TASK_TITLE_LENGTH
-import com.cevlikalprn.youneedtodo.common.extension.ioScope
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
 import com.cevlikalprn.youneedtodo.domain.useCase.AddTaskUseCase
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,7 +24,8 @@ class TaskViewModel @Inject constructor(
     private val getSelectedTaskUseCase: GetSelectedTaskUseCase,
     private val addTaskUseCase: AddTaskUseCase,
     private val updateTaskUseCase: UpdateTaskUseCase,
-    private val deleteTaskUseCase: DeleteTaskUseCase
+    private val deleteTaskUseCase: DeleteTaskUseCase,
+    private val appDispatchers: AppDispatchers
 ) : ViewModel() {
 
     private val _selectedTask: MutableStateFlow<TaskUiState> = MutableStateFlow(TaskUiState.Default)
@@ -32,29 +35,37 @@ class TaskViewModel @Inject constructor(
         _selectedTask.update { it.copy(errorMessage = message) }
     }
 
-    fun getSelectedTask(taskId: Int) = ioScope {
-        getSelectedTaskUseCase(taskId)
-            .catch {
-                updateErrorMessage(it.message)
-            }
-            .collect { toDoTask ->
-                _selectedTask.update { uiState ->
-                    uiState.copy(toDoTask = toDoTask)
+    fun getSelectedTask(taskId: Int) {
+        viewModelScope.launch(appDispatchers.IO) {
+            getSelectedTaskUseCase(taskId)
+                .catch {
+                    updateErrorMessage(it.message)
                 }
-            }
+                .collect { toDoTask ->
+                    _selectedTask.update { uiState ->
+                        uiState.copy(toDoTask = toDoTask)
+                    }
+                }
+        }
     }
 
-    private fun addTask(toDoTask: ToDoTask?) = ioScope {
-        addTaskUseCase(toDoTask = toDoTask)
+    private fun addTask(toDoTask: ToDoTask?) {
+        viewModelScope.launch(appDispatchers.IO) {
+            addTaskUseCase(toDoTask = toDoTask)
+        }
     }
 
 
-    private fun updateTask(toDoTask: ToDoTask?) = ioScope {
-        updateTaskUseCase(toDoTask)
+    private fun updateTask(toDoTask: ToDoTask?) {
+        viewModelScope.launch(appDispatchers.IO) {
+            updateTaskUseCase(toDoTask)
+        }
     }
 
-    private fun deleteTask(toDoTask: ToDoTask?) = ioScope {
-        deleteTaskUseCase(toDoTask)
+    private fun deleteTask(toDoTask: ToDoTask?) {
+        viewModelScope.launch(appDispatchers.IO) {
+            deleteTaskUseCase(toDoTask)
+        }
     }
 
     fun updateTaskTitle(title: String) {
