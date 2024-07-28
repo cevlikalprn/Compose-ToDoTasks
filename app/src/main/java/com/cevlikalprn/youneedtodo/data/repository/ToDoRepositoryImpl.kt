@@ -1,13 +1,18 @@
 package com.cevlikalprn.youneedtodo.data.repository
 
+import com.cevlikalprn.youneedtodo.common.AppDispatchers
 import com.cevlikalprn.youneedtodo.data.local.TodoDao
 import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ToDoRepositoryImpl @Inject constructor(
-    private val todoDao: TodoDao
+    private val todoDao: TodoDao,
+    private val externalScope: CoroutineScope,
+    private val appDispatchers: AppDispatchers
 ) : ToDoRepository {
 
     override fun getAllTasks(): Flow<List<ToDoTaskEntity>?> {
@@ -27,15 +32,21 @@ class ToDoRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addTask(todoTaskEntity: ToDoTaskEntity) {
-        todoDao.addTask(todoTaskEntity)
+        externalScope.launch(appDispatchers.io) {
+            todoDao.addTask(todoTaskEntity)
+        }.join()
     }
 
     override suspend fun updateTask(todoTaskEntity: ToDoTaskEntity) {
-        todoDao.updateTask(todoTaskEntity)
+        externalScope.launch(appDispatchers.io) {
+            todoDao.updateTask(todoTaskEntity)
+        }.join()
     }
 
     override suspend fun deleteTask(todoTaskEntity: ToDoTaskEntity) {
-        todoDao.deleteTask(todoTaskEntity)
+        externalScope.launch(appDispatchers.io) {
+            todoDao.deleteTask(todoTaskEntity)
+        }.join()
     }
 
     override suspend fun deleteAllTasks() {

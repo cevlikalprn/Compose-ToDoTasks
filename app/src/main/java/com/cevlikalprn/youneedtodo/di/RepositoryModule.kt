@@ -1,5 +1,6 @@
 package com.cevlikalprn.youneedtodo.di
 
+import com.cevlikalprn.youneedtodo.common.AppDispatchers
 import com.cevlikalprn.youneedtodo.data.local.TodoDao
 import com.cevlikalprn.youneedtodo.data.repository.ToDoRepositoryImpl
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
@@ -7,6 +8,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineScope
 import javax.inject.Singleton
 
 @Module
@@ -16,8 +18,14 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideToDoRepository(
-        todoDao: TodoDao
+        todoDao: TodoDao,
+        coroutineScope: CoroutineScope,
+        appDispatchers: AppDispatchers
     ): ToDoRepository {
-        return ToDoRepositoryImpl(todoDao)
+        return ToDoRepositoryImpl(
+            todoDao = todoDao,
+            externalScope = coroutineScope,
+            appDispatchers = appDispatchers
+        )
     }
 }
