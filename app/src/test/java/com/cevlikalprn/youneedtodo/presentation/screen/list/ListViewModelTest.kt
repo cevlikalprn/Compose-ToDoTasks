@@ -29,7 +29,7 @@ class ListViewModelTest {
             toDoRepository,
             GetAllTasksUseCase(toDoRepository, TaskListMapper()),
             SearchDatabaseUseCase(toDoRepository, TaskListMapper()),
-            AppDispatchers(IO = UnconfinedTestDispatcher())
+            AppDispatchers(io = UnconfinedTestDispatcher())
         )
     }
 

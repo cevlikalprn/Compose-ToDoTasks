@@ -36,7 +36,7 @@ class TaskViewModel @Inject constructor(
     }
 
     fun getSelectedTask(taskId: Int) {
-        viewModelScope.launch(appDispatchers.IO) {
+        viewModelScope.launch(appDispatchers.io) {
             getSelectedTaskUseCase(taskId)
                 .catch {
                     updateErrorMessage(it.message)
@@ -50,20 +50,20 @@ class TaskViewModel @Inject constructor(
     }
 
     private fun addTask(toDoTask: ToDoTask?) {
-        viewModelScope.launch(appDispatchers.IO) {
+        viewModelScope.launch(appDispatchers.io) {
             addTaskUseCase(toDoTask = toDoTask)
         }
     }
 
 
     private fun updateTask(toDoTask: ToDoTask?) {
-        viewModelScope.launch(appDispatchers.IO) {
+        viewModelScope.launch(appDispatchers.io) {
             updateTaskUseCase(toDoTask)
         }
     }
 
     private fun deleteTask(toDoTask: ToDoTask?) {
-        viewModelScope.launch(appDispatchers.IO) {
+        viewModelScope.launch(appDispatchers.io) {
             deleteTaskUseCase(toDoTask)
         }
     }

@@ -37,7 +37,7 @@ class TaskViewModelTest {
             AddTaskUseCase(repository, TaskEntityMapper()),
             UpdateTaskUseCase(repository, TaskEntityMapper()),
             DeleteTaskUseCase(repository, TaskEntityMapper()),
-            AppDispatchers(IO = UnconfinedTestDispatcher())
+            AppDispatchers(io = UnconfinedTestDispatcher())
         )
     }
 

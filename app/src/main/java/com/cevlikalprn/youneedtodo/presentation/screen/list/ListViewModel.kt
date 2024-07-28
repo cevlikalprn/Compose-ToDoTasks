@@ -43,7 +43,7 @@ class ListViewModel @Inject constructor(
     }
 
     fun getAllTasks(priority: Priority = Priority.NONE) {
-        viewModelScope.launch(appDispatchers.IO) {
+        viewModelScope.launch(appDispatchers.io) {
             getAllTasksUseCase(priority)
                 .catch {
                     updateErrorMessage(it.message)
@@ -60,13 +60,13 @@ class ListViewModel @Inject constructor(
     }
 
     fun deleteAllTasks() {
-        viewModelScope.launch(appDispatchers.IO) {
+        viewModelScope.launch(appDispatchers.io) {
             toDoRepository.deleteAllTasks()
         }
     }
 
     fun searchDatabase() {
-        viewModelScope.launch(appDispatchers.IO) {
+        viewModelScope.launch(appDispatchers.io) {
             searchDatabaseUseCase(searchTextState.value)
                 .catch {
                     updateErrorMessage(it.message)
