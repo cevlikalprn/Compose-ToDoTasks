@@ -24,8 +24,7 @@ class TaskViewModel @Inject constructor(
     private val getSelectedTaskUseCase: GetSelectedTaskUseCase,
     private val addTaskUseCase: AddTaskUseCase,
     private val updateTaskUseCase: UpdateTaskUseCase,
-    private val deleteTaskUseCase: DeleteTaskUseCase,
-    private val appDispatchers: AppDispatchers
+    private val deleteTaskUseCase: DeleteTaskUseCase
 ) : ViewModel() {
 
     private val _selectedTask: MutableStateFlow<TaskUiState> = MutableStateFlow(TaskUiState.Default)
@@ -36,7 +35,7 @@ class TaskViewModel @Inject constructor(
     }
 
     fun getSelectedTask(taskId: Int) {
-        viewModelScope.launch(appDispatchers.io) {
+        viewModelScope.launch {
             getSelectedTaskUseCase(taskId)
                 .catch {
                     updateErrorMessage(it.message)

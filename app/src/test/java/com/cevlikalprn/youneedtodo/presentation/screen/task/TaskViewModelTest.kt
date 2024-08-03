@@ -1,6 +1,5 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.task
 
-import com.cevlikalprn.youneedtodo.common.AppDispatchers
 import com.cevlikalprn.youneedtodo.common.Constants
 import com.cevlikalprn.youneedtodo.data.FakeToDoRepository
 import com.cevlikalprn.youneedtodo.data.mapper.TaskEntityMapper
@@ -16,8 +15,10 @@ import com.cevlikalprn.youneedtodo.presentation.model.Action
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -33,16 +34,21 @@ class TaskViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setup() {
-        repository = FakeToDoRepository()
         val testDispatcher = UnconfinedTestDispatcher()
+        Dispatchers.setMain(testDispatcher)
+        repository = FakeToDoRepository()
         viewModel = TaskViewModel(
             GetSelectedTaskUseCase(repository, TaskMapper()),
             AddTaskUseCase(repository, TaskEntityMapper()),
             UpdateTaskUseCase(repository, TaskEntityMapper()),
-            DeleteTaskUseCase(repository, TaskEntityMapper()),
-            AppDispatchers(io = testDispatcher)
+            DeleteTaskUseCase(repository, TaskEntityMapper())
         )
-        Dispatchers.setMain(testDispatcher)
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @After
+    fun teardown() {
+        Dispatchers.resetMain()
     }
 
     @Test

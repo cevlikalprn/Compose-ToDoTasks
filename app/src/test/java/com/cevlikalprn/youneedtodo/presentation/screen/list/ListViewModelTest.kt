@@ -1,6 +1,5 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.list
 
-import com.cevlikalprn.youneedtodo.common.AppDispatchers
 import com.cevlikalprn.youneedtodo.data.FakeToDoRepository
 import com.cevlikalprn.youneedtodo.data.mapper.TaskListMapper
 import com.cevlikalprn.youneedtodo.domain.model.Priority
@@ -8,9 +7,13 @@ import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.useCase.GetAllTasksUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.SearchDatabaseUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -23,14 +26,21 @@ class ListViewModelTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
-    fun setUp() {
+    fun setup() {
+        val testDispatcher = UnconfinedTestDispatcher()
+        Dispatchers.setMain(testDispatcher)
         toDoRepository = FakeToDoRepository()
         viewModel = ListViewModel(
             toDoRepository,
             GetAllTasksUseCase(toDoRepository, TaskListMapper()),
-            SearchDatabaseUseCase(toDoRepository, TaskListMapper()),
-            AppDispatchers(io = UnconfinedTestDispatcher())
+            SearchDatabaseUseCase(toDoRepository, TaskListMapper())
         )
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @After
+    fun teardown() {
+        Dispatchers.resetMain()
     }
 
     @Test
