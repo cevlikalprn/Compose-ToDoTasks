@@ -34,15 +34,15 @@ class TaskViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
     fun setup() {
-        repository = FakeToDoRepository()
         val testDispatcher = UnconfinedTestDispatcher()
+        Dispatchers.setMain(testDispatcher)
+        repository = FakeToDoRepository()
         viewModel = TaskViewModel(
             GetSelectedTaskUseCase(repository, TaskMapper()),
             AddTaskUseCase(repository, TaskEntityMapper()),
             UpdateTaskUseCase(repository, TaskEntityMapper()),
             DeleteTaskUseCase(repository, TaskEntityMapper())
         )
-        Dispatchers.setMain(testDispatcher)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
