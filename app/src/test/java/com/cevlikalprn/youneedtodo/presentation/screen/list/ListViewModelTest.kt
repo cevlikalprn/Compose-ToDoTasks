@@ -24,15 +24,15 @@ class ListViewModelTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Before
-    fun setUp() {
-        toDoRepository = FakeToDoRepository()
+    fun setup() {
         val testDispatcher = UnconfinedTestDispatcher()
+        Dispatchers.setMain(testDispatcher)
+        toDoRepository = FakeToDoRepository()
         viewModel = ListViewModel(
             toDoRepository,
             GetAllTasksUseCase(toDoRepository, TaskListMapper()),
             SearchDatabaseUseCase(toDoRepository, TaskListMapper())
         )
-        Dispatchers.setMain(testDispatcher)
     }
 
     @Test
