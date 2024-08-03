@@ -1,6 +1,5 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.list
 
-import com.cevlikalprn.youneedtodo.common.AppDispatchers
 import com.cevlikalprn.youneedtodo.data.FakeToDoRepository
 import com.cevlikalprn.youneedtodo.data.mapper.TaskListMapper
 import com.cevlikalprn.youneedtodo.domain.model.Priority
@@ -31,8 +30,7 @@ class ListViewModelTest {
         viewModel = ListViewModel(
             toDoRepository,
             GetAllTasksUseCase(toDoRepository, TaskListMapper()),
-            SearchDatabaseUseCase(toDoRepository, TaskListMapper()),
-            AppDispatchers(io = testDispatcher)
+            SearchDatabaseUseCase(toDoRepository, TaskListMapper())
         )
         Dispatchers.setMain(testDispatcher)
     }

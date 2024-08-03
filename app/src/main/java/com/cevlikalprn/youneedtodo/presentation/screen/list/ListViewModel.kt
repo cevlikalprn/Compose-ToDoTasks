@@ -4,7 +4,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cevlikalprn.youneedtodo.common.AppDispatchers
 import com.cevlikalprn.youneedtodo.common.Constants
 import com.cevlikalprn.youneedtodo.domain.model.Priority
 import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
@@ -23,8 +22,7 @@ import javax.inject.Inject
 class ListViewModel @Inject constructor(
     private val toDoRepository: ToDoRepository,
     private val getAllTasksUseCase: GetAllTasksUseCase,
-    private val searchDatabaseUseCase: SearchDatabaseUseCase,
-    private val appDispatchers: AppDispatchers
+    private val searchDatabaseUseCase: SearchDatabaseUseCase
 ) : ViewModel() {
 
     var searchAppBarState: MutableState<SearchAppBarState> =
@@ -43,7 +41,7 @@ class ListViewModel @Inject constructor(
     }
 
     fun getAllTasks(priority: Priority = Priority.NONE) {
-        viewModelScope.launch(appDispatchers.io) {
+        viewModelScope.launch {
             getAllTasksUseCase(priority)
                 .catch {
                     updateErrorMessage(it.message)
@@ -66,7 +64,7 @@ class ListViewModel @Inject constructor(
     }
 
     fun searchDatabase() {
-        viewModelScope.launch(appDispatchers.io) {
+        viewModelScope.launch {
             searchDatabaseUseCase(searchTextState.value)
                 .catch {
                     updateErrorMessage(it.message)

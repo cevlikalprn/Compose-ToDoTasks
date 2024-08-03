@@ -1,6 +1,5 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.task
 
-import com.cevlikalprn.youneedtodo.common.AppDispatchers
 import com.cevlikalprn.youneedtodo.common.Constants
 import com.cevlikalprn.youneedtodo.data.FakeToDoRepository
 import com.cevlikalprn.youneedtodo.data.mapper.TaskEntityMapper
@@ -39,8 +38,7 @@ class TaskViewModelTest {
             GetSelectedTaskUseCase(repository, TaskMapper()),
             AddTaskUseCase(repository, TaskEntityMapper()),
             UpdateTaskUseCase(repository, TaskEntityMapper()),
-            DeleteTaskUseCase(repository, TaskEntityMapper()),
-            AppDispatchers(io = testDispatcher)
+            DeleteTaskUseCase(repository, TaskEntityMapper())
         )
         Dispatchers.setMain(testDispatcher)
     }
