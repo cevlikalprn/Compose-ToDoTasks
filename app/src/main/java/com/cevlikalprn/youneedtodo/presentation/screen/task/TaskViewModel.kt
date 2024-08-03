@@ -50,20 +50,20 @@ class TaskViewModel @Inject constructor(
     }
 
     private fun addTask(toDoTask: ToDoTask?) {
-        viewModelScope.launch(appDispatchers.io) {
+        viewModelScope.launch {
             addTaskUseCase(toDoTask = toDoTask)
         }
     }
 
 
     private fun updateTask(toDoTask: ToDoTask?) {
-        viewModelScope.launch(appDispatchers.io) {
+        viewModelScope.launch {
             updateTaskUseCase(toDoTask)
         }
     }
 
     private fun deleteTask(toDoTask: ToDoTask?) {
-        viewModelScope.launch(appDispatchers.io) {
+        viewModelScope.launch {
             deleteTaskUseCase(toDoTask)
         }
     }

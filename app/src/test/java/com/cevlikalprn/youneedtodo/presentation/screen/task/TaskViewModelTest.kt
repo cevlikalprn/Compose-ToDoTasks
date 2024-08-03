@@ -13,9 +13,11 @@ import com.cevlikalprn.youneedtodo.domain.useCase.DeleteTaskUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.GetSelectedTaskUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.UpdateTaskUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.Action
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -32,13 +34,15 @@ class TaskViewModelTest {
     @Before
     fun setup() {
         repository = FakeToDoRepository()
+        val testDispatcher = UnconfinedTestDispatcher()
         viewModel = TaskViewModel(
             GetSelectedTaskUseCase(repository, TaskMapper()),
             AddTaskUseCase(repository, TaskEntityMapper()),
             UpdateTaskUseCase(repository, TaskEntityMapper()),
             DeleteTaskUseCase(repository, TaskEntityMapper()),
-            AppDispatchers(io = UnconfinedTestDispatcher())
+            AppDispatchers(io = testDispatcher)
         )
+        Dispatchers.setMain(testDispatcher)
     }
 
     @Test
