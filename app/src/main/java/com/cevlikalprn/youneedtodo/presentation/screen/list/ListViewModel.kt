@@ -60,7 +60,7 @@ class ListViewModel @Inject constructor(
     }
 
     fun deleteAllTasks() {
-        viewModelScope.launch(appDispatchers.io) {
+        viewModelScope.launch {
             toDoRepository.deleteAllTasks()
         }
     }

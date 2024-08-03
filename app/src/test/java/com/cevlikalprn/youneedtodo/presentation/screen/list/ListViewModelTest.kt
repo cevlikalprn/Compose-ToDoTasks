@@ -8,9 +8,11 @@ import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.useCase.GetAllTasksUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.SearchDatabaseUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -25,12 +27,14 @@ class ListViewModelTest {
     @Before
     fun setUp() {
         toDoRepository = FakeToDoRepository()
+        val testDispatcher = UnconfinedTestDispatcher()
         viewModel = ListViewModel(
             toDoRepository,
             GetAllTasksUseCase(toDoRepository, TaskListMapper()),
             SearchDatabaseUseCase(toDoRepository, TaskListMapper()),
-            AppDispatchers(io = UnconfinedTestDispatcher())
+            AppDispatchers(io = testDispatcher)
         )
+        Dispatchers.setMain(testDispatcher)
     }
 
     @Test

@@ -7,6 +7,7 @@ import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ToDoRepositoryImpl @Inject constructor(
@@ -50,7 +51,9 @@ class ToDoRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteAllTasks() {
-        todoDao.deleteAllTasks()
+        withContext(appDispatchers.io) {
+            todoDao.deleteAllTasks()
+        }
     }
 
     override fun searchDatabase(searchQuery: String): Flow<List<ToDoTaskEntity>> {
