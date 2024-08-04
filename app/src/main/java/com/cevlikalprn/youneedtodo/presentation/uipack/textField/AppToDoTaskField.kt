@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
-import com.cevlikalprn.youneedtodo.common.TextFieldValueChange
+import com.cevlikalprn.youneedtodo.presentation.util.TextFieldValueChange
 
 @Composable
 fun AppToDoTaskField(

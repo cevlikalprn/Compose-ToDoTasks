@@ -11,9 +11,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
-import com.cevlikalprn.youneedtodo.common.SearchOnCloseClick
-import com.cevlikalprn.youneedtodo.common.SearchOnSearchClick
-import com.cevlikalprn.youneedtodo.common.SearchOnTextChange
+import com.cevlikalprn.youneedtodo.presentation.util.SearchOnCloseClick
+import com.cevlikalprn.youneedtodo.presentation.util.SearchOnSearchClick
+import com.cevlikalprn.youneedtodo.presentation.util.SearchOnTextChange
 import com.cevlikalprn.youneedtodo.presentation.theme.SEARCH_TOP_BAR_HEIGHT
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarBackgroundColor
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarContentColor

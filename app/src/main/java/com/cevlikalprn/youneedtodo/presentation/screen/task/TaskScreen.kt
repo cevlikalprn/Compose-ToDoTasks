@@ -8,8 +8,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cevlikalprn.youneedtodo.R
-import com.cevlikalprn.youneedtodo.common.NavigateToListScreen
-import com.cevlikalprn.youneedtodo.common.extension.longToastMessage
+import com.cevlikalprn.youneedtodo.presentation.util.NavigateToListScreen
+import com.cevlikalprn.youneedtodo.presentation.util.extension.longToastMessage
 
 @Composable
 fun TaskScreen(

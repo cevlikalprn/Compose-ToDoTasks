@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.domain.model
+package com.cevlikalprn.youneedtodo.common.model
 
 import androidx.compose.ui.graphics.Color
 import com.cevlikalprn.youneedtodo.presentation.theme.HighPriorityColor

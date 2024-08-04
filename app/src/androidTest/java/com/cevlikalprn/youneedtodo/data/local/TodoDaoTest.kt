@@ -4,8 +4,8 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
+import com.cevlikalprn.youneedtodo.common.model.Priority
+import com.cevlikalprn.youneedtodo.data.local.model.ToDoTaskEntity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After

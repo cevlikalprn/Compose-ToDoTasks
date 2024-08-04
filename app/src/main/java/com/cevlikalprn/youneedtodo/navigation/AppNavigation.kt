@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.cevlikalprn.youneedtodo.common.Constants.LIST_SCREEN
+import com.cevlikalprn.youneedtodo.navigation.util.Constants.LIST_SCREEN
 import com.cevlikalprn.youneedtodo.navigation.composable.listScreenComposable
 import com.cevlikalprn.youneedtodo.navigation.composable.taskScreenComposable
 

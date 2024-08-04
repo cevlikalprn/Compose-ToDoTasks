@@ -1,6 +1,6 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.list
 
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
 
 data class ListUiState(
     val errorMessage: String?,

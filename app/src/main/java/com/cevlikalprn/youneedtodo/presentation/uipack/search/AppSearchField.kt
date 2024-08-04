@@ -24,10 +24,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.R
 import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
-import com.cevlikalprn.youneedtodo.common.SearchOnCloseClick
-import com.cevlikalprn.youneedtodo.common.SearchOnSearchClick
-import com.cevlikalprn.youneedtodo.common.SearchOnTextChange
-import com.cevlikalprn.youneedtodo.common.SimpleOnClick
+import com.cevlikalprn.youneedtodo.presentation.util.SearchOnCloseClick
+import com.cevlikalprn.youneedtodo.presentation.util.SearchOnSearchClick
+import com.cevlikalprn.youneedtodo.presentation.util.SearchOnTextChange
+import com.cevlikalprn.youneedtodo.presentation.util.SimpleOnClick
 
 @Composable
 fun AppSearchField(

@@ -10,8 +10,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.R
-import com.cevlikalprn.youneedtodo.common.TopBarSortOnClick
-import com.cevlikalprn.youneedtodo.domain.model.Priority
+import com.cevlikalprn.youneedtodo.presentation.util.TopBarSortOnClick
+import com.cevlikalprn.youneedtodo.common.model.Priority
 import com.cevlikalprn.youneedtodo.presentation.uipack.component.priorityItem.AppPriorityItemWithText
 import com.cevlikalprn.youneedtodo.presentation.uipack.iconButton.AppTopBarIconButton
 

@@ -1,11 +1,11 @@
 package com.cevlikalprn.youneedtodo.domain.useCase
 
-import com.cevlikalprn.youneedtodo.common.Constants
-import com.cevlikalprn.youneedtodo.data.FakeToDoRepository
-import com.cevlikalprn.youneedtodo.data.mapper.TaskMapper
-import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
+import com.cevlikalprn.youneedtodo.common.model.Priority
+import com.cevlikalprn.youneedtodo.data.local.model.ToDoTaskEntity
+import com.cevlikalprn.youneedtodo.data.repository.FakeToDoRepository
+import com.cevlikalprn.youneedtodo.domain.mapper.TaskMapper
+import com.cevlikalprn.youneedtodo.navigation.util.Constants.ADD_TASK_ID
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -44,7 +44,7 @@ class GetSelectedTaskUseCaseTest {
 
     @Test
     fun getSelectedTask_newToDoTaskIsRetrieved_returnsTrue() = runBlocking {
-        val selectedTask = getSelectedTaskUseCase(taskId = Constants.ADD_TASK_ID).first()
+        val selectedTask = getSelectedTaskUseCase(taskId = ADD_TASK_ID).first()
         assert(selectedTask == ToDoTask.NewToDoTask)
     }
 }

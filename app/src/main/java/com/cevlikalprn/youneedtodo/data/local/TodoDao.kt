@@ -6,8 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.cevlikalprn.youneedtodo.common.Constants.DATABASE_TABLE
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
+import com.cevlikalprn.youneedtodo.data.local.util.Constants.DATABASE_TABLE
+import com.cevlikalprn.youneedtodo.data.local.model.ToDoTaskEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

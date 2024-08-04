@@ -1,6 +1,6 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.task
 
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
 
 data class TaskUiState(
     val toDoTask: ToDoTask?,

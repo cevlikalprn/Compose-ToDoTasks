@@ -8,8 +8,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
-import com.cevlikalprn.youneedtodo.common.SimpleComposableContent
-import com.cevlikalprn.youneedtodo.common.SimpleOnClick
+import com.cevlikalprn.youneedtodo.presentation.util.SimpleComposableContent
+import com.cevlikalprn.youneedtodo.presentation.util.SimpleOnClick
 import com.cevlikalprn.youneedtodo.presentation.theme.appTopBarContentColor
 
 @Composable

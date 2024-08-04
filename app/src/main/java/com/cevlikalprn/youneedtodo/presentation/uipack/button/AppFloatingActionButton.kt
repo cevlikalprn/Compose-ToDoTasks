@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
-import com.cevlikalprn.youneedtodo.common.FabOnClick
+import com.cevlikalprn.youneedtodo.presentation.util.FabOnClick
 import com.cevlikalprn.youneedtodo.presentation.theme.appFabBackgroundColor
 
 @Composable

@@ -4,9 +4,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.cevlikalprn.youneedtodo.common.Constants.TASK_ARGUMENT_KEY
-import com.cevlikalprn.youneedtodo.common.Constants.TASK_SCREEN
-import com.cevlikalprn.youneedtodo.common.NavigateToListScreen
+import com.cevlikalprn.youneedtodo.presentation.util.NavigateToListScreen
+import com.cevlikalprn.youneedtodo.navigation.util.Constants.TASK_ARGUMENT_KEY
+import com.cevlikalprn.youneedtodo.navigation.util.Constants.TASK_SCREEN
 import com.cevlikalprn.youneedtodo.presentation.screen.task.TaskScreen
 
 fun NavGraphBuilder.taskScreenComposable(

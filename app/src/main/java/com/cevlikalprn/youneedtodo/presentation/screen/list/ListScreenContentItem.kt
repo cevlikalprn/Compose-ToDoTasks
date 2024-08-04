@@ -17,11 +17,11 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
-import com.cevlikalprn.youneedtodo.common.SimpleComposableContent
-import com.cevlikalprn.youneedtodo.common.SimpleOnClick
-import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.presentation.util.NavigateToTaskScreen
+import com.cevlikalprn.youneedtodo.presentation.util.SimpleComposableContent
+import com.cevlikalprn.youneedtodo.presentation.util.SimpleOnClick
+import com.cevlikalprn.youneedtodo.common.model.Priority
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
 import com.cevlikalprn.youneedtodo.presentation.theme.LARGE_PADDING
 import com.cevlikalprn.youneedtodo.presentation.theme.TASK_ITEM_ELEVATION
 import com.cevlikalprn.youneedtodo.presentation.theme.taskItemBackgroundColor

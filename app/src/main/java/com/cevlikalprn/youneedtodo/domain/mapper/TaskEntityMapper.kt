@@ -1,7 +1,7 @@
-package com.cevlikalprn.youneedtodo.data.mapper
+package com.cevlikalprn.youneedtodo.domain.mapper
 
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
+import com.cevlikalprn.youneedtodo.data.local.model.ToDoTaskEntity
 import javax.inject.Inject
 
 class TaskEntityMapper @Inject constructor() {

@@ -1,17 +1,17 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.task
 
-import com.cevlikalprn.youneedtodo.common.Constants
-import com.cevlikalprn.youneedtodo.data.FakeToDoRepository
-import com.cevlikalprn.youneedtodo.data.mapper.TaskEntityMapper
-import com.cevlikalprn.youneedtodo.data.mapper.TaskMapper
-import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
+import com.cevlikalprn.youneedtodo.common.model.Priority
+import com.cevlikalprn.youneedtodo.data.local.model.ToDoTaskEntity
+import com.cevlikalprn.youneedtodo.data.repository.FakeToDoRepository
+import com.cevlikalprn.youneedtodo.domain.mapper.TaskEntityMapper
+import com.cevlikalprn.youneedtodo.domain.mapper.TaskMapper
 import com.cevlikalprn.youneedtodo.domain.useCase.AddTaskUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.DeleteTaskUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.GetSelectedTaskUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.UpdateTaskUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.Action
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
+import com.cevlikalprn.youneedtodo.presentation.screen.task.TaskViewModel.Companion.MAX_TASK_TITLE_LENGTH
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -82,7 +82,7 @@ class TaskViewModelTest {
     fun updateTaskTitle_titleLengthExceedsLimit_titleNotUpdated() {
         var title = ""
         while (true) {
-            if (title.length > Constants.MAX_TASK_TITLE_LENGTH) {
+            if (title.length > MAX_TASK_TITLE_LENGTH) {
                 break
             }
             title += "a"
@@ -95,7 +95,7 @@ class TaskViewModelTest {
     fun updateTaskTitle_titleLengthWithinLimit_titleUpdated() {
         var title = ""
         while (true) {
-            if (title.length < Constants.MAX_TASK_TITLE_LENGTH && title.isNotEmpty()) {
+            if (title.length < MAX_TASK_TITLE_LENGTH && title.isNotEmpty()) {
                 break
             }
             title += "a"

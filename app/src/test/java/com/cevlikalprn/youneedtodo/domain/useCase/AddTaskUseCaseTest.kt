@@ -1,9 +1,9 @@
 package com.cevlikalprn.youneedtodo.domain.useCase
 
-import com.cevlikalprn.youneedtodo.data.FakeToDoRepository
-import com.cevlikalprn.youneedtodo.data.mapper.TaskEntityMapper
-import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.common.model.Priority
+import com.cevlikalprn.youneedtodo.data.repository.FakeToDoRepository
+import com.cevlikalprn.youneedtodo.domain.mapper.TaskEntityMapper
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Before

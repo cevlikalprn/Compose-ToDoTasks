@@ -1,8 +1,8 @@
 package com.cevlikalprn.youneedtodo.domain.useCase
 
-import com.cevlikalprn.youneedtodo.data.mapper.TaskEntityMapper
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
-import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
+import com.cevlikalprn.youneedtodo.domain.mapper.TaskEntityMapper
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
+import com.cevlikalprn.youneedtodo.data.repository.ToDoRepository
 import javax.inject.Inject
 
 class UpdateTaskUseCase @Inject constructor(
