@@ -1,9 +1,9 @@
 package com.cevlikalprn.youneedtodo.presentation.screen.list
 
 import com.cevlikalprn.youneedtodo.data.FakeToDoRepository
-import com.cevlikalprn.youneedtodo.data.mapper.TaskListMapper
-import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
+import com.cevlikalprn.youneedtodo.domain.mapper.TaskListMapper
+import com.cevlikalprn.youneedtodo.common.model.Priority
+import com.cevlikalprn.youneedtodo.data.local.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.useCase.GetAllTasksUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.SearchDatabaseUseCase
 import com.cevlikalprn.youneedtodo.presentation.model.SearchAppBarState

@@ -14,10 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.R
-import com.cevlikalprn.youneedtodo.common.PrioritySelectedClick
-import com.cevlikalprn.youneedtodo.common.TextFieldValueChange
-import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.presentation.util.PrioritySelectedClick
+import com.cevlikalprn.youneedtodo.presentation.util.TextFieldValueChange
+import com.cevlikalprn.youneedtodo.common.model.Priority
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
 import com.cevlikalprn.youneedtodo.presentation.theme.LARGE_PADDING
 import com.cevlikalprn.youneedtodo.presentation.theme.MEDIUM_PADDING
 import com.cevlikalprn.youneedtodo.presentation.uipack.component.priorityDropDown.AppPriorityDropDown

@@ -2,8 +2,7 @@ package com.cevlikalprn.youneedtodo.data.repository
 
 import com.cevlikalprn.youneedtodo.common.AppDispatchers
 import com.cevlikalprn.youneedtodo.data.local.TodoDao
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
-import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
+import com.cevlikalprn.youneedtodo.data.local.model.ToDoTaskEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn

@@ -9,10 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.R
-import com.cevlikalprn.youneedtodo.common.ActionListener
-import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
-import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.presentation.util.ActionListener
+import com.cevlikalprn.youneedtodo.common.model.Priority
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
+import com.cevlikalprn.youneedtodo.navigation.util.Constants.ADD_TASK_ID
 import com.cevlikalprn.youneedtodo.presentation.model.Action
 import com.cevlikalprn.youneedtodo.presentation.uipack.iconButton.AppTopBarIconButton
 import com.cevlikalprn.youneedtodo.presentation.uipack.topBar.AppDefaultTopBar

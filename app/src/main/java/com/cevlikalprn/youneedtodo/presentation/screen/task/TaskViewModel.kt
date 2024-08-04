@@ -2,10 +2,8 @@ package com.cevlikalprn.youneedtodo.presentation.screen.task
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cevlikalprn.youneedtodo.common.AppDispatchers
-import com.cevlikalprn.youneedtodo.common.Constants.MAX_TASK_TITLE_LENGTH
-import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.common.model.Priority
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
 import com.cevlikalprn.youneedtodo.domain.useCase.AddTaskUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.DeleteTaskUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.GetSelectedTaskUseCase
@@ -130,5 +128,9 @@ class TaskViewModel @Inject constructor(
                 // do nothing
             }
         }
+    }
+
+    companion object {
+        const val MAX_TASK_TITLE_LENGTH = 25
     }
 }

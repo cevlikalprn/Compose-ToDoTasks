@@ -28,8 +28,8 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cevlikalprn.youneedtodo.common.Constants.EMPTY_STRING
-import com.cevlikalprn.youneedtodo.common.PrioritySelectedClick
-import com.cevlikalprn.youneedtodo.domain.model.Priority
+import com.cevlikalprn.youneedtodo.presentation.util.PrioritySelectedClick
+import com.cevlikalprn.youneedtodo.common.model.Priority
 import com.cevlikalprn.youneedtodo.presentation.theme.PRIORITY_DROP_DOWN_HEIGHT
 import com.cevlikalprn.youneedtodo.presentation.uipack.component.priorityItem.AppPriorityItemShape
 import com.cevlikalprn.youneedtodo.presentation.uipack.component.priorityItem.AppPriorityItemWithText

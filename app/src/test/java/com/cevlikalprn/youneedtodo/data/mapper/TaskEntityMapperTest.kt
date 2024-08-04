@@ -1,7 +1,8 @@
 package com.cevlikalprn.youneedtodo.data.mapper
 
-import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
+import com.cevlikalprn.youneedtodo.domain.mapper.TaskEntityMapper
+import com.cevlikalprn.youneedtodo.common.model.Priority
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test

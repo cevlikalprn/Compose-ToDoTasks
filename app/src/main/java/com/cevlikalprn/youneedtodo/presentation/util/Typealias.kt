@@ -1,7 +1,7 @@
-package com.cevlikalprn.youneedtodo.common
+package com.cevlikalprn.youneedtodo.presentation.util
 
 import androidx.compose.runtime.Composable
-import com.cevlikalprn.youneedtodo.domain.model.Priority
+import com.cevlikalprn.youneedtodo.common.model.Priority
 import com.cevlikalprn.youneedtodo.presentation.model.Action
 
 // General

@@ -1,4 +1,4 @@
-package com.cevlikalprn.youneedtodo.common.extension
+package com.cevlikalprn.youneedtodo.presentation.util.extension
 
 import android.content.Context
 import android.widget.Toast

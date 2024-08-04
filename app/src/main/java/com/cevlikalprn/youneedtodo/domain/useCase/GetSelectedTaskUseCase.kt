@@ -1,10 +1,10 @@
 package com.cevlikalprn.youneedtodo.domain.useCase
 
-import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
-import com.cevlikalprn.youneedtodo.data.mapper.TaskMapper
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
-import com.cevlikalprn.youneedtodo.domain.repository.ToDoRepository
+import com.cevlikalprn.youneedtodo.domain.mapper.TaskMapper
+import com.cevlikalprn.youneedtodo.data.repository.ToDoRepository
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
+import com.cevlikalprn.youneedtodo.data.local.model.ToDoTaskEntity
+import com.cevlikalprn.youneedtodo.navigation.util.Constants.ADD_TASK_ID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map

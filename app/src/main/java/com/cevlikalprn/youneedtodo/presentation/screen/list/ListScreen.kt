@@ -10,9 +10,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.cevlikalprn.youneedtodo.common.Constants.ADD_TASK_ID
-import com.cevlikalprn.youneedtodo.common.NavigateToTaskScreen
-import com.cevlikalprn.youneedtodo.common.extension.longToastMessage
+import com.cevlikalprn.youneedtodo.presentation.util.NavigateToTaskScreen
+import com.cevlikalprn.youneedtodo.navigation.util.Constants.ADD_TASK_ID
+import com.cevlikalprn.youneedtodo.presentation.util.extension.longToastMessage
 import com.cevlikalprn.youneedtodo.presentation.uipack.button.AppFloatingActionButton
 
 @Composable

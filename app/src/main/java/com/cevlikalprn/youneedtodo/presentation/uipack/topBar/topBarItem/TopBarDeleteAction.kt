@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.cevlikalprn.youneedtodo.R
-import com.cevlikalprn.youneedtodo.common.TopBarDeleteOnClick
+import com.cevlikalprn.youneedtodo.presentation.util.TopBarDeleteOnClick
 import com.cevlikalprn.youneedtodo.presentation.theme.LARGE_PADDING
 import com.cevlikalprn.youneedtodo.presentation.theme.Typography
 import com.cevlikalprn.youneedtodo.presentation.uipack.iconButton.AppTopBarIconButton

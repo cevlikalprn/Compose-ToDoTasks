@@ -2,11 +2,11 @@ package com.cevlikalprn.youneedtodo.presentation.screen.task
 
 import com.cevlikalprn.youneedtodo.common.Constants
 import com.cevlikalprn.youneedtodo.data.FakeToDoRepository
-import com.cevlikalprn.youneedtodo.data.mapper.TaskEntityMapper
-import com.cevlikalprn.youneedtodo.data.mapper.TaskMapper
-import com.cevlikalprn.youneedtodo.domain.model.Priority
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTask
-import com.cevlikalprn.youneedtodo.domain.model.ToDoTaskEntity
+import com.cevlikalprn.youneedtodo.domain.mapper.TaskEntityMapper
+import com.cevlikalprn.youneedtodo.domain.mapper.TaskMapper
+import com.cevlikalprn.youneedtodo.common.model.Priority
+import com.cevlikalprn.youneedtodo.presentation.model.ToDoTask
+import com.cevlikalprn.youneedtodo.data.local.model.ToDoTaskEntity
 import com.cevlikalprn.youneedtodo.domain.useCase.AddTaskUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.DeleteTaskUseCase
 import com.cevlikalprn.youneedtodo.domain.useCase.GetSelectedTaskUseCase

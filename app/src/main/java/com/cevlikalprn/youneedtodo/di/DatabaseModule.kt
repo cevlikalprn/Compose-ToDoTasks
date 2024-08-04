@@ -2,8 +2,8 @@ package com.cevlikalprn.youneedtodo.di
 
 import android.content.Context
 import androidx.room.Room
+import com.cevlikalprn.youneedtodo.data.local.util.Constants.DATABASE_NAME
 import com.cevlikalprn.youneedtodo.data.local.TodoDatabase
-import com.cevlikalprn.youneedtodo.common.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
